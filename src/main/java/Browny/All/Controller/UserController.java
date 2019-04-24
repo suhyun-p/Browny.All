@@ -1,6 +1,7 @@
 package Browny.All.Controller;
 
 import Browny.All.Entity.UserT;
+import Browny.All.Model.UserM;
 import Browny.All.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/getUserTList", method = RequestMethod.GET)
-    public ResponseEntity<List<UserT>> getUserTList() {
-        List<UserT> userTList = userService.getUserTList();
-        return new ResponseEntity(userTList, OK);
+    @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
+    public ResponseEntity<List<UserM>> getUserList() {
+        List<UserM> userList = userService.getUserList();
+        return new ResponseEntity(userList, OK);
     }
 }
