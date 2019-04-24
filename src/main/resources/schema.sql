@@ -1,5 +1,35 @@
-create table if not exists user (
-    user_no bigint not null auto_increment,
-    nickname varchar(10) not null,
-    primary key(user_no)
+CREATE TABLE IF NOT EXISTS user (
+  user_no BIGINT NOT NULL AUTO_INCREMENT,
+  nickname VARCHAR(255) NOT NULL,
+  sex CHAR(1) NOT NULL,
+  instructor TINYINT NOT NULL DEFAULT 0,
+  account VARCHAR(45) NULL,
+  create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
+  update_date DATETIME NULL,
+  update_id VARCHAR(255) NULL,
+  PRIMARY KEY (user_no)
+);
+
+CREATE TABLE IF NOT EXISTS instructor_contact (
+  seq BIGINT NOT NULL AUTO_INCREMENT,
+  instructor_no BIGINT NOT NULL,
+  type VARCHAR(2) NULL,
+  contact VARCHAR(255) NULL,
+  create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  create_id VARCHAR(25) NOT NULL DEFAULT 'ADMIN',
+  update_date DATETIME NULL,
+  update_id VARCHAR(255) NULL,
+  PRIMARY KEY (seq)
+);
+
+CREATE TABLE IF NOT EXISTS instructor_career (
+  seq BIGINT NOT NULL AUTO_INCREMENT,
+  instructor_no BIGINT NOT NULL,
+  career VARCHAR(255) NULL,
+  create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
+  update_date DATETIME NULL,
+  update_id VARCHAR(255) NULL,
+  PRIMARY KEY (seq)
 );
