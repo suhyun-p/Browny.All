@@ -3,6 +3,8 @@ package Browny.All.Service;
 import Browny.All.Entity.InstructorCareerT;
 import Browny.All.Entity.InstructorContactT;
 import Browny.All.Entity.UserT;
+import Browny.All.Enum.ContactType;
+import Browny.All.Enum.Sex;
 import Browny.All.Model.InstructorContactM;
 import Browny.All.Model.UserM;
 import Browny.All.Repository.UserRepository;
@@ -29,13 +31,13 @@ public class UserService {
     }
 
     private UserM ConvertToUserM(UserT userT) {
-        UserM user = new UserM(userT.getUserNo(), userT.getNickname(), userT.getSex(), userT.getInstructor());
+        UserM user = new UserM(userT.getUserNo(), userT.getNickname(), Sex.valueOf(userT.getSex()), userT.getInstructor());
         if(userT.getInstructor()) {
             user.setAccount(userT.getAccount());
             for(InstructorCareerT careerT : userT.getInstructorCareerTList())
                 user.getCareerList().add(careerT.getCareer());
             for(InstructorContactT contactT : userT.getInstructorContactTList())
-                user.getContactList().add(new InstructorContactM(contactT.getType(), contactT.getContact()));
+                user.getContactList().add(new InstructorContactM(ContactType.valueOf(contactT.getType()), contactT.getContact()));
         }
 
         return user;

@@ -1,5 +1,6 @@
 package Browny.All.Model;
 
+import Browny.All.Enum.Sex;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -14,7 +15,7 @@ import java.util.List;
 public class UserM {
     @NonNull private Long userNo;
     @NonNull private String nickname;
-    @NonNull private String sex;
+    @NonNull private Sex sex;
     @NonNull private Boolean instructor;
     private String account;
     private List<String> careerList = new ArrayList<>();
