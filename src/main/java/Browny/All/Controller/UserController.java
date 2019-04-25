@@ -38,13 +38,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public ResponseEntity<UserM> signup(@RequestBody SignUpRequest req) {
+    public ResponseEntity<UserM> signUp(@RequestBody SignUpRequest req) {
         UserM user = userService.SignUp(req);
         return new ResponseEntity(user, OK);
     }
 
     @RequestMapping(value = "/editUser", method = RequestMethod.POST)
-    public ResponseEntity<UserM> signup(@RequestBody EditUserRequest req) {
+    public ResponseEntity<UserM> editUser(@RequestBody EditUserRequest req) {
         UserM user = userService.EditUser(req);
         return new ResponseEntity(user, OK);
     }

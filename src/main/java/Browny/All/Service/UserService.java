@@ -83,7 +83,7 @@ public class UserService {
         user.setNickname(req.getNickname());
         user.setSex(req.getSex());
         user.setInstructor(req.getInstructor());
-        user.setAccount(req.getAccount());
+        user.setAccount(req.getInstructor() ? req.getAccount() : null);
         user.setUpdateDate(LocalDateTime.now());
         user.setUpdateId("Admin");
         userRepository.save(user);
