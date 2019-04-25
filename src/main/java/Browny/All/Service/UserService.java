@@ -30,6 +30,12 @@ public class UserService {
         return userList;
     }
 
+    @Transactional
+    public UserM getUser(long userNo) {
+        UserT userT = userRepository.findById(userNo).get();
+        return ConvertToUserM(userT);
+    }
+
     private UserM ConvertToUserM(UserT userT) {
         UserM user = new UserM(userT.getUserNo(), userT.getNickname(), Sex.valueOf(userT.getSex()), userT.getInstructor());
         if(userT.getInstructor()) {
