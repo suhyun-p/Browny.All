@@ -31,4 +31,11 @@ public class UserController {
         UserM user = userService.getUser(userNo);
         return new ResponseEntity(user, OK);
     }
+
+    @RequestMapping(value = "/getInstructorList", method = RequestMethod.GET)
+    public ResponseEntity<List<UserM>> getInstructorList() {
+        List<UserM> instructorList = userService.getInstructorList();
+
+        return new ResponseEntity(instructorList, OK);
+    }
 }

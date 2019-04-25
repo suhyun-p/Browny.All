@@ -36,6 +36,16 @@ public class UserService {
         return ConvertToUserM(userT);
     }
 
+    @Transactional
+    public List<UserM> getInstructorList() {
+        List<UserM> instructorList = new ArrayList<>();
+        List<UserT> userTList = userRepository.findAllByInstructorIsTrue();
+        for(UserT userT : userTList)
+            instructorList.add(ConvertToUserM(userT));
+
+        return instructorList;
+    }
+
     private UserM ConvertToUserM(UserT userT) {
         UserM user = new UserM(userT.getUserNo(), userT.getNickname(), Sex.valueOf(userT.getSex()), userT.getInstructor());
         if(userT.getInstructor()) {
