@@ -25,7 +25,7 @@ public class UserT {
     @Column(name = "sex", nullable = false)
     private String sex;
 
-    @Column(name = "instructor")
+    @Column(name = "instructor", nullable = false)
     private Boolean instructor;
 
     @Column(name = "account")
@@ -52,6 +52,14 @@ public class UserT {
     private List<InstructorContactT> instructorContactTList = new ArrayList<>();
 
     public UserT() {
+        this.setCreateDate(LocalDateTime.now());
+        this.setCreateId("Admin");
+    }
+
+    public UserT(String nickname, String sex, boolean instructor) {
+        this.setNickname(nickname);
+        this.setSex(sex);
+        this.setInstructor(instructor);
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
     }

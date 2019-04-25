@@ -39,10 +39,14 @@ public class InstructorContactT {
 
 
     public InstructorContactT() {
+        this.setCreateDate(LocalDateTime.now());
+        this.setCreateId("Admin");
     }
 
-    public InstructorContactT(Long instructorNo) {
+    public InstructorContactT(Long instructorNo, String type, String contact) {
         this.setInstructorNo(instructorNo);
+        this.setType(type);
+        this.setContact(contact);
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
     }

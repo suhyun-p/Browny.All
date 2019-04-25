@@ -1,14 +1,12 @@
 package Browny.All.Controller;
 
 import Browny.All.Entity.UserT;
+import Browny.All.Model.Request.SignUpRequest;
 import Browny.All.Model.UserM;
 import Browny.All.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +33,12 @@ public class UserController {
     @RequestMapping(value = "/getInstructorList", method = RequestMethod.GET)
     public ResponseEntity<List<UserM>> getInstructorList() {
         List<UserM> instructorList = userService.getInstructorList();
-
         return new ResponseEntity(instructorList, OK);
+    }
+
+    @RequestMapping(value = "/signUp", method = RequestMethod.POST)
+    public ResponseEntity<String> signup(@RequestBody SignUpRequest req) {
+        String ret = userService.SignUp(req);
+        return new ResponseEntity(ret, OK);
     }
 }

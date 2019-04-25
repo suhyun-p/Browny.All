@@ -1,6 +1,5 @@
 package Browny.All.Entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +9,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Data
 @Table(name = "instructor_career")
 public class InstructorCareerT {
     @Id // javax.persistence
@@ -37,10 +35,13 @@ public class InstructorCareerT {
     private String updateId;
 
     public InstructorCareerT() {
+        this.setCreateDate(LocalDateTime.now());
+        this.setCreateId("Admin");
     }
 
-    public InstructorCareerT(Long instructorNo) {
+    public InstructorCareerT(Long instructorNo, String career) {
         this.setInstructorNo(instructorNo);
+        this.setCareer(career);
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
     }
