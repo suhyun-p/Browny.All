@@ -56,10 +56,11 @@ public class UserT {
         this.setCreateId("Admin");
     }
 
-    public UserT(String nickname, String sex, boolean instructor) {
+    public UserT(String nickname, String sex, boolean instructor, String account) {
         this.setNickname(nickname);
         this.setSex(sex);
         this.setInstructor(instructor);
+        this.setAccount(account);
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
     }

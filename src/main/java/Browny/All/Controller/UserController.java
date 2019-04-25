@@ -1,6 +1,7 @@
 package Browny.All.Controller;
 
 import Browny.All.Entity.UserT;
+import Browny.All.Model.Request.EditUserRequest;
 import Browny.All.Model.Request.SignUpRequest;
 import Browny.All.Model.UserM;
 import Browny.All.Service.UserService;
@@ -20,25 +21,31 @@ public class UserController {
 
     @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
     public ResponseEntity<List<UserM>> getUserList() {
-        List<UserM> userList = userService.getUserList();
+        List<UserM> userList = userService.GetUserList();
         return new ResponseEntity(userList, OK);
     }
 
     @RequestMapping(value = "/getUserByUserNo", method = RequestMethod.GET)
     public ResponseEntity<UserM> getUserByUserNo(@RequestParam("userNo") long userNo) {
-        UserM user = userService.getUser(userNo);
+        UserM user = userService.GetUser(userNo);
         return new ResponseEntity(user, OK);
     }
 
     @RequestMapping(value = "/getInstructorList", method = RequestMethod.GET)
     public ResponseEntity<List<UserM>> getInstructorList() {
-        List<UserM> instructorList = userService.getInstructorList();
+        List<UserM> instructorList = userService.GetInstructorList();
         return new ResponseEntity(instructorList, OK);
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public ResponseEntity<String> signup(@RequestBody SignUpRequest req) {
-        String ret = userService.SignUp(req);
-        return new ResponseEntity(ret, OK);
+    public ResponseEntity<UserM> signup(@RequestBody SignUpRequest req) {
+        UserM user = userService.SignUp(req);
+        return new ResponseEntity(user, OK);
+    }
+
+    @RequestMapping(value = "/editUser", method = RequestMethod.POST)
+    public ResponseEntity<UserM> signup(@RequestBody EditUserRequest req) {
+        UserM user = userService.EditUser(req);
+        return new ResponseEntity(user, OK);
     }
 }

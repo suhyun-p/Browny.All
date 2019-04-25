@@ -4,4 +4,5 @@ import Browny.All.Entity.InstructorContactT;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InstructorContactRepository extends JpaRepository<InstructorContactT, Long> {
+    void deleteAllByInstructorNo(Long instructorNo);
 }

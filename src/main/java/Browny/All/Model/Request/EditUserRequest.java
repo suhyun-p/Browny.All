@@ -5,7 +5,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class SignUpRequest {
+public class EditUserRequest {
+    private Long userNo;
     private String nickname;
     private String sex;
     private Boolean instructor;
@@ -15,12 +16,6 @@ public class SignUpRequest {
 }
 
 /*
-{
-  "instructor": false,
-  "nickname": "TestUser",
-  "sex": "M"
-}
-
 {
   "account": "TestBank 000-00-000000 TestUser",
   "careerList": [
@@ -39,6 +34,7 @@ public class SignUpRequest {
   ],
   "instructor": true,
   "nickname": "TestUser",
-  "sex": "M"
+  "sex": "M",
+  "userNo": 4
 }
  */
