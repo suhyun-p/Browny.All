@@ -33,3 +33,71 @@ CREATE TABLE IF NOT EXISTS instructor_career (
   update_id VARCHAR(255) NULL,
   PRIMARY KEY (seq)
 );
+
+CREATE TABLE IF NOT EXISTS class (
+    class_no BIGINT NOT NULL AUTO_INCREMENT,
+    instructor_no_1 BIGINT NOT NULL,
+    instructor_no_2 BIGINT NOT NULL,
+    title varchar(255) NOT NULL,
+    start_date DATETIME not null,
+    end_date DATETIME not null,
+    start_time varchar(255) not null,
+    end_time varchar(255) not null,
+    male_price int not null,
+    female_price int not null,
+    payment_type int not null,
+    payment varchar(255),
+    contents varchar(255),
+    class_image varchar(255),
+    genre char(1) not null,
+    region char(2) not null,
+    type char(1) not null,
+    only char(1),
+    level int,
+    recruitment_type char(1),
+    recruitment_number int,
+    create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
+    update_date DATETIME NULL,
+    update_id VARCHAR(255) NULL,
+    primary key (class_no)
+);
+
+CREATE TABLE IF NOT EXISTS class_price_option (
+    seq BIGINT NOT NULL AUTO_INCREMENT,
+    class_no BIGINT NOT NULL,
+    option varchar(255) NOT NULL,
+    create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
+    primary key (seq)
+);
+
+CREATE TABLE IF NOT EXISTS class_date_option (
+    seq BIGINT NOT NULL AUTO_INCREMENT,
+    class_no BIGINT NOT NULL,
+    option varchar(255) NOT NULL,
+    create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
+    primary key (seq)
+);
+
+CREATE TABLE IF NOT EXISTS class_earlybird (
+    seq BIGINT NOT NULL AUTO_INCREMENT,
+    class_no BIGINT NOT NULL,
+    deadline DATETIME NOT NULL,
+    amount int NOT NULL,
+    create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
+    primary key (seq)
+);
+
+CREATE TABLE IF NOT EXISTS class_contact (
+    seq BIGINT NOT NULL AUTO_INCREMENT,
+    class_no BIGINT NOT NULL,
+    instructor_no BIGINT NOT NULL,
+    type VARCHAR(255) NOT NULL,
+    contact VARCHAR(255) NOT NULL,
+    create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
+    primary key (seq)
+);
