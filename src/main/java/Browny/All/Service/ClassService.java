@@ -69,6 +69,13 @@ public class ClassService {
         class_.setMalePrice(classT.getMalePrice());
         class_.setFemalePrice(classT.getFemalePrice());
 
+        if (classT.getPaymentType() == 1 && classT.getInstructor1() != null)
+            class_.setPayment(classT.getInstructor1().getAccount());
+        else if (classT.getPaymentType() == 2 && classT.getInstructor2() != null)
+            class_.setPayment(classT.getInstructor2().getAccount());
+        else if (classT.getPaymentType() == 3)
+            class_.setPayment(classT.getPayment());
+
         return class_;
     }
 }
