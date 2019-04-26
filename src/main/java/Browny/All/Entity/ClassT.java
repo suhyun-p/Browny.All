@@ -53,6 +53,9 @@ public class ClassT {
     @Column(name = "end_time", nullable = false)
     private String endTime;
 
+    @Column(name = "location", nullable = false)
+    private String location;
+
     @Column(name = "male_price", nullable = false)
     private int malePrice;
 

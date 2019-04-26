@@ -1,0 +1,24 @@
+package Browny.All.Enum;
+
+public enum ClassType {
+    N("일반"), // Normal
+    P("공연반"), // Performance
+    C("클리닉"), // Clinic
+    W("워크샵"), // Workshop
+    O("Open 강습"); // Open 강습
+    // Key("Value");
+
+    private String value;
+
+    ClassType(String value) {
+        this.value = value;
+    }
+
+    public String getKey() {
+        return name();
+    }
+
+    public String getValue() {
+        return value;
+    }
+}

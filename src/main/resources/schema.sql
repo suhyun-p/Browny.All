@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS class (
     end_date DATETIME not null,
     start_time varchar(255) not null,
     end_time varchar(255) not null,
+    location varchar(255) not null,
     male_price int not null,
     female_price int not null,
     payment_type int not null,

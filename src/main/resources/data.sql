@@ -20,5 +20,5 @@ insert into instructor_career (instructor_no, career) values (3, '2017 대구 Bo
 insert into instructor_career (instructor_no, career) values (3, '2017 한중 살사&바차타 카니발 Sensual Bachata 공연');
 insert into instructor_career (instructor_no, career) values (3, '2017 싱가포르 라틴엑스트라바간자 한국팀 대표공연');
 
-insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, start_time, end_time, male_price, female_price, payment_type, payment, level, recruitment_type, recruitment_number, contents, class_image)
-values ('B', 'HD', 'P', 'F', 3, null, 'Team Ahora Ladies', '2018-10-13', '2018-11-24', '19:30', '21:00', 0, 120000, 1, null, null, null, null, null, null);
+insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, start_time, end_time, location, male_price, female_price, payment_type, payment, level, recruitment_type, recruitment_number, contents, class_image)
+values ('B', 'HD', 'P', 'F', 3, null, 'Team Ahora Ladies', '2018-10-13', '2018-11-24', '19:30', '21:00', '텐션', 0, 120000, 1, null, null, null, null, null, null);
