@@ -18,11 +18,23 @@ public class ClassT {
     @Column(name = "class_no", nullable = false)
     private Long classNo;
 
-    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @Column(name = "genre")
+    private String genre;
+
+    @Column(name = "region")
+    private String region;
+
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "only")
+    private String only;
+
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="instructor_no_1")
     private UserT instructor1;
 
-    @OneToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="instructor_no_2")
     private UserT instructor2;
 
@@ -53,24 +65,6 @@ public class ClassT {
     @Column(name = "payment")
     private String payment;
 
-    @Column(name = "contents")
-    private String contents;
-
-    @Column(name = "class_image")
-    private String classImage;
-
-    @Column(name = "genre")
-    private String genre;
-
-    @Column(name = "region")
-    private String region;
-
-    @Column(name = "type")
-    private String type;
-
-    @Column(name = "only")
-    private String only;
-
     @Column(name = "level")
     private Integer level;
 
@@ -79,6 +73,12 @@ public class ClassT {
 
     @Column(name = "recruitment_number")
     private Integer recruitmentNumber;
+
+    @Column(name = "contents")
+    private String contents;
+
+    @Column(name = "class_image")
+    private String classImage;
 
     @Column(name = "create_date", nullable = false)
     private LocalDateTime createDate;

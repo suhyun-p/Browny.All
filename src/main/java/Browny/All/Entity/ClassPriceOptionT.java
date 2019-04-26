@@ -19,8 +19,8 @@ public class ClassPriceOptionT {
     @Column(name = "class_no", nullable = false)
     private long classNo;
 
-    @Column(name = "\"option\"")
-    private String option;
+    @Column(name = "opt")
+    private String opt;
 
     @Column(name = "create_date", nullable = false)
     private LocalDateTime createDate;

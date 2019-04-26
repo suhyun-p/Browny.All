@@ -20,8 +20,8 @@ public class ClassDateOptionT {
     @Column(name = "class_no", nullable = false)
     private Long classNo;
 
-    @Column(name = "\"option\"") // Annotation으로 Keyword로 지정된 단어 사용
-    private String option;
+    @Column(name = "opt") // Annotation으로 Keyword로 지정된 단어 사용
+    private String opt;
 
     @Column(name = "create_date", nullable = false)
     private LocalDateTime createDate;
