@@ -29,5 +29,5 @@ public class ClassM {
     private int malePrice;
     private int femalePrice;
     private String payment;
-    private List<String> contactList  = new ArrayList<>();
+    private List<InstructorContactM> contactList  = new ArrayList<>();
 }

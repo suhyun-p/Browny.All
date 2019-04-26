@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class InstructorContactM {
+    private String instructor;
     private ContactType type;
     private String contact;
 }

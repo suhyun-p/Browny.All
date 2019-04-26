@@ -22,3 +22,5 @@ insert into instructor_career (instructor_no, career) values (3, '2017 싱가포
 
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, start_time, end_time, location, male_price, female_price, payment_type, payment, level, recruitment_type, recruitment_number, contents, class_image)
 values ('B', 'HD', 'P', 'F', 3, null, 'Team Ahora Ladies', '2018-10-13', '2018-11-24', '19:30', '21:00', '텐션', 0, 120000, 1, null, null, null, null, null, null);
+insert into class_contact (class_no, instructor_no, type, contact) values (1, 3, 'P', '010-2335-8364');
+insert into class_contact (class_no, instructor_no, type, contact) values (1, 3, 'K', 'ssg8364');

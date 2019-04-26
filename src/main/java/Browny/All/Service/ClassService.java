@@ -1,11 +1,10 @@
 package Browny.All.Service;
 
 import Browny.All.Entity.ClassT;
-import Browny.All.Enum.ClassType;
-import Browny.All.Enum.Genre;
-import Browny.All.Enum.Only;
-import Browny.All.Enum.Region;
+import Browny.All.Entity.InstructorContactT;
+import Browny.All.Enum.*;
 import Browny.All.Model.ClassM;
+import Browny.All.Model.InstructorContactM;
 import Browny.All.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,6 +74,16 @@ public class ClassService {
             class_.setPayment(classT.getInstructor2().getAccount());
         else if (classT.getPaymentType() == 3)
             class_.setPayment(classT.getPayment());
+
+        if(classT.getInstructor1() != null && classT.getInstructor1().getInstructorContactTList() != null) {
+            for(InstructorContactT contactT : classT.getInstructor1().getInstructorContactTList())
+                class_.getContactList().add(new InstructorContactM(classT.getInstructor1().getNickname(), ContactType.valueOf(contactT.getType()), contactT.getContact()));
+        }
+
+        if(classT.getInstructor2() != null && classT.getInstructor2().getInstructorContactTList() != null) {
+            for(InstructorContactT contactT : classT.getInstructor2().getInstructorContactTList())
+                class_.getContactList().add(new InstructorContactM(classT.getInstructor2().getNickname(), ContactType.valueOf(contactT.getType()), contactT.getContact()));
+        }
 
         return class_;
     }

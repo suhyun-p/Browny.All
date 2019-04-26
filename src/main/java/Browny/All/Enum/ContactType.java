@@ -1,5 +1,10 @@
 package Browny.All.Enum;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
 public enum ContactType {
     P("PhoneNo"),
     K("KakaoTalk"),
