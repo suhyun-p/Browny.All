@@ -1,15 +1,18 @@
 package Browny.All.Service;
 
-import Browny.All.Entity.ClassT;
-import Browny.All.Entity.InstructorContactT;
+import Browny.All.Entity.*;
 import Browny.All.Enum.*;
 import Browny.All.Model.ClassM;
+import Browny.All.Model.EarlybirdM;
 import Browny.All.Model.InstructorContactM;
 import Browny.All.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +87,28 @@ public class ClassService {
             for(InstructorContactT contactT : classT.getInstructor2().getInstructorContactTList())
                 class_.getContactList().add(new InstructorContactM(classT.getInstructor2().getNickname(), ContactType.valueOf(contactT.getType()), contactT.getContact()));
         }
+
+        if(classT.getClassDateOptionTList() != null) {
+            for(ClassDateOptionT dateOption : classT.getClassDateOptionTList()) {
+                class_.getDateOptionList().add(dateOption.getOpt());
+            }
+        }
+
+        if(classT.getClassPriceOptionTList() != null) {
+            for(ClassPriceOptionT priceOption : classT.getClassPriceOptionTList()) {
+                class_.getPriceOptionList().add(priceOption.getOpt());
+            }
+        }
+
+        if(classT.getClassEarlybirdTList() != null) {
+            for(ClassEarlybirdT earlybird : classT.getClassEarlybirdTList()) {
+                if(LocalDate.now().isBefore(earlybird.getDeadline())) {
+                    class_.setEarlybird(new EarlybirdM(earlybird.getDeadline(), earlybird.getAmount()));
+                    break;
+                }
+            }
+        }
+
 
         return class_;
     }

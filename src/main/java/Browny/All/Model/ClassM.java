@@ -28,6 +28,9 @@ public class ClassM {
     private String location;
     private int malePrice;
     private int femalePrice;
+    private EarlybirdM earlybird;
     private String payment;
     private List<InstructorContactM> contactList  = new ArrayList<>();
+    private List<String> dateOptionList = new ArrayList<>();
+    private List<String> priceOptionList = new ArrayList<>();
 }
