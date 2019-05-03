@@ -2,6 +2,7 @@ package Browny.All.Controller;
 
 import Browny.All.Entity.ClassT;
 import Browny.All.Model.ClassM;
+import Browny.All.Model.ClassSimpleM;
 import Browny.All.Service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,12 @@ public class ClassController {
         List<ClassM> classList = classService.getClassList();
 
         return new ResponseEntity(classList, OK);
+    }
+
+    @RequestMapping(value = "/getClassSimpleList", method = RequestMethod.GET)
+    public ResponseEntity<List<ClassSimpleM>> getClassSimpleMList() {
+        List<ClassSimpleM> classSimpleList = classService.getClassSimpleList();
+
+        return new ResponseEntity(classSimpleList, OK);
     }
 }

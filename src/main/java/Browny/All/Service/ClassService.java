@@ -3,6 +3,7 @@ package Browny.All.Service;
 import Browny.All.Entity.*;
 import Browny.All.Enum.*;
 import Browny.All.Model.ClassM;
+import Browny.All.Model.ClassSimpleM;
 import Browny.All.Model.EarlybirdM;
 import Browny.All.Model.InstructorContactM;
 import Browny.All.Repository.*;
@@ -10,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,6 +54,16 @@ public class ClassService {
             classList.add(ConvertToClassM(classT));
 
         return classList;
+    }
+
+    @Transactional
+    public List<ClassSimpleM> getClassSimpleList() {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
+        List<ClassT> classTList = classRepository.findAll();
+        for(ClassT classT : classTList)
+            classSimpleList.add(ConvertToClassSimpleM(classT));
+
+        return classSimpleList;
     }
 
     private ClassM ConvertToClassM(ClassT classT) {
@@ -111,5 +124,30 @@ public class ClassService {
 
 
         return class_;
+    }
+
+    private ClassSimpleM ConvertToClassSimpleM(ClassT classT) {
+        ClassSimpleM classSimpleM = new ClassSimpleM();
+        classSimpleM.setClassNo(classT.getClassNo());
+        classSimpleM.setGenre(Genre.valueOf(classT.getGenre()));
+        classSimpleM.setRegion(Region.valueOf(classT.getRegion()));
+        classSimpleM.setType(ClassType.valueOf(classT.getType()));
+        classSimpleM.setOnly(Only.valueOf(classT.getOnly()));
+        classSimpleM.setTitle(classT.getTitle());
+        classSimpleM.setInstructorNo1(classT.getInstructor1().getUserNo());
+        classSimpleM.setInstructorNick1(classT.getInstructor1().getNickname());
+        classSimpleM.setInstructorNo2(classT.getInstructor2() == null ? null : classT.getInstructor2().getUserNo());
+        classSimpleM.setInstructorNick2(classT.getInstructor2() == null ? null : classT.getInstructor2().getNickname());
+        classSimpleM.setDate(String.format("%s ~ %s", classT.getStartDate(), classT.getEndDate()));
+        classSimpleM.setTime(String.format("%s ~ %s", classT.getStartTime(), classT.getEndTime()));
+        classSimpleM.setPrice(getPriceText(classT.getMalePrice(), classT.getFemalePrice()));
+
+        return classSimpleM;
+    }
+
+    private String getPriceText(int malePrice, int femalePrice) {
+        if(malePrice == 0) return String.format("%s", femalePrice);
+        else if (femalePrice == 0) return String.format("%s", malePrice);
+        else return String.format("%s / %s", malePrice, femalePrice);
     }
 }

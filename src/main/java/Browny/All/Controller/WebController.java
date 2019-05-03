@@ -13,8 +13,8 @@ public class WebController {
     public String Index(Model model) {
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Object> ret = restTemplate.getForEntity("http://localhost:8080/api/class/getClassList", Object.class);
-        model.addAttribute("classList", ret.getBody());
+        ResponseEntity<Object> ret = restTemplate.getForEntity("http://localhost:8080/api/class/getClassSimpleList", Object.class);
+        model.addAttribute("classSimpleList", ret.getBody());
 
         return "/index";
     }
