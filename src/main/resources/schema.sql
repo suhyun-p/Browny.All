@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS class (
     location varchar(255) not null,
     male_price int not null,
     female_price int not null,
-    payment_type int not null,
+    payment_type int,
     payment varchar(255),
     level int,
     recruitment_type char(1),
@@ -95,9 +95,9 @@ CREATE TABLE IF NOT EXISTS class_earlybird (
 CREATE TABLE IF NOT EXISTS class_contact (
     seq BIGINT NOT NULL AUTO_INCREMENT,
     class_no BIGINT NOT NULL,
-    instructor_no BIGINT NOT NULL,
-    type VARCHAR(255) NOT NULL,
-    contact VARCHAR(255) NOT NULL,
+    instructor_no BIGINT,
+    type VARCHAR(255),
+    contact VARCHAR(255),
     create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
     primary key (seq)

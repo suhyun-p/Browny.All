@@ -19,13 +19,13 @@ public class ClassContactT {
     @Column(name = "class_no", nullable = false)
     private Long classNo;
 
-    @Column(name = "instructor_no", nullable = false)
+    @Column(name = "instructor_no")
     private Long instructorNo;
 
-    @Column(name = "type", nullable = false)
+    @Column(name = "type")
     private String type;
 
-    @Column(name = "contact", nullable = false)
+    @Column(name = "contact")
     private String contact;
 
     @Column(name = "create_date", nullable = false)

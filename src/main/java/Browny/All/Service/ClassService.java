@@ -129,10 +129,10 @@ public class ClassService {
     private ClassSimpleM ConvertToClassSimpleM(ClassT classT) {
         ClassSimpleM classSimpleM = new ClassSimpleM();
         classSimpleM.setClassNo(classT.getClassNo());
-        classSimpleM.setGenre(Genre.valueOf(classT.getGenre()));
-        classSimpleM.setRegion(Region.valueOf(classT.getRegion()));
-        classSimpleM.setType(ClassType.valueOf(classT.getType()));
-        classSimpleM.setOnly(Only.valueOf(classT.getOnly()));
+        classSimpleM.setGenre(Genre.valueOf(classT.getGenre()).getValue());
+        classSimpleM.setRegion(Region.valueOf(classT.getRegion()).getValue());
+        classSimpleM.setType(ClassType.valueOf(classT.getType()).getValue());
+        classSimpleM.setOnly(classT.getOnly() == null ? null : Only.valueOf(classT.getOnly()).getValue());
         classSimpleM.setTitle(classT.getTitle());
         classSimpleM.setInstructorNo1(classT.getInstructor1().getUserNo());
         classSimpleM.setInstructorNick1(classT.getInstructor1().getNickname());
@@ -141,6 +141,7 @@ public class ClassService {
         classSimpleM.setDate(String.format("%s ~ %s", classT.getStartDate(), classT.getEndDate()));
         classSimpleM.setTime(String.format("%s ~ %s", classT.getStartTime(), classT.getEndTime()));
         classSimpleM.setPrice(getPriceText(classT.getMalePrice(), classT.getFemalePrice()));
+        classSimpleM.setClassImage(String.format("http://localhost:8080/assets/images/%s", classT.getClassImage()));
 
         return classSimpleM;
     }
@@ -148,6 +149,9 @@ public class ClassService {
     private String getPriceText(int malePrice, int femalePrice) {
         if(malePrice == 0) return String.format("%s", femalePrice);
         else if (femalePrice == 0) return String.format("%s", malePrice);
-        else return String.format("%s / %s", malePrice, femalePrice);
+        else {
+            if(malePrice == femalePrice) return String.format("%s", malePrice);
+            else return String.format("%s / %s", malePrice, femalePrice);
+        }
     }
 }

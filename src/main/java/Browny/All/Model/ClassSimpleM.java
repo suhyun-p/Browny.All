@@ -14,10 +14,10 @@ import java.util.List;
 @Data
 public class ClassSimpleM {
     private Long classNo;
-    private Genre genre;
-    private Region region;
-    private ClassType type;
-    private Only only;
+    private String genre;
+    private String region;
+    private String type;
+    private String only;
     private String title;
     private Long instructorNo1;
     private String instructorNick1;
@@ -26,4 +26,5 @@ public class ClassSimpleM {
     private String date;
     private String time;
     private String price;
+    private String classImage;
 }

@@ -84,13 +84,13 @@
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
                     <div class="display:inline">
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
+                        <strong class="d-inline-block mb-2 text-primary" th:text="${class.genre}"></strong>
                         &emsp;
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
+                        <strong class="d-inline-block mb-2 text-primary" th:text="${class.region}"></strong>
                         &emsp;
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
+                        <strong class="d-inline-block mb-2 text-primary" th:text="${class.type}"></strong>
                         &emsp;
-                        <strong class="d-inline-block mb-2 text-primary">World</strong>
+                        <strong class="d-inline-block mb-2 text-primary" th:text="${class.only}"></strong>
                     </div>
                     <h3 class="mb-0" th:text="${class.title}"></h3>
                     <div class="mb-1 text-muted" th:text="${class.date}"></div>
@@ -99,7 +99,7 @@
                     <p class="stretched-link" th:text="${class.price}"></p>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    <img th:src="${class.classImage}" style="width:200px; height:250px">
                 </div>
             </div>
         </div>
