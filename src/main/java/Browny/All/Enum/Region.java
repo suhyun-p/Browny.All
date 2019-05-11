@@ -4,7 +4,8 @@ public enum Region {
     HD("홍대"),
     GN("강남"),
     BD("분당"),
-    GD("건대");
+    GD("건대"),
+    AP("압구정");
     // Key("Value");
 
     private String value;

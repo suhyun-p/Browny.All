@@ -63,7 +63,7 @@ public class ClassT {
     private int femalePrice;
 
     @Column(name = "payment_type")
-    private int paymentType;
+    private String paymentType;
 
     @Column(name = "payment")
     private String payment;
