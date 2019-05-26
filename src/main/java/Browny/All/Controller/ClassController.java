@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -39,5 +40,12 @@ public class ClassController {
         List<ClassSimpleM> classSimpleList = classService.getClassSimpleList();
 
         return new ResponseEntity(classSimpleList, OK);
+    }
+
+    @RequestMapping(value = "/getClassDetail", method = RequestMethod.GET)
+    public ResponseEntity<ClassM> getClassDetail(@RequestParam("classNo") long classNo) {
+        ClassM classDatail = classService.getClassDetail(classNo);
+
+        return new ResponseEntity(classDatail, OK);
     }
 }

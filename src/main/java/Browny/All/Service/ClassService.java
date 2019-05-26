@@ -66,6 +66,14 @@ public class ClassService {
         return classSimpleList;
     }
 
+    @Transactional
+    public ClassM getClassDetail(long classNo) {
+        ClassM classDetail = new ClassM();
+        ClassT classT = classRepository.findById(classNo).get();
+
+        return ConvertToClassM(classT);
+    }
+
     private ClassM ConvertToClassM(ClassT classT) {
         ClassM class_ = new ClassM();
         class_.setClassNo(classT.getClassNo());

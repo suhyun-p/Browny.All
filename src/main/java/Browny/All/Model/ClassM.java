@@ -5,12 +5,16 @@ import Browny.All.Enum.Genre;
 import Browny.All.Enum.Only;
 import Browny.All.Enum.Region;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @Data
 public class ClassM {
     private Long classNo;
