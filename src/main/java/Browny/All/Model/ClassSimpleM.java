@@ -17,14 +17,9 @@ public class ClassSimpleM {
     private String genre;
     private String region;
     private String type;
+    private boolean typeExpose;
     private String only;
+    private boolean onlyExpose;
     private String title;
-    private Long instructorNo1;
-    private String instructorNick1;
-    private Long instructorNo2;
-    private String instructorNick2;
-    private String date;
-    private String time;
-    private String price;
     private String classImage;
 }

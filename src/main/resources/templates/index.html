@@ -79,46 +79,18 @@
         </div>
     </div>
 
-    <!--<div class="row mb-2">
-        <div class="col-md-6" th:each="class : ${classSimpleList}">
-            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <div class="display:inline">
-                        <strong class="d-inline-block mb-2 text-primary" th:text="${class.genre}"></strong>
-                        &emsp;
-                        <strong class="d-inline-block mb-2 text-primary" th:text="${class.region}"></strong>
-                        &emsp;
-                        <strong class="d-inline-block mb-2 text-primary" th:text="${class.type}"></strong>
-                        &emsp;
-                        <strong class="d-inline-block mb-2 text-primary" th:text="${class.only}"></strong>
-                    </div>
-                    <h3 class="mb-0" th:text="${class.title}"></h3>
-                    <div class="mb-1 text-muted" th:text="${class.date}"></div>
-                    <div class="mb-1 text-muted" th:text="${class.time}"></div>
-                    <p class="card-text mb-auto" th:text="${class.instructorNick1}"></p>
-                    <p class="card-text mb-auto" th:text="${class.instructorNick2}"></p>
-                    <p class="stretched-link" th:text="${class.price}"></p>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img th:src="${class.classImage}" style="width:200px; height:250px">
-                </div>
-            </div>
-        </div>
-    </div>-->
-
     <div class="row">
         <div class="col-md-3" th:each="class : ${classSimpleList}">
             <div class="card mb-3 shadow-sm">
-                <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
                 <img th:src="${class.classImage}" style="width:100%;height:280px;padding-left: 20px;padding-right: 20px;padding-top: 20px;" alt="Data">
                 <div class="card-body">
                     <p class="card-text" style="min-height: 48px" th:text="${class.title}"></p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="row" style="padding-left: 15px;">
-                            <span style="padding-right: 15px;">#Bachata</span>
-                            <span style="padding-right: 15px;">#홍대</span>
-                            <span style="padding-right: 15px;">#공연반</span>
-                            <span style="padding-right: 15px;">#LadyOnly</span>
+                        <div class="row" style="min-height: 48px; padding-left: 15px;">
+                            <span style="padding-right: 15px;" th:text="${class.genre}"></span>
+                            <span style="padding-right: 15px;" th:text="${class.region}"></span>
+                            <span style="padding-right: 15px;" th:if="${class.typeExpose}" th:text="${class.type}"></span>
+                            <span style="padding-right: 15px;" th:if="${class.onlyExpose}" th:text="${class.only}"></span>
                         </div>
                     </div>
                 </div>

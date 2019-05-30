@@ -1,8 +1,8 @@
 package Browny.All.Enum;
 
 public enum Only {
-    M("Gentleman Only"),
-    F("Lady Only");
+    M("MensOnly"),
+    F("LadyOnly");
     // Key("Value");
 
     private String value;

@@ -6,7 +6,7 @@ public enum ClassType {
     C("클리닉"), // Clinic
     W("워크샵"), // Workshop
     T("트레이닝"), // Workshop
-    O("Open 강습"); // Open 강습
+    O("Open강습"); // Open 강습
     // Key("Value");
 
     private String value;

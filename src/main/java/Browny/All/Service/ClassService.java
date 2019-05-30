@@ -66,6 +66,29 @@ public class ClassService {
         return classSimpleList;
     }
 
+    private ClassSimpleM ConvertToClassSimpleM(ClassT classT) {
+        ClassSimpleM classSimpleM = new ClassSimpleM();
+        classSimpleM.setClassNo(classT.getClassNo());
+        classSimpleM.setGenre(String.format("#%s", Genre.valueOf(classT.getGenre()).getValue()));
+        classSimpleM.setRegion(String.format("#%s", Region.valueOf(classT.getRegion()).getValue()));
+        classSimpleM.setType(String.format("#%s", ClassType.valueOf(classT.getType()).getValue()));
+        classSimpleM.setTypeExpose(ClassType.valueOf(classT.getType()).equals(ClassType.N) ? false : true);
+        if(classT.getOnly() != null){
+            classSimpleM.setOnly(String.format("#%s", Only.valueOf(classT.getOnly()).getValue()));
+            classSimpleM.setOnlyExpose(true);
+        }
+        else {
+            // null
+            classSimpleM.setOnly(null);
+            classSimpleM.setOnlyExpose(false);
+        }
+
+        classSimpleM.setTitle(classT.getTitle());
+        classSimpleM.setClassImage(String.format("http://localhost:8080/assets/images/%s", classT.getClassImage()));
+
+        return classSimpleM;
+    }
+
     @Transactional
     public ClassM getClassDetail(long classNo) {
         ClassM classDetail = new ClassM();
@@ -134,25 +157,7 @@ public class ClassService {
         return class_;
     }
 
-    private ClassSimpleM ConvertToClassSimpleM(ClassT classT) {
-        ClassSimpleM classSimpleM = new ClassSimpleM();
-        classSimpleM.setClassNo(classT.getClassNo());
-        classSimpleM.setGenre(Genre.valueOf(classT.getGenre()).getValue());
-        classSimpleM.setRegion(Region.valueOf(classT.getRegion()).getValue());
-        classSimpleM.setType(ClassType.valueOf(classT.getType()).getValue());
-        classSimpleM.setOnly(classT.getOnly() == null ? null : Only.valueOf(classT.getOnly()).getValue());
-        classSimpleM.setTitle(classT.getTitle());
-        classSimpleM.setInstructorNo1(classT.getInstructor1().getUserNo());
-        classSimpleM.setInstructorNick1(classT.getInstructor1().getNickname());
-        classSimpleM.setInstructorNo2(classT.getInstructor2() == null ? null : classT.getInstructor2().getUserNo());
-        classSimpleM.setInstructorNick2(classT.getInstructor2() == null ? "" : classT.getInstructor2().getNickname());
-        classSimpleM.setDate(String.format("%s ~ %s", classT.getStartDate(), classT.getEndDate()));
-        classSimpleM.setTime(String.format("%s ~ %s", classT.getStartTime(), classT.getEndTime()));
-        classSimpleM.setPrice(getPriceText(classT.getMalePrice(), classT.getFemalePrice()));
-        classSimpleM.setClassImage(String.format("http://localhost:8080/assets/images/%s", classT.getClassImage()));
 
-        return classSimpleM;
-    }
 
     private String getPriceText(int malePrice, int femalePrice) {
         if(malePrice == 0) return String.format("%s", femalePrice);
