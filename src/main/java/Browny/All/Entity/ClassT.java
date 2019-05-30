@@ -47,6 +47,9 @@ public class ClassT {
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
+    @Column(name = "date_summary")
+    private String dateSummary;
+
     @Column(name = "start_time", nullable = false)
     private String startTime;
 

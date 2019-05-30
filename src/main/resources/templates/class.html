@@ -23,17 +23,8 @@
 <div class="container">
     <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="text-muted" href="#">Subscribe</a>
-            </div>
-            <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="#">Large</a>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="text-muted" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-                </a>
-                <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+            <div class="col-12 text-center">
+                <a class="blog-header-logo text-dark" href="/">Browny</a>
             </div>
         </div>
     </header>
@@ -41,13 +32,13 @@
     <br/>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 offset-md-3">
             <div class="mb-3">
                 <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
                 <img src="http://localhost:8080/assets/images/class_1.jpg" style="width:100%;height:100%;" alt="Data">
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 offset-md-3">
             <div class="card mb-3 shadow-sm">
                 <div class="row" style="padding-top: 15px;padding-left: 15px;">
                     <span style="padding-left: 15px;"><b>#Bachata</b></span>
@@ -59,24 +50,20 @@
                 <dl class="row" style="padding-left: 20px;padding-right: 20px;">
                     <dt class="col-sm-3">Title</dt>
                     <dd class="col-sm-9" th:text="${classDetail.title}"></dd>
-
                     <dt class="col-sm-3">Instructor</dt>
                     <dd class="col-sm-9" th:text="${classDetail.instructor1}"></dd>
-
                     <dt class="col-sm-3">Date</dt>
                     <dd class="col-sm-9">
-                        <p th:text="${classDetail.startDate}" style="margin-bottom: 0;"></p>
+                        <p th:text="${classDetail.startDate} + ' ~ ' + ${classDetail.endDate}" style="margin-bottom: 0;"></p>
+                        <p th:text="'(' + ${classDetail.dateSummary} + ')'" style="margin-bottom: 0;"></p>
                         <div th:each="dateOption : ${classDetail.dateOptionList}">
                             <p th:text="${dateOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
                     </dd>
-
                     <dt class="col-sm-3">Time</dt>
-                    <dd class="col-sm-9" th:text="${classDetail.startTime}"></dd>
-
+                    <dd class="col-sm-9" th:text="${classDetail.startTime} + ' ~ ' + ${classDetail.endTime} + ' (' + ${classDetail.timeSummary} + ')'"></dd>
                     <dt class="col-sm-3">Location</dt>
                     <dd class="col-sm-9" th:text="${classDetail.location}"></dd>
-
                     <dt class="col-sm-3">Price</dt>
                     <dd class="col-sm-9" >
                         <p th:text="${classDetail.femalePrice}" style="margin-bottom: 0;"></p>
@@ -84,10 +71,8 @@
                             <p th:text="${priceOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
                     </dd>
-
                     <dt class="col-sm-3">Payment</dt>
-                    <dd class="col-sm-9">우리은행 180-08-44668 전신영</dd>
-
+                    <dd class="col-sm-9" th:text="${classDetail.payment}"></dd>
                     <dt class="col-sm-3">Contact</dt>
                     <dd class="col-sm-9">
                         <p style="margin-bottom: 0;">스칼렛 010-2335-8364 / <img src="http://localhost:8080/assets/images/kakaolink_btn_small.png" style="width: 20px;"> ssg8364</p>

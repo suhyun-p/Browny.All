@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS class (
     title varchar(255) NOT NULL,
     start_date DATETIME not null,
     end_date DATETIME not null,
+    date_summary varchar(255),
     start_time varchar(255) not null,
     end_time varchar(255) not null,
     location varchar(255) not null,

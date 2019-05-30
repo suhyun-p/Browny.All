@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ClassService {
@@ -111,15 +113,25 @@ public class ClassService {
         class_.setEndDate(classT.getEndDate().toString());
         class_.setStartTime(classT.getStartTime());
         class_.setEndTime(classT.getEndTime());
+        class_.setDateSummary(classT.getDateSummary());
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.KOREA);
+            long diff = format.parse(classT.getEndTime()).getTime() - format.parse(classT.getStartTime()).getTime();
+            long minDiff = diff / (1000 * 60);
+            class_.setTimeSummary(String.format("%s분", minDiff));
+        }
+        catch (ParseException e) {
+        }
+
         class_.setLocation(classT.getLocation());
         class_.setMalePrice(classT.getMalePrice());
         class_.setFemalePrice(classT.getFemalePrice());
 
-        if (classT.getPaymentType() == "1" && classT.getInstructor1() != null)
+        if (classT.getPaymentType().equals("1") && classT.getInstructor1() != null)
             class_.setPayment(classT.getInstructor1().getAccount());
-        else if (classT.getPaymentType() == "2" && classT.getInstructor2() != null)
+        else if (classT.getPaymentType().equals("2") && classT.getInstructor2() != null)
             class_.setPayment(classT.getInstructor2().getAccount());
-        else if (classT.getPaymentType() == "3")
+        else if (classT.getPaymentType().equals("3"))
             class_.setPayment(classT.getPayment());
 
         if(classT.getInstructor1() != null && classT.getInstructor1().getInstructorContactTList() != null) {

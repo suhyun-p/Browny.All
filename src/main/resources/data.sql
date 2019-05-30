@@ -62,8 +62,8 @@ insert into user (nickname, sex, instructor, account) values ('케르', 'M', tru
 insert into user (nickname, sex, instructor, account) values ('혜향', 'F', true , null);
 
 -- 1
-insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, start_time, end_time, location, male_price, female_price, class_image)
-values ('B', 'HD', 'P', 'F', 3, null, 'Team Ahora Ladies', '2018-10-13', '2018-11-24', '19:30', '21:00', '텐션', 0, 120000, 'class_1.jpg');
+insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment_type, class_image)
+values ('B', 'HD', 'P', 'F', 3, null, 'Team Ahora Ladies', '2018-10-13', '2018-11-24', '총 6주, 매주 토요일', '19:30', '21:00', '텐션', 0, 120000, '1', 'class_1.jpg');
 insert into class_contact (class_no, instructor_no, type, contact) values (1, 3, 'P', null);
 insert into class_contact (class_no, instructor_no, type, contact) values (1, 3, 'K', null);
 insert into class_date_option (class_no, opt) values (1, '해외 워크샵 휴강(10.27)');

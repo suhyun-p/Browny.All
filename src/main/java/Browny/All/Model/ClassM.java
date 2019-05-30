@@ -9,7 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.DateTimeException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -27,8 +29,10 @@ public class ClassM {
     private String instructor2;
     private String startDate;
     private String endDate;
+    private String dateSummary;
     private String startTime;
     private String endTime;
+    private String timeSummary;
     private String location;
     private int malePrice;
     private int femalePrice;
