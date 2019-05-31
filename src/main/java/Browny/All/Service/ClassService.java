@@ -105,7 +105,8 @@ public class ClassService {
         class_.setGenre(Genre.valueOf(classT.getGenre()));
         class_.setRegion(Region.valueOf(classT.getRegion()));
         class_.setType(ClassType.valueOf(classT.getType()));
-        class_.setOnly(Only.valueOf(classT.getOnly()));
+        class_.setOnly(classT.getOnly() == null ? null : Only.valueOf(classT.getOnly()));
+        class_.setClassImage(String.format("http://localhost:8080/assets/images/%s", classT.getClassImage()));
         class_.setTitle(classT.getTitle());
         class_.setInstructor1(classT.getInstructor1().getNickname());
         class_.setInstructor2(classT.getInstructor2() == null ? null : classT.getInstructor2().getNickname());

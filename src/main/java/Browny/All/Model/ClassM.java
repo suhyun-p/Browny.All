@@ -24,6 +24,7 @@ public class ClassM {
     private Region region;
     private ClassType type;
     private Only only;
+    private String classImage;
     private String title;
     private String instructor1;
     private String instructor2;

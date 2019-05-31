@@ -73,18 +73,18 @@ insert into class_price_option (class_no, opt) values (1, '중복할인 불가')
 -- insert into class_earlybird (class_no, deadline, amount) values (1, '2019-04-10', 10000);
 
 -- 2
-insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, start_time, end_time, location, male_price, female_price, class_image)
-values ('B', 'HD', 'T', null, 4, 3, 'AHORA 바차타 트레이닝', '2018-10-30', '2018-11-27', '20:00', '21:00', '텐션', 70000, 50000, 'class_2.jpg');
-
+insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment_type, class_image)
+values ('B', 'HD', 'T', null, 4, 3, 'AHORA 바차타 트레이닝', '2018-10-30', '2018-11-27', '총 5주, 매주 화요일', '20:00', '21:00', '텐션', 70000, 50000, '1', 'class_2.jpg');
+insert into class_contact (class_no, instructor_no, type, contact) values (2, 4, 'P', null);
 
 -- 3
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, start_time, end_time, location, male_price, female_price, class_image)
-values ('B', 'HD', 'C', null, 4, null, '센슈얼 바차타 중급 딥 패턴 클리닉', '2018-11-07', '2018-12-05', '20:00', '21:00', '홍대스튜디오(추후공지)', 60000, 40000, 'class_3.jpg');
+values ('B', 'HD', 'C', null, 4, null, '[센슈얼 바차타] 중급 딥 패턴 클리닉', '2018-11-07', '2018-12-05', '20:00', '21:00', '홍대스튜디오(추후공지)', 60000, 40000, 'class_3.jpg');
 
 
 -- 4
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, start_time, end_time, location, male_price, female_price, class_image)
-values ('B', 'HD', 'C', null, 4, null, '센슈얼 바차타 중급 딥 패턴 클리닉', '2018-11-09', '2018-12-07', '20:00', '21:00', '홍대스튜디오(추후공지)', 60000, 40000, 'class_3.jpg');
+values ('B', 'HD', 'C', null, 4, null, '[센슈얼 바차타] 중급 딥 패턴 클리닉', '2018-11-09', '2018-12-07', '20:00', '21:00', '홍대스튜디오(추후공지)', 60000, 40000, 'class_3.jpg');
 
 
 -- 5
