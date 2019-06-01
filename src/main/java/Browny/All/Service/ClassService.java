@@ -14,10 +14,7 @@ import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,53 +39,13 @@ public class ClassService {
     private ClassEarlybirdRepository classEarlybirdRepository;
 
     @Transactional
-    public List<ClassT> getClassTList() {
-        List<ClassT> classTList = classRepository.findAll();
-
-        return classTList;
-    }
-
-    @Transactional
-    public List<ClassM> getClassList() {
-        List<ClassM> classList = new ArrayList<>();
+    public List<ClassSimpleT> getClassSimpleList() {
+        List<ClassSimpleT> classSimpleList = new ArrayList<>();
         List<ClassT> classTList = classRepository.findAll();
         for(ClassT classT : classTList)
-            classList.add(ConvertToClassM(classT));
-
-        return classList;
-    }
-
-    @Transactional
-    public List<ClassSimpleM> getClassSimpleList() {
-        List<ClassSimpleM> classSimpleList = new ArrayList<>();
-        List<ClassT> classTList = classRepository.findAll();
-        for(ClassT classT : classTList)
-            classSimpleList.add(ConvertToClassSimpleM(classT));
+            classSimpleList.add(new ClassSimpleT(classT));
 
         return classSimpleList;
-    }
-
-    private ClassSimpleM ConvertToClassSimpleM(ClassT classT) {
-        ClassSimpleM classSimpleM = new ClassSimpleM();
-        classSimpleM.setClassNo(classT.getClassNo());
-        classSimpleM.setGenre(String.format("#%s", Genre.valueOf(classT.getGenre()).getValue()));
-        classSimpleM.setRegion(String.format("#%s", Region.valueOf(classT.getRegion()).getValue()));
-        classSimpleM.setType(String.format("#%s", ClassType.valueOf(classT.getType()).getValue()));
-        classSimpleM.setTypeExpose(ClassType.valueOf(classT.getType()).equals(ClassType.N) ? false : true);
-        if(classT.getOnly() != null){
-            classSimpleM.setOnly(String.format("#%s", Only.valueOf(classT.getOnly()).getValue()));
-            classSimpleM.setOnlyExpose(true);
-        }
-        else {
-            // null
-            classSimpleM.setOnly(null);
-            classSimpleM.setOnlyExpose(false);
-        }
-
-        classSimpleM.setTitle(classT.getTitle());
-        classSimpleM.setClassImage(String.format("http://localhost:8080/assets/images/%s", classT.getClassImage()));
-
-        return classSimpleM;
     }
 
     @Transactional

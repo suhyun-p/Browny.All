@@ -1,5 +1,6 @@
 package Browny.All.Controller;
 
+import Browny.All.Entity.ClassSimpleT;
 import Browny.All.Entity.ClassT;
 import Browny.All.Model.ClassM;
 import Browny.All.Model.ClassSimpleM;
@@ -21,23 +22,9 @@ public class ClassController {
     @Autowired
     ClassService classService;
 
-    @RequestMapping(value = "/getClassTList", method = RequestMethod.GET)
-    public ResponseEntity<List<ClassT>> getClassTList() {
-        List<ClassT> classTList = classService.getClassTList();
-
-        return new ResponseEntity(classTList, OK);
-    }
-
-    @RequestMapping(value = "/getClassList", method = RequestMethod.GET)
-    public ResponseEntity<List<ClassM>> getClassMList() {
-        List<ClassM> classList = classService.getClassList();
-
-        return new ResponseEntity(classList, OK);
-    }
-
     @RequestMapping(value = "/getClassSimpleList", method = RequestMethod.GET)
-    public ResponseEntity<List<ClassSimpleM>> getClassSimpleMList() {
-        List<ClassSimpleM> classSimpleList = classService.getClassSimpleList();
+    public ResponseEntity<List<ClassSimpleT>> getClassSimpleTList() {
+        List<ClassSimpleT> classSimpleList = classService.getClassSimpleList();
 
         return new ResponseEntity(classSimpleList, OK);
     }
