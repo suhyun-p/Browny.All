@@ -13,7 +13,6 @@
     <!-- Bootstrap core CSS -->
     <link href="/webjars/bootstrap/4.3.0/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -28,45 +27,45 @@
             </div>
         </div>
     </header>
-
     <br/>
-
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="mb-3">
-                <!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
                 <img th:src="${classDetail.classImage}" style="width:100%;height:100%;" alt="Data">
             </div>
         </div>
         <div class="col-md-6 offset-md-3">
             <div class="card mb-3 shadow-sm">
                 <div class="row" style="padding-top: 15px;padding-left: 15px;">
-                    <span style="padding-left: 15px;"><b>#Bachata</b></span>
-                    <span style="padding-left: 15px;"><b>#홍대</b></span>
-                    <span style="padding-left: 15px;"><b>#공연반</b></span>
-                    <span style="padding-left: 15px;"><b>#LadyOnly</b></span>
+                    <span style="padding-left: 15px;"><b th:text="${classDetail.genre}"></b></span>
+                    <span style="padding-left: 15px;"><b th:text="${classDetail.region}"></b></span>
+                    <span style="padding-left: 15px;" th:if="${classDetail.onlyExpose}"><b th:text="${classDetail.only}"></b></span>
+                    <span style="padding-left: 15px;" th:if="${classDetail.typeExpose}"><b th:text="${classDetail.type}"></b></span>
+                    <span style="padding-left: 15px;"><b th:text="${classDetail.instructorName1}"></b></span>
+                    <span style="padding-left: 15px;" th:if="${classDetail.instructor2}"><b th:text="${classDetail.instructorName2}"></b></span>
                 </div>
                 <hr/>
                 <dl class="row" style="padding-left: 20px;padding-right: 20px;">
                     <dt class="col-sm-3">Title</dt>
                     <dd class="col-sm-9" th:text="${classDetail.title}"></dd>
                     <dt class="col-sm-3">Instructor</dt>
-                    <dd class="col-sm-9" th:text="${classDetail.instructor1}"></dd>
+                    <dd class="col-sm-9" th:text="${classDetail.instructor}">
+                    </dd>
                     <dt class="col-sm-3">Date</dt>
                     <dd class="col-sm-9">
-                        <p th:text="${classDetail.startDate} + ' ~ ' + ${classDetail.endDate}" style="margin-bottom: 0;"></p>
-                        <p th:text="'(' + ${classDetail.dateSummary} + ')'" style="margin-bottom: 0;"></p>
+                        <p th:text="${classDetail.date}" style="margin-bottom: 0;"></p>
+                        <p th:text="${classDetail.dateSummary}" style="margin-bottom: 0;"></p>
                         <div th:each="dateOption : ${classDetail.dateOptionList}">
                             <p th:text="${dateOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
                     </dd>
                     <dt class="col-sm-3">Time</dt>
-                    <dd class="col-sm-9" th:text="${classDetail.startTime} + ' ~ ' + ${classDetail.endTime} + ' (' + ${classDetail.timeSummary} + ')'"></dd>
+                    <dd class="col-sm-9" th:text="${classDetail.time}"></dd>
                     <dt class="col-sm-3">Location</dt>
                     <dd class="col-sm-9" th:text="${classDetail.location}"></dd>
                     <dt class="col-sm-3">Price</dt>
                     <dd class="col-sm-9" >
-                        <p th:text="${classDetail.femalePrice}" style="margin-bottom: 0;"></p>
+                        <p th:text="${classDetail.price}" style="margin-bottom: 0;"></p>
                         <div th:each="priceOption : ${classDetail.priceOptionList}">
                             <p th:text="${priceOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
@@ -75,7 +74,12 @@
                     <dd class="col-sm-9" th:text="${classDetail.payment}"></dd>
                     <dt class="col-sm-3">Contact</dt>
                     <dd class="col-sm-9">
-                        <p style="margin-bottom: 0;">스칼렛 010-2335-8364 / <img src="http://localhost:8080/assets/images/kakaolink_btn_small.png" style="width: 20px;"> ssg8364</p>
+                        <div th:each="contact : ${classDetail.contactList}">
+                            <p style="margin-bottom: 0;" th:text="${contact}"></p>
+                        </div>
+
+                       <!-- <p style="margin-bottom: 0;">스칼렛 010-2335-8364<span><img src="http://localhost:8080/assets/images/kakaolink_btn_small.png" style="width: 18px;"> ssg8364</span></p>-->
+
                     </dd>
                 </dl>
             </div>

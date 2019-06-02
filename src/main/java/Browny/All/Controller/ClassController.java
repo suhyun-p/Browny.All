@@ -1,5 +1,6 @@
 package Browny.All.Controller;
 
+import Browny.All.Entity.ClassDetailT;
 import Browny.All.Entity.ClassSimpleT;
 import Browny.All.Entity.ClassT;
 import Browny.All.Model.ClassM;
@@ -30,9 +31,9 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/getClassDetail", method = RequestMethod.GET)
-    public ResponseEntity<ClassM> getClassDetail(@RequestParam("classNo") long classNo) {
-        ClassM classDatail = classService.getClassDetail(classNo);
+    public ResponseEntity<ClassDetailT> getClassDetail(@RequestParam("classNo") long classNo) {
+        ClassDetailT classDetail = classService.getClassDetail(classNo);
 
-        return new ResponseEntity(classDatail, OK);
+        return new ResponseEntity(classDetail, OK);
     }
 }

@@ -24,8 +24,6 @@ public class ClassSimpleM {
     private String title;
     private String classImage;
 
-
-
     public ClassSimpleM(ClassSimpleT t) {
         this.setClassNo(t.getClassNo());
         this.setGenre(String.format("#%s", Genre.valueOf(t.getGenre()).getValue()));

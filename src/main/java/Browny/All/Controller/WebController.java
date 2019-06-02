@@ -1,6 +1,8 @@
 package Browny.All.Controller;
 
+import Browny.All.Entity.ClassDetailT;
 import Browny.All.Entity.ClassSimpleT;
+import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.ClassSimpleM;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -35,8 +37,8 @@ public class WebController {
 
         RestTemplate restTemplate = new RestTemplate();
         String url = String.format("http://localhost:8080/api/class/getClassDetail?classNo=%s", classNo);
-        ResponseEntity<Object> ret = restTemplate.getForEntity(url, Object.class);
-        model.addAttribute("classDetail", ret.getBody());
+        ResponseEntity<ClassDetailT> ret = restTemplate.getForEntity(url, ClassDetailT.class);
+        model.addAttribute("classDetail", new ClassDetailM(ret.getBody()));
 
         return "/class";
     }

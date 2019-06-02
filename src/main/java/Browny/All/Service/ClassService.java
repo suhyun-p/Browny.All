@@ -49,11 +49,11 @@ public class ClassService {
     }
 
     @Transactional
-    public ClassM getClassDetail(long classNo) {
+    public ClassDetailT getClassDetail(long classNo) {
         ClassM classDetail = new ClassM();
         ClassT classT = classRepository.findById(classNo).get();
 
-        return ConvertToClassM(classT);
+        return new ClassDetailT(classT);
     }
 
     private ClassM ConvertToClassM(ClassT classT) {
