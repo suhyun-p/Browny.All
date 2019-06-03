@@ -64,8 +64,8 @@ insert into user (nickname, sex, instructor, account) values ('혜향', 'F', tru
 -- 1
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment_type, class_image)
 values ('B', 'HD', 'P', 'F', 3, null, 'Team Ahora Ladies', '2018-10-13', '2018-11-24', '총 6주, 매주 토요일', '19:30', '21:00', '텐션', 0, 120000, '1', 'class_1.jpg');
-insert into class_contact (class_no, instructor_no, type, contact) values (1, 3, 'P', null);
-insert into class_contact (class_no, instructor_no, type, contact) values (1, 3, 'K', null);
+insert into class_contact (class_no, instructor_no, type, contact) values (1, 3, 'P', '010-2335-8364');
+insert into class_contact (class_no, instructor_no, type, contact) values (1, 3, 'K', 'ssg8364');
 insert into class_date_option (class_no, opt) values (1, '해외 워크샵 휴강(10.27)');
 insert into class_price_option (class_no, opt) values (1, '기수강자, 2인 이상 신청 시 2만원 할인');
 insert into class_price_option (class_no, opt) values (1, '중복할인 불가');
@@ -75,7 +75,8 @@ insert into class_price_option (class_no, opt) values (1, '중복할인 불가')
 -- 2
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment_type, class_image)
 values ('B', 'HD', 'T', null, 4, 3, 'AHORA 바차타 트레이닝', '2018-10-30', '2018-11-27', '총 5주, 매주 화요일', '20:00', '21:00', '텐션', 70000, 50000, '1', 'class_2.jpg');
-insert into class_contact (class_no, instructor_no, type, contact) values (2, 4, 'P', null);
+insert into class_contact (class_no, instructor_no, type, contact) values (2, 4, 'P', '010-7290-9770');
+insert into class_price_option (class_no, opt) values (2, '기수강자, 수강자 소개 및 2인 이상 등록 시 1만원 할인');
 
 -- 3
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, start_time, end_time, location, male_price, female_price, payment_type, class_image)

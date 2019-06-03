@@ -24,9 +24,9 @@ public class InstructorT {
         this.setNickname(t.getNickname());
         this.setAccount(t.getAccount());
 
-        for(InstructorContactT c : t.getInstructorContactTList()) {
+       /* for(InstructorContactT c : t.getInstructorContactTList()) {
             if(ContactType.valueOf(c.getType()).equals(ContactType.P)) this.setPhoneNo(c.getContact());
             else if (ContactType.valueOf(c.getType()).equals(ContactType.K)) this.setKakaoTalk(c.getContact());
-        }
+        }*/
     }
 }

@@ -82,5 +82,20 @@ public class ClassDetailT {
                 this.getPriceOptionList().add(priceOption.getOpt());
             }
         }
+
+        for(ClassContactT t :classT.getClassContactTList()) {
+            if(t.getInstructorNo() == classT.getInstructor1().getUserNo()) {
+                if(ContactType.valueOf(t.getType()).equals(ContactType.P))
+                    this.getInstructor1().setPhoneNo(t.getContact());
+                else if(ContactType.valueOf(t.getType()).equals(ContactType.K))
+                    this.getInstructor1().setKakaoTalk(t.getContact());
+            }
+            else if(classT.getInstructor2() != null && t.getInstructorNo() == classT.getInstructor2().getUserNo()) {
+                if(ContactType.valueOf(t.getType()).equals(ContactType.P))
+                    this.getInstructor2().setPhoneNo(t.getContact());
+                else if(ContactType.valueOf(t.getType()).equals(ContactType.K))
+                    this.getInstructor2().setKakaoTalk(t.getContact());
+            }
+        }
     }
 }

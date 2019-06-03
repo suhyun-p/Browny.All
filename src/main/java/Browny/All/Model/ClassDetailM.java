@@ -115,7 +115,7 @@ public class ClassDetailM {
 
         this.contactList.add(String.format("%s %s", t.getInstructor1().getNickname(), t.getInstructor1().getPhoneNo()));
         if(t.getInstructor2() != null) {
-            this.contactList.add(String.format("%s %s", t.getInstructor2().getNickname(), t.getInstructor2().getPhoneNo()));
+            if(t.getInstructor2().getPhoneNo() != null) this.contactList.add(String.format("%s %s", t.getInstructor2().getNickname(), t.getInstructor2().getPhoneNo()));
         }
     }
 }
