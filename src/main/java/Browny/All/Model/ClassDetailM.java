@@ -77,7 +77,13 @@ public class ClassDetailM {
             this.setInstructor(String.format("%s", t.getInstructor1().getNickname()));
         }
 
-        this.setDate(String.format("%s ~ %s", t.getStartDate(), t.getEndDate()));
+        if(t.getStartDate().equals(t.getEndDate())) {
+            this.setDate(String.format("%s", t.getStartDate()));
+        }
+        else {
+            this.setDate(String.format("%s ~ %s", t.getStartDate(), t.getEndDate()));
+        }
+
         this.setDateSummary(String.format("(%s)", t.getDateSummary()));
         this.setDateOptionList(t.getDateOptionList());
 
@@ -95,8 +101,14 @@ public class ClassDetailM {
 
         this.setLocation(t.getLocation());
 
-        if(t.getOnly()== null)
-            this.setPrice(String.format("남자 %s / 여자 %s",Integer.toString(t.getMalePrice()), Integer.toString(t.getFemalePrice())));
+        if(t.getOnly()== null) {
+            if(t.getMalePrice() == t.getFemalePrice()) {
+                this.setPrice(String.format("%s",Integer.toString(t.getMalePrice())));
+            }
+            else {
+                this.setPrice(String.format("남자 %s / 여자 %s",Integer.toString(t.getMalePrice()), Integer.toString(t.getFemalePrice())));
+            }
+        }
         else {
             if(Only.valueOf(t.getOnly()).equals(Only.F))
                 this.setPrice(Integer.toString(t.getFemalePrice()));
