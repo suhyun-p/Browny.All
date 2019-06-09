@@ -84,13 +84,7 @@ public class ClassService {
         class_.setLocation(classT.getLocation());
         class_.setMalePrice(classT.getMalePrice());
         class_.setFemalePrice(classT.getFemalePrice());
-
-        if (classT.getPaymentType().equals("1") && classT.getInstructor1() != null)
-            class_.setPayment(classT.getInstructor1().getAccount());
-        else if (classT.getPaymentType().equals("2") && classT.getInstructor2() != null)
-            class_.setPayment(classT.getInstructor2().getAccount());
-        else if (classT.getPaymentType().equals("3"))
-            class_.setPayment(classT.getPayment());
+        class_.setPayment(classT.getPayment());
 
         if(classT.getInstructor1() != null && classT.getInstructor1().getInstructorContactTList() != null) {
             for(InstructorContactT contactT : classT.getInstructor1().getInstructorContactTList())

@@ -54,7 +54,7 @@
                     <dt class="col-sm-3">Date</dt>
                     <dd class="col-sm-9">
                         <p th:text="${classDetail.date}" style="margin-bottom: 0;"></p>
-                        <p th:text="${classDetail.dateSummary}" style="margin-bottom: 0;"></p>
+                        <p th:if="${classDetail.dateSummaryExpose}" th:text="${classDetail.dateSummary}" style="margin-bottom: 0;"></p>
                         <div th:each="dateOption : ${classDetail.dateOptionList}">
                             <p th:text="${dateOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
@@ -70,13 +70,14 @@
                             <p th:text="${priceOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
                     </dd>
-                    <dt class="col-sm-3">Payment</dt>
-                    <dd class="col-sm-9" th:text="${classDetail.payment}"></dd>
-                    <dt class="col-sm-3">Contact</dt>
-                    <dd class="col-sm-9">
+                    <dt class="col-sm-3" th:if="${classDetail.payment != null}">Payment</dt>
+                    <dd class="col-sm-9" th:if="${classDetail.payment != null}" th:text="${classDetail.payment}"></dd>
+                    <dt class="col-sm-3" th:if="${classDetail.contactExpose}">Contact</dt>
+                    <dd class="col-sm-9" th:if="${classDetail.contactExpose}">
                         <div th:each="contact : ${classDetail.contactList}">
                             <p style="margin-bottom: 0;" th:text="${contact}"></p>
                         </div>
+                        <p style="margin-bottom: 0;" th:text="${classDetail.contact}"></p>
 
                        <!-- <p style="margin-bottom: 0;">스칼렛 010-2335-8364<span><img src="http://localhost:8080/assets/images/kakaolink_btn_small.png" style="width: 18px;"> ssg8364</span></p>-->
 

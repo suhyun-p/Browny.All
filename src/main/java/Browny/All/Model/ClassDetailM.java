@@ -32,14 +32,15 @@ public class ClassDetailM {
     private boolean instructor2;
     private String date;
     private String dateSummary;
+    private boolean dateSummaryExpose;
     private String time;
     private String location;
     private String price;
     private EarlybirdM earlybird;
     private String payment;
     private List<String> contactList = new ArrayList<>();
-    private String instructorKakao1;
-    private String instructorKakao2;
+    private String contact;
+    private boolean contactExpose;
     private List<String> dateOptionList = new ArrayList<>();
     private List<String> priceOptionList = new ArrayList<>();
 
@@ -84,7 +85,14 @@ public class ClassDetailM {
             this.setDate(String.format("%s ~ %s", t.getStartDate(), t.getEndDate()));
         }
 
-        this.setDateSummary(String.format("(%s)", t.getDateSummary()));
+        if(t.getDateSummary() != null) {
+            this.setDateSummary(String.format("(%s)", t.getDateSummary()));
+            this.setDateSummaryExpose(true);
+        }
+        else {
+            this.setDateSummaryExpose(false);
+        }
+
         this.setDateOptionList(t.getDateOptionList());
 
         long minDiff = 0;
@@ -117,17 +125,33 @@ public class ClassDetailM {
         }
 
         this.setPriceOptionList(t.getPriceOptionList());
+        this.setPayment(t.getPayment());
 
-        if (t.getPaymentType().equals("1"))
-            this.setPayment(t.getInstructor1().getAccount());
-        else if (t.getPaymentType().equals("2"))
-            this.setPayment(t.getInstructor2().getAccount());
-        else if (t.getPaymentType().equals("3"))
-            this.setPayment(t.getPayment());
+        if(t.getInstructor1() != null) {
+            if(t.getInstructor1().getPhoneNo() != null || t.getInstructor1().getKakaoTalk() != null) {
+                if(t.getInstructor1().getPhoneNo() != null && t.getInstructor1().getKakaoTalk() != null)
+                    this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructor1().getNickname(), t.getInstructor1().getPhoneNo(), t.getInstructor1().getKakaoTalk()));
+                else if(t.getInstructor1().getPhoneNo() != null)
+                    this.contactList.add(String.format("%s %s", t.getInstructor1().getNickname(), t.getInstructor1().getPhoneNo()));
+            }
+        }
 
-        this.contactList.add(String.format("%s %s", t.getInstructor1().getNickname(), t.getInstructor1().getPhoneNo()));
         if(t.getInstructor2() != null) {
-            if(t.getInstructor2().getPhoneNo() != null) this.contactList.add(String.format("%s %s", t.getInstructor2().getNickname(), t.getInstructor2().getPhoneNo()));
+            if(t.getInstructor2().getPhoneNo() != null || t.getInstructor2().getKakaoTalk() != null) {
+                if(t.getInstructor2().getPhoneNo() != null && t.getInstructor2().getKakaoTalk() != null)
+                    this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructor2().getNickname(), t.getInstructor2().getPhoneNo(), t.getInstructor2().getKakaoTalk()));
+                else if(t.getInstructor2().getPhoneNo() != null)
+                    this.contactList.add(String.format("%s %s", t.getInstructor2().getNickname(), t.getInstructor2().getPhoneNo()));
+            }
+        }
+
+        this.setContact(t.getContact());
+
+        if(this.getContactList().size() > 0 || this.getContact() != null) {
+            this.setContactExpose(true);
+        }
+        else {
+            this.setContactExpose(false);
         }
     }
 }

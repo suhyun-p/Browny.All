@@ -35,6 +35,7 @@ public class ClassDetailT {
     private EarlybirdM earlybird;
     private String paymentType;
     private String payment;
+    private String contact;
     private List<String> dateOptionList = new ArrayList<>();
     private List<String> priceOptionList = new ArrayList<>();
 
@@ -62,14 +63,7 @@ public class ClassDetailT {
         this.setLocation(classT.getLocation());
         this.setMalePrice(classT.getMalePrice());
         this.setFemalePrice(classT.getFemalePrice());
-
-        this.setPaymentType(classT.getPaymentType());
-        if (classT.getPaymentType().equals("1") && classT.getInstructor1() != null)
-            this.setPayment(classT.getInstructor1().getAccount());
-        else if (classT.getPaymentType().equals("2") && classT.getInstructor2() != null)
-            this.setPayment(classT.getInstructor2().getAccount());
-        else if (classT.getPaymentType().equals("3"))
-            this.setPayment(classT.getPayment());
+        this.setPayment(classT.getPayment());
 
         if(classT.getClassDateOptionTList() != null) {
             for(ClassDateOptionT dateOption : classT.getClassDateOptionTList()) {
@@ -95,6 +89,9 @@ public class ClassDetailT {
                     this.getInstructor2().setPhoneNo(t.getContact());
                 else if(ContactType.valueOf(t.getType()).equals(ContactType.K))
                     this.getInstructor2().setKakaoTalk(t.getContact());
+            }
+            else {
+                this.setContact(t.getContact());
             }
         }
     }

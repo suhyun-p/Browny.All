@@ -51,7 +51,6 @@ CREATE TABLE IF NOT EXISTS class (
     location varchar(255) not null,
     male_price int not null,
     female_price int not null,
-    payment_type varchar(255),
     payment varchar(255),
     level int,
     recruitment_type char(1),

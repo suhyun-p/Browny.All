@@ -65,9 +65,6 @@ public class ClassT {
     @Column(name = "female_price")
     private int femalePrice;
 
-    @Column(name = "payment_type")
-    private String paymentType;
-
     @Column(name = "payment")
     private String payment;
 
