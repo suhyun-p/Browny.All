@@ -19,14 +19,12 @@ import java.util.List;
 public class WebController {
     @RequestMapping(value = "/")
     public String Index(Model model) {
-
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<ClassSimpleT[]> ret = restTemplate.getForEntity("http://localhost:8080/api/class/getClassSimpleList", ClassSimpleT[].class);
 
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         for(ClassSimpleT classSimpleT : ret.getBody())
             classSimpleList.add(new ClassSimpleM(classSimpleT));
-
         model.addAttribute("classSimpleList", classSimpleList);
 
         return "/index";
@@ -34,12 +32,25 @@ public class WebController {
 
     @RequestMapping(value = "/class")
     public String Class(Model model, @RequestParam("classNo") long classNo) {
-
         RestTemplate restTemplate = new RestTemplate();
         String url = String.format("http://localhost:8080/api/class/getClassDetail?classNo=%s", classNo);
         ResponseEntity<ClassDetailT> ret = restTemplate.getForEntity(url, ClassDetailT.class);
         model.addAttribute("classDetail", new ClassDetailM(ret.getBody()));
 
         return "/class";
+    }
+
+    @RequestMapping(value = "/genre")
+    public String Genre(Model model, @RequestParam("genre") String genre) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = String.format("http://localhost:8080/api/class/getClassListByGenre?genre=%s", genre);
+        ResponseEntity<ClassSimpleT[]> ret = restTemplate.getForEntity(url, ClassSimpleT[].class);
+
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
+        for(ClassSimpleT classSimpleT : ret.getBody())
+            classSimpleList.add(new ClassSimpleM(classSimpleT));
+        model.addAttribute("classSimpleList", classSimpleList);
+
+        return "/hashtag";
     }
 }

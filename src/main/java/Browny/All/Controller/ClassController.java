@@ -24,16 +24,45 @@ public class ClassController {
     ClassService classService;
 
     @RequestMapping(value = "/getClassSimpleList", method = RequestMethod.GET)
-    public ResponseEntity<List<ClassSimpleT>> getClassSimpleTList() {
+    public ResponseEntity<List<ClassSimpleT>> getClassSimpleList() {
         List<ClassSimpleT> classSimpleList = classService.getClassSimpleList();
 
         return new ResponseEntity(classSimpleList, OK);
     }
 
     @RequestMapping(value = "/getClassDetail", method = RequestMethod.GET)
-    public ResponseEntity<ClassDetailT> getClassDetail(@RequestParam("classNo") long classNo) {
+    public ResponseEntity<List<ClassSimpleT>> getClassDetail(@RequestParam("classNo") long classNo) {
         ClassDetailT classDetail = classService.getClassDetail(classNo);
-
         return new ResponseEntity(classDetail, OK);
+    }
+
+    @RequestMapping(value = "/getClassListByGenre", method = RequestMethod.GET)
+    public ResponseEntity<List<ClassSimpleT>> getClassListByGenre(@RequestParam("genre") String genre) {
+        List<ClassSimpleT> classSimpleList = classService.getClassSimpleListByGenre(genre);
+        return new ResponseEntity(classSimpleList, OK);
+    }
+
+    @RequestMapping(value = "/getClassListByRegion", method = RequestMethod.GET)
+    public ResponseEntity<List<ClassSimpleT>> getClassListByRegion(@RequestParam("region") String region) {
+        List<ClassSimpleT> classSimpleList = classService.getClassSimpleListByRegion(region);
+        return new ResponseEntity(classSimpleList, OK);
+    }
+
+    @RequestMapping(value = "/getClassListByType", method = RequestMethod.GET)
+    public ResponseEntity<List<ClassSimpleT>> getClassListByType(@RequestParam("type") String type) {
+        List<ClassSimpleT> classSimpleList = classService.getClassSimpleListByType(type);
+        return new ResponseEntity(classSimpleList, OK);
+    }
+
+    @RequestMapping(value = "/getClassListByOnly", method = RequestMethod.GET)
+    public ResponseEntity<ClassDetailT> getClassListByOnly(@RequestParam("only") String only) {
+        List<ClassSimpleT> classSimpleList = classService.getClassSimpleListByOnly(only);
+        return new ResponseEntity(classSimpleList, OK);
+    }
+
+    @RequestMapping(value = "/getClassListByInstructor", method = RequestMethod.GET)
+    public ResponseEntity<ClassDetailT> getClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
+        List<ClassSimpleT> classSimpleList = classService.getClassSimpleListByInstructor(instructorNo);
+        return new ResponseEntity(classSimpleList, OK);
     }
 }
