@@ -82,7 +82,6 @@ public class WebController {
         ResponseEntity<ClassSimpleT[]> classRet = restTemplate.getForEntity(classUrl, ClassSimpleT[].class);
         for(ClassSimpleT classSimpleT : classRet.getBody())
             classSimpleList.add(new ClassSimpleM(classSimpleT));
-        hashtag = String.format("#%s", value);
 
         if(!instructorUrl.equals("")) {
             ResponseEntity<UserM> instructorRet = restTemplate.getForEntity(instructorUrl, UserM.class);
