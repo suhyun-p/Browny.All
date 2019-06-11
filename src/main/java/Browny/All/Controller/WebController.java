@@ -8,6 +8,7 @@ import Browny.All.Enum.Only;
 import Browny.All.Enum.Region;
 import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.ClassSimpleM;
+import Browny.All.Model.UserM;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,33 +49,54 @@ public class WebController {
     @RequestMapping(value = "/{type}/{value}")
     public String Search(Model model, @PathVariable("type") String type, @PathVariable("value") String value) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "";
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
+
+        String classUrl = "";
+        String instructorUrl = "";
         String hashtag = "";
+        UserM instructor = null;
+
         switch (type) {
             case "genre":
-                url = String.format("http://localhost:8080/api/class/getClassListByGenre?genre=%s", value);
+                classUrl = String.format("http://localhost:8080/api/class/getClassListByGenre?genre=%s", value);
                 hashtag = String.format("#%s", Genre.valueOf(value).getValue());
                 break;
             case "region":
-                url = String.format("http://localhost:8080/api/class/getClassListByRegion?region=%s", value);
+                classUrl = String.format("http://localhost:8080/api/class/getClassListByRegion?region=%s", value);
                 hashtag = String.format("#%s", Region.valueOf(value).getValue());
                 break;
             case "type":
-                url = String.format("http://localhost:8080/api/class/getClassListByType?type=%s", value);
+                classUrl = String.format("http://localhost:8080/api/class/getClassListByType?type=%s", value);
                 hashtag = String.format("#%s", ClassType.valueOf(value).getValue());
                 break;
             case "only":
-                url = String.format("http://localhost:8080/api/class/getClassListByOnly?only=%s", value);
+                classUrl = String.format("http://localhost:8080/api/class/getClassListByOnly?only=%s", value);
                 hashtag = String.format("#%s", Only.valueOf(value).getValue());
                 break;
+            case "instructor":
+                classUrl = String.format("http://localhost:8080/api/class/getClassListByInstructor?instructorNo=%s", value);
+                instructorUrl = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", value);
+                break;
         }
-        ResponseEntity<ClassSimpleT[]> ret = restTemplate.getForEntity(url, ClassSimpleT[].class);
 
-        List<ClassSimpleM> classSimpleList = new ArrayList<>();
-        for(ClassSimpleT classSimpleT : ret.getBody())
+        ResponseEntity<ClassSimpleT[]> classRet = restTemplate.getForEntity(classUrl, ClassSimpleT[].class);
+        for(ClassSimpleT classSimpleT : classRet.getBody())
             classSimpleList.add(new ClassSimpleM(classSimpleT));
+        hashtag = String.format("#%s", value);
+
+        if(!instructorUrl.equals("")) {
+            ResponseEntity<UserM> instructorRet = restTemplate.getForEntity(instructorUrl, UserM.class);
+            instructor = instructorRet.getBody();
+        }
+
         model.addAttribute("classSimpleList", classSimpleList);
-        model.addAttribute("hashtag", hashtag);
+        if(instructor != null) {
+            model.addAttribute("hashtag", String.format("#%s", instructor.getNickname()));
+            model.addAttribute("instructor", instructor);
+        }
+        else{
+            model.addAttribute("hashtag", hashtag);
+        }
 
         return "/search";
     }

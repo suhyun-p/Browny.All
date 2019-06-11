@@ -1,6 +1,7 @@
 package Browny.All.Repository;
 
 import Browny.All.Entity.ClassT;
+import Browny.All.Entity.UserT;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ public interface ClassRepository extends JpaRepository<ClassT, Long> {
     List<ClassT> findAllByRegionIsOrderByStartDateDesc(String region);
     List<ClassT> findAllByTypeIsOrderByStartDateDesc(String type);
     List<ClassT> findAllByOnlyIsOrderByStartDateDesc(String only);
-    List<ClassT> findAllByInstructor1IsOrInstructor2IsOrderByStartDateDesc(Long instructorNo1, Long instructorNo2);
+    List<ClassT> findAllByInstructor1OrInstructor2OrderByStartDateDesc(UserT instructor1, UserT instructor2);
 
     List<ClassT> findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate today);
     List<ClassT> findAllByGenreIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String genre, LocalDate today);

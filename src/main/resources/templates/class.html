@@ -41,8 +41,8 @@
                     <a class="text-dark" href="/region/" th:attrappend="href=${classDetail.regionCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.region}"></b></span></a>
                     <a class="text-dark" href="/type/" th:attrappend="href=${classDetail.typeCode}" th:if="${classDetail.typeExpose}"><span style="padding-left: 15px;"><b th:text="${classDetail.type}"></b></span></a>
                     <a class="text-dark" href="/only/" th:attrappend="href=${classDetail.onlyCode}" th:if="${classDetail.onlyExpose}"><span style="padding-left: 15px;"><b th:text="${classDetail.only}"></b></span></a>
-                    <span style="padding-left: 15px;"><b th:text="${classDetail.instructorName1}"></b></span>
-                    <span style="padding-left: 15px;" th:if="${classDetail.instructor2}"><b th:text="${classDetail.instructorName2}"></b></span>
+                    <a class="text-dark" href="/instructor/" th:attrappend="href=${classDetail.instructorNo1}"><span style="padding-left: 15px;"><b th:text="${classDetail.instructorName1}"></b></span></a>
+                    <a class="text-dark" href="/instructor/" th:attrappend="href=${classDetail.instructorNo2}" th:if="${classDetail.instructor2}"><span style="padding-left: 15px;"><b th:text="${classDetail.instructorName2}"></b></span></a>
                 </div>
                 <hr/>
                 <dl class="row" style="padding-left: 20px;padding-right: 20px;">

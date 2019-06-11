@@ -96,7 +96,8 @@ public class ClassService {
     @Transactional
     public List<ClassSimpleT> getClassSimpleListByInstructor(Long instrutorNo) {
         List<ClassSimpleT> classSimpleList = new ArrayList<>();
-        List<ClassT> classTList = classRepository.findAllByOrderByStartDateDesc();
+        UserT instructor = userRepository.getOne(instrutorNo);
+        List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
         // List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleT(classT));
