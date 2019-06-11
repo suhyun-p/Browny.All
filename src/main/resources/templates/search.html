@@ -47,13 +47,9 @@
 
     <br/>
 
-    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
-            <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-            <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
-        </div>
-    </div>
+    <h1><u><b th:text=${hashtag}></b></u></h1>
+
+    <br/>
 
     <div class="row">
         <div class="col-md-3" th:each="class : ${classSimpleList}">
@@ -63,10 +59,10 @@
                     <p class="card-text " style="min-height: 48px; margin-bottom: 0px; "><a class="text-dark" th:text="${class.title}" th:href="@{/class(classNo=${class.classNo})}"></a></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="row" style="min-height: 48px; padding-left: 15px;">
-                            <span style="padding-right: 15px;" th:text="${class.genre}"></span>
-                            <span style="padding-right: 15px;" th:text="${class.region}"></span>
-                            <span style="padding-right: 15px;" th:if="${class.typeExpose}" th:text="${class.type}"></span>
-                            <span style="padding-right: 15px;" th:if="${class.onlyExpose}" th:text="${class.only}"></span>
+                            <a class="text-dark" href="/genre/" th:attrappend="href=${class.genreCode}"><span style="padding-right: 15px;" th:text="${class.genre}"></span></a>
+                            <a class="text-dark" href="/region/" th:attrappend="href=${class.regionCode}"><span style="padding-right: 15px;" th:text="${class.region}"></span></a>
+                            <a class="text-dark" href="/type/" th:attrappend="href=${class.typeCode}" th:if="${class.typeExpose}"><span style="padding-right: 15px;" th:text="${class.type}"></span></a>
+                            <a class="text-dark" href="/only/" th:attrappend="href=${class.onlyCode}" th:if="${class.onlyExpose}"><span style="padding-right: 15px;" th:text="${class.only}"></span></a>
                         </div>
                     </div>
                 </div>

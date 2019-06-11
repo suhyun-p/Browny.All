@@ -37,10 +37,10 @@
         <div class="col-md-6 offset-md-3">
             <div class="card mb-3 shadow-sm">
                 <div class="row" style="padding-top: 15px;padding-left: 15px;">
-                    <span style="padding-left: 15px;"><b th:text="${classDetail.genre}"></b></span>
-                    <span style="padding-left: 15px;"><b th:text="${classDetail.region}"></b></span>
-                    <span style="padding-left: 15px;" th:if="${classDetail.onlyExpose}"><b th:text="${classDetail.only}"></b></span>
-                    <span style="padding-left: 15px;" th:if="${classDetail.typeExpose}"><b th:text="${classDetail.type}"></b></span>
+                    <a class="text-dark" href="/genre/" th:attrappend="href=${classDetail.genreCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.genre}"></b></span></a>
+                    <a class="text-dark" href="/region/" th:attrappend="href=${classDetail.regionCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.region}"></b></span></a>
+                    <a class="text-dark" href="/type/" th:attrappend="href=${classDetail.typeCode}" th:if="${classDetail.typeExpose}"><span style="padding-left: 15px;"><b th:text="${classDetail.type}"></b></span></a>
+                    <a class="text-dark" href="/only/" th:attrappend="href=${classDetail.onlyCode}" th:if="${classDetail.onlyExpose}"><span style="padding-left: 15px;"><b th:text="${classDetail.only}"></b></span></a>
                     <span style="padding-left: 15px;"><b th:text="${classDetail.instructorName1}"></b></span>
                     <span style="padding-left: 15px;" th:if="${classDetail.instructor2}"><b th:text="${classDetail.instructorName2}"></b></span>
                 </div>

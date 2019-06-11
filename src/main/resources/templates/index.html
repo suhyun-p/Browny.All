@@ -63,10 +63,10 @@
                     <p class="card-text " style="min-height: 48px; margin-bottom: 0px; "><a class="text-dark" th:text="${class.title}" th:href="@{/class(classNo=${class.classNo})}"></a></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="row" style="min-height: 48px; padding-left: 15px;">
-                            <span style="padding-right: 15px;" th:text="${class.genre}"></span>
-                            <span style="padding-right: 15px;" th:text="${class.region}"></span>
-                            <span style="padding-right: 15px;" th:if="${class.typeExpose}" th:text="${class.type}"></span>
-                            <span style="padding-right: 15px;" th:if="${class.onlyExpose}" th:text="${class.only}"></span>
+                            <a class="text-dark" href="/genre/" th:attrappend="href=${class.genreCode}"><span style="padding-right: 15px;" th:text="${class.genre}"></span></a>
+                            <a class="text-dark" href="/region/" th:attrappend="href=${class.regionCode}"><span style="padding-right: 15px;" th:text="${class.region}"></span></a>
+                            <a class="text-dark" href="/type/" th:attrappend="href=${class.typeCode}" th:if="${class.typeExpose}"><span style="padding-right: 15px;" th:text="${class.type}"></span></a>
+                            <a class="text-dark" href="/only/" th:attrappend="href=${class.onlyCode}" th:if="${class.onlyExpose}"><span style="padding-right: 15px;" th:text="${class.only}"></span></a>
                         </div>
                     </div>
                 </div>
