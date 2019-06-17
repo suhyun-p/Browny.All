@@ -1,5 +1,9 @@
 package Browny.All.Entity;
 
+import Browny.All.Enum.ClassType;
+import Browny.All.Enum.Genre;
+import Browny.All.Enum.Only;
+import Browny.All.Enum.Region;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +13,10 @@ import lombok.Setter;
 @Data
 public class ClassSimpleT {
     private Long classNo;
-    private String genre;
-    private String region;
-    private String type;
-    private String only;
+    private Genre genre;
+    private Region region;
+    private ClassType type;
+    private Only only;
     private String title;
     private String classImage;
 
@@ -22,10 +26,10 @@ public class ClassSimpleT {
 
     public ClassSimpleT(ClassT classT) {
         this.setClassNo(classT.getClassNo());
-        this.setGenre(classT.getGenre());
-        this.setRegion(classT.getRegion());
-        this.setType(classT.getType());
-        this.setOnly(classT.getOnly());
+        this.setGenre(Genre.valueOf(classT.getGenre()));
+        this.setRegion(Region.valueOf(classT.getRegion()));
+        this.setType(classT.getType().equals(ClassType.N.getKey()) ? null : ClassType.valueOf(classT.getType()));
+        this.setOnly(classT.getOnly() == null ? null : Only.valueOf(classT.getOnly()));
         this.setTitle(classT.getTitle());
         this.setClassImage(classT.getClassImage());
     }

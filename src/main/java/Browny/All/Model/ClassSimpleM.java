@@ -15,35 +15,33 @@ import java.util.List;
 @Data
 public class ClassSimpleM {
     private Long classNo;
-    private String genre;
+    private String genreText;
     private String genreCode;
-    private String region;
+    private String regionText;
     private String regionCode;
-    private String type;
+    private String typeText;
     private String typeCode;
-    private boolean typeExpose;
-    private String only;
+    private String onlyText;
     private String onlyCode;
-    private boolean onlyExpose;
     private String title;
     private String classImage;
 
     public ClassSimpleM(ClassSimpleT t) {
         this.setClassNo(t.getClassNo());
-        this.setGenre(String.format("#%s", Genre.valueOf(t.getGenre()).getValue()));
-        this.setGenreCode(t.getGenre());
-        this.setRegion(String.format("#%s", Region.valueOf(t.getRegion()).getValue()));
-        this.setRegionCode(t.getRegion());
-        if(!ClassType.valueOf(t.getType()).equals(ClassType.N)) {
-            this.setType(String.format("#%s", ClassType.valueOf(t.getType()).getValue()));
-            this.setTypeCode(t.getType());
-            this.setTypeExpose(true);
+        this.setGenreText(String.format("#%s", t.getGenre().getValue()));
+        this.setGenreCode(t.getGenre().getKey());
+        this.setRegionText(String.format("#%s", t.getRegion().getValue()));
+        this.setRegionCode(t.getRegion().getKey());
+
+        if(t.getType() != null) {
+            this.setTypeText(String.format("#%s", t.getType().getValue()));
+            this.setTypeCode(t.getType().getKey());
         }
         if(t.getOnly() != null) {
-            this.setOnly(String.format("#%s", Only.valueOf(t.getOnly()).getValue()));
-            this.setOnlyCode(t.getOnly());
-            this.setOnlyExpose(true);
+            this.setOnlyText(String.format("#%s", t.getOnly().getValue()));
+            this.setOnlyCode(t.getOnly().getKey());
         }
+
         this.setTitle(t.getTitle());
         this.setClassImage(String.format("http://localhost:8080/assets/images/%s",t.getClassImage()));
     }
