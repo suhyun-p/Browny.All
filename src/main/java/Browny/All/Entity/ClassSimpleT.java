@@ -28,7 +28,7 @@ public class ClassSimpleT {
         this.setClassNo(classT.getClassNo());
         this.setGenre(Genre.valueOf(classT.getGenre()));
         this.setRegion(Region.valueOf(classT.getRegion()));
-        this.setType(classT.getType().equals(ClassType.N.getKey()) ? null : ClassType.valueOf(classT.getType()));
+        this.setType(ClassType.valueOf(classT.getType()));
         this.setOnly(classT.getOnly() == null ? null : Only.valueOf(classT.getOnly()));
         this.setTitle(classT.getTitle());
         this.setClassImage(classT.getClassImage());

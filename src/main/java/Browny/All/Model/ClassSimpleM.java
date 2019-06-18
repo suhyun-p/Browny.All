@@ -33,7 +33,7 @@ public class ClassSimpleM {
         this.setRegionText(String.format("#%s", t.getRegion().getValue()));
         this.setRegionCode(t.getRegion().getKey());
 
-        if(t.getType() != null) {
+        if(!t.getType().equals(ClassType.N)) {
             this.setTypeText(String.format("#%s", t.getType().getValue()));
             this.setTypeCode(t.getType().getKey());
         }
