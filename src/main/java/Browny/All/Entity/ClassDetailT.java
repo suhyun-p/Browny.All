@@ -4,6 +4,7 @@ import Browny.All.Enum.*;
 import Browny.All.Model.EarlybirdM;
 import Browny.All.Model.InstructorContactM;
 import Browny.All.Model.UserM;
+import io.swagger.models.Contact;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +23,10 @@ public class ClassDetailT {
     private String only;
     private String title;
     private String classImage;
-    private InstructorT instructor1;
-    private InstructorT instructor2;
+    private Long instructorNo1;
+    private Long instructorNo2;
+    private String instructorNickname1;
+    private String instructorNickname2;
     private String startDate;
     private String endDate;
     private String dateSummary;
@@ -35,7 +38,7 @@ public class ClassDetailT {
     private EarlybirdM earlybird;
     private String paymentType;
     private String payment;
-    private String contact;
+    private List<InstructorContactM> contactList = new ArrayList<>();
     private List<String> dateOptionList = new ArrayList<>();
     private List<String> priceOptionList = new ArrayList<>();
 
@@ -51,10 +54,14 @@ public class ClassDetailT {
         this.setOnly(classT.getOnly());
         this.setTitle(classT.getTitle());
         this.setClassImage(classT.getClassImage());
-        this.setInstructor1(new InstructorT(classT.getInstructor1()));
+        this.setInstructorNo1(classT.getInstructor1().getUserNo());
+        this.setInstructorNickname1(classT.getInstructor1().getNickname());
+
         if(classT.getInstructor2() != null) {
-            this.setInstructor2(new InstructorT(classT.getInstructor2()));
+            this.setInstructorNo2(classT.getInstructor2().getUserNo());
+            this.setInstructorNickname2(classT.getInstructor2().getNickname());
         }
+
         this.setStartDate(classT.getStartDate().toString());
         this.setEndDate(classT.getEndDate().toString());
         this.setDateSummary(classT.getDateSummary());
@@ -78,21 +85,7 @@ public class ClassDetailT {
         }
 
         for(ClassContactT t :classT.getClassContactTList()) {
-            if(t.getInstructorNo() == classT.getInstructor1().getUserNo()) {
-                if(ContactType.valueOf(t.getType()).equals(ContactType.P))
-                    this.getInstructor1().setPhoneNo(t.getContact());
-                else if(ContactType.valueOf(t.getType()).equals(ContactType.K))
-                    this.getInstructor1().setKakaoTalk(t.getContact());
-            }
-            else if(classT.getInstructor2() != null && t.getInstructorNo() == classT.getInstructor2().getUserNo()) {
-                if(ContactType.valueOf(t.getType()).equals(ContactType.P))
-                    this.getInstructor2().setPhoneNo(t.getContact());
-                else if(ContactType.valueOf(t.getType()).equals(ContactType.K))
-                    this.getInstructor2().setKakaoTalk(t.getContact());
-            }
-            else {
-                this.setContact(t.getContact());
-            }
+            this.getContactList().add(new InstructorContactM(t.getInstructorNo(), ContactType.valueOf(t.getType()), t.getContact()));
         }
     }
 }

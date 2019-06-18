@@ -37,12 +37,12 @@
         <div class="col-md-6 offset-md-3">
             <div class="card mb-3 shadow-sm">
                 <div class="row" style="padding-top: 15px;padding-left: 15px;">
-                    <a class="text-dark" href="/genre/" th:attrappend="href=${classDetail.genreCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.genre}"></b></span></a>
-                    <a class="text-dark" href="/region/" th:attrappend="href=${classDetail.regionCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.region}"></b></span></a>
-                    <a class="text-dark" href="/type/" th:attrappend="href=${classDetail.typeCode}" th:if="${classDetail.typeExpose}"><span style="padding-left: 15px;"><b th:text="${classDetail.type}"></b></span></a>
-                    <a class="text-dark" href="/only/" th:attrappend="href=${classDetail.onlyCode}" th:if="${classDetail.onlyExpose}"><span style="padding-left: 15px;"><b th:text="${classDetail.only}"></b></span></a>
-                    <a class="text-dark" href="/instructor/" th:attrappend="href=${classDetail.instructorNo1}"><span style="padding-left: 15px;"><b th:text="${classDetail.instructorName1}"></b></span></a>
-                    <a class="text-dark" href="/instructor/" th:attrappend="href=${classDetail.instructorNo2}" th:if="${classDetail.instructor2}"><span style="padding-left: 15px;"><b th:text="${classDetail.instructorName2}"></b></span></a>
+                    <a class="text-dark" href="/genre/" th:attrappend="href=${classDetail.genreCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.genreText}"></b></span></a>
+                    <a class="text-dark" href="/region/" th:attrappend="href=${classDetail.regionCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.regionText}"></b></span></a>
+                    <a class="text-dark" href="/type/" th:attrappend="href=${classDetail.typeCode}" th:if="${classDetail.typeText != null}"><span style="padding-left: 15px;"><b th:text="${classDetail.typeText}"></b></span></a>
+                    <a class="text-dark" href="/only/" th:attrappend="href=${classDetail.onlyCode}" th:if="${classDetail.onlyText != null}"><span style="padding-left: 15px;"><b th:text="${classDetail.onlyText}"></b></span></a>
+                    <a class="text-dark" href="/instructor/" th:attrappend="href=${classDetail.instructorNo1}"><span style="padding-left: 15px;"><b th:text="${classDetail.instructorNickname1}"></b></span></a>
+                    <a class="text-dark" href="/instructor/" th:attrappend="href=${classDetail.instructorNo2}" th:if="${classDetail.instructorNo2}"><span style="padding-left: 15px;"><b th:text="${classDetail.instructorNickname2}"></b></span></a>
                 </div>
                 <hr/>
                 <dl class="row" style="padding-left: 20px;padding-right: 20px;">

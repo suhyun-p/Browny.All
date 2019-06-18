@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class InstructorContactM {
-    private String instructor;
+    private Long instructorNo;
     private ContactType type;
     private String contact;
 
@@ -14,8 +14,8 @@ public class InstructorContactM {
 
     }
 
-    public InstructorContactM(String instructor, ContactType type, String contact) {
-        this.setInstructor(instructor);
+    public InstructorContactM(Long instructorNo, ContactType type, String contact) {
+        this.setInstructorNo(instructorNo);
         this.setType(type);
         this.setContact(contact);
     }
