@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -38,11 +39,9 @@ public class ClassDetailM {
     private String time;
     private String location;
     private String price;
-    private EarlybirdM earlybird;
+    // private EarlybirdM earlybird;
     private String payment;
     private List<String> contactList = new ArrayList<>();
-    private String contact;
-    private boolean contactExpose;
     private List<String> dateOptionList = new ArrayList<>();
     private List<String> priceOptionList = new ArrayList<>();
 
@@ -68,7 +67,7 @@ public class ClassDetailM {
 
         if(t.getInstructorNo2() != null) {
             this.setInstructorNo2(t.getInstructorNo2());
-            this.setInstructorNickname2(String.format("#%s", t.getInstructorNickname1()));
+            this.setInstructorNickname2(String.format("#%s", t.getInstructorNickname2()));
         }
 
         this.setTitle(t.getTitle());
@@ -104,47 +103,40 @@ public class ClassDetailM {
 
         if(t.getOnly()== null) {
             if(t.getMalePrice() == t.getFemalePrice()) {
-                this.setPrice(String.format("%s",Integer.toString(t.getMalePrice())));
+                this.setPrice(String.format("%s",Integer.toString(t.getMalePrice()).replaceAll("0000$", "만원")));
             }
             else {
-                this.setPrice(String.format("남자 %s / 여자 %s",Integer.toString(t.getMalePrice()), Integer.toString(t.getFemalePrice())));
+                this.setPrice(String.format("남자 %s / 여자 %s",Integer.toString(t.getMalePrice()).replaceAll("0000$", "만원"), Integer.toString(t.getFemalePrice()).replaceAll("0000$", "만원")));
             }
         }
         else {
             if(Only.valueOf(t.getOnly()).equals(Only.F))
-                this.setPrice(Integer.toString(t.getFemalePrice()));
+                this.setPrice(Integer.toString(t.getFemalePrice()).replaceAll("0000$", "만원"));
             else if(Only.valueOf(t.getOnly()).equals(Only.M))
-                this.setPrice(Integer.toString(t.getMalePrice()));
+                this.setPrice(Integer.toString(t.getMalePrice()).replaceAll("0000$", "만원"));
         }
 
         this.setPriceOptionList(t.getPriceOptionList());
         this.setPayment(t.getPayment());
 
-        InstructorContactM phoneNo = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo1() && x.getType() == ContactType.P)).findFirst().orElse(null);
-        InstructorContactM kakaoTalk = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo1() && x.getType() == ContactType.K)).findFirst().orElse(null);
+        InstructorContactM phoneNo = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo1() && x.getType() == ContactType.P.getKey())).findFirst().orElse(null);
+        InstructorContactM kakaoTalk = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo1() && x.getType() == ContactType.K.getKey())).findFirst().orElse(null);
         if(phoneNo != null || kakaoTalk != null) {
             if(phoneNo != null && kakaoTalk != null) this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname1(), phoneNo.getContact(), kakaoTalk.getContact()));
             else if(phoneNo != null) this.contactList.add(String.format("%s %s", t.getInstructorNickname1(), phoneNo.getContact()));
             else if(kakaoTalk != null) this.contactList.add(String.format("%s (카톡 %s)", t.getInstructorNickname1(), kakaoTalk.getContact()));
         }
 
-        phoneNo = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo2() && x.getType() == ContactType.P)).findFirst().orElse(null);
-        kakaoTalk = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo2() && x.getType() == ContactType.K)).findFirst().orElse(null);
+        phoneNo = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo2() && x.getType() == ContactType.P.getKey())).findFirst().orElse(null);
+        kakaoTalk = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo2() && x.getType() == ContactType.K.getKey())).findFirst().orElse(null);
         if(phoneNo != null || kakaoTalk != null) {
             if(phoneNo != null && kakaoTalk != null) this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname2(), phoneNo.getContact(), kakaoTalk.getContact()));
             else if(phoneNo != null) this.contactList.add(String.format("%s %s", t.getInstructorNickname2(), phoneNo.getContact()));
             else if(kakaoTalk != null) this.contactList.add(String.format("%s (카톡 %s)", t.getInstructorNickname2(), kakaoTalk.getContact()));
         }
 
-        /*i
-
-        this.setContact(t.getContact());*/
-
-        if(this.getContactList().size() > 0 || this.getContact() != null) {
-            this.setContactExpose(true);
-        }
-        else {
-            this.setContactExpose(false);
+        for(InstructorContactM instructorContactM : t.getContactList().stream().filter(x -> (x.getInstructorNo() == null && x.getType() == null)).collect(Collectors.toList())) {
+            this.contactList.add(instructorContactM.getContact());
         }
     }
 }

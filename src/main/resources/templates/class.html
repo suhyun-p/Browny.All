@@ -46,12 +46,12 @@
                 </div>
                 <hr/>
                 <dl class="row" style="padding-left: 20px;padding-right: 20px;">
-                    <dt class="col-sm-3">Title</dt>
+                    <dt class="col-sm-3">타이틀</dt>
                     <dd class="col-sm-9" th:text="${classDetail.title}"></dd>
-                    <dt class="col-sm-3">Instructor</dt>
+                    <dt class="col-sm-3">안무 및 지도</dt>
                     <dd class="col-sm-9" th:text="${classDetail.instructor}">
                     </dd>
-                    <dt class="col-sm-3">Date</dt>
+                    <dt class="col-sm-3">날짜</dt>
                     <dd class="col-sm-9">
                         <p th:text="${classDetail.date}" style="margin-bottom: 0;"></p>
                         <p th:if="${classDetail.dateSummaryExpose}" th:text="${classDetail.dateSummary}" style="margin-bottom: 0;"></p>
@@ -59,28 +59,25 @@
                             <p th:text="${dateOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
                     </dd>
-                    <dt class="col-sm-3">Time</dt>
+                    <dt class="col-sm-3">시간</dt>
                     <dd class="col-sm-9" th:text="${classDetail.time}"></dd>
-                    <dt class="col-sm-3">Location</dt>
+                    <dt class="col-sm-3">장소</dt>
                     <dd class="col-sm-9" th:text="${classDetail.location}"></dd>
-                    <dt class="col-sm-3">Price</dt>
+                    <dt class="col-sm-3">수강료</dt>
                     <dd class="col-sm-9" >
                         <p th:text="${classDetail.price}" style="margin-bottom: 0;"></p>
                         <div th:each="priceOption : ${classDetail.priceOptionList}">
                             <p th:text="${priceOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
                     </dd>
-                    <dt class="col-sm-3" th:if="${classDetail.payment != null}">Payment</dt>
+                    <dt class="col-sm-3" th:if="${classDetail.payment != null}">계좌</dt>
                     <dd class="col-sm-9" th:if="${classDetail.payment != null}" th:text="${classDetail.payment}"></dd>
-                    <dt class="col-sm-3" th:if="${classDetail.contactExpose}">Contact</dt>
-                    <dd class="col-sm-9" th:if="${classDetail.contactExpose}">
+                    <dt class="col-sm-3" th:if="${not #lists.isEmpty(classDetail.contactList)}">문의</dt>
+                    <dd class="col-sm-9" th:if="${not #lists.isEmpty(classDetail.contactList)}">
                         <div th:each="contact : ${classDetail.contactList}">
                             <p style="margin-bottom: 0;" th:text="${contact}"></p>
                         </div>
-                        <p style="margin-bottom: 0;" th:text="${classDetail.contact}"></p>
-
-                       <!-- <p style="margin-bottom: 0;">스칼렛 010-2335-8364<span><img src="http://localhost:8080/assets/images/kakaolink_btn_small.png" style="width: 18px;"> ssg8364</span></p>-->
-
+                        <!--<p style="margin-bottom: 0;" th:text="${classDetail.contact}"></p>-->
                     </dd>
                 </dl>
             </div>

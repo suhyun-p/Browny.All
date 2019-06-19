@@ -145,12 +145,12 @@ public class ClassService {
 
         if(classT.getInstructor1() != null && classT.getInstructor1().getInstructorContactTList() != null) {
             for(InstructorContactT contactT : classT.getInstructor1().getInstructorContactTList())
-                class_.getContactList().add(new InstructorContactM(classT.getInstructor1().getUserNo(), ContactType.valueOf(contactT.getType()), contactT.getContact()));
+                class_.getContactList().add(new InstructorContactM(classT.getInstructor1().getUserNo(), contactT.getType(), contactT.getContact()));
         }
 
         if(classT.getInstructor2() != null && classT.getInstructor2().getInstructorContactTList() != null) {
             for(InstructorContactT contactT : classT.getInstructor2().getInstructorContactTList())
-                class_.getContactList().add(new InstructorContactM(classT.getInstructor2().getUserNo(), ContactType.valueOf(contactT.getType()), contactT.getContact()));
+                class_.getContactList().add(new InstructorContactM(classT.getInstructor2().getUserNo(), contactT.getType(), contactT.getContact()));
         }
 
         if(classT.getClassDateOptionTList() != null) {

@@ -112,7 +112,7 @@ public class UserService {
             for(InstructorCareerT careerT : userT.getInstructorCareerTList())
                 user.getCareerList().add(careerT.getCareer());
             for(InstructorContactT contactT : userT.getInstructorContactTList())
-                user.getContactList().add(new InstructorContactM(user.getUserNo(), ContactType.valueOf(contactT.getType()), contactT.getContact()));
+                user.getContactList().add(new InstructorContactM(user.getUserNo(), contactT.getType(), contactT.getContact()));
         }
 
         return user;
