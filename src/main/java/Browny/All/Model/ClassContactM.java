@@ -4,6 +4,7 @@ import Browny.All.Entity.ClassContactT;
 import Browny.All.Enum.ContactType;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,7 @@ public class ClassContactM {
     public String instructorKakaoTalk1;
     public String instructorPhoneNo2;
     public String instructorKakaoTalk2;
-    public List<String> contactList;
+    public List<String> contactList = new ArrayList<>();
 
     public ClassContactM() {
 
@@ -37,7 +38,7 @@ public class ClassContactM {
         }
 
         for(ClassContactT classContactT : contactTList.stream().filter(x -> (x.getInstructorNo() == null && x.getType() == null)).collect(Collectors.toList())) {
-            this.contactList.add(classContactT.getContact());
+            this.getContactList().add(classContactT.getContact());
         }
     }
 }
