@@ -1,6 +1,7 @@
 package Browny.All.Entity;
 
 import Browny.All.Enum.*;
+import Browny.All.Model.ClassContactM;
 import Browny.All.Model.EarlybirdM;
 import Browny.All.Model.InstructorContactM;
 import Browny.All.Model.UserM;
@@ -38,7 +39,7 @@ public class ClassDetailT {
     // private EarlybirdM earlybird;
     // private String paymentType;
     private String payment;
-    private InstructorContactM instructorContact;
+    private ClassContactM classContact;
     private List<String> dateOptionList = new ArrayList<>();
     private List<String> priceOptionList = new ArrayList<>();
 
@@ -83,6 +84,7 @@ public class ClassDetailT {
                 this.getPriceOptionList().add(priceOption.getOpt());
             }
         }
-        // this.setInstructorContact(new InstructorContactM(classT()));
+
+        this.setClassContact(new ClassContactM(this.getInstructorNo1(), this.getInstructorNo2(), classT.getClassContactTList()));
     }
 }

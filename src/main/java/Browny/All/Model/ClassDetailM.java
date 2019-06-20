@@ -119,24 +119,28 @@ public class ClassDetailM {
         this.setPriceOptionList(t.getPriceOptionList());
         this.setPayment(t.getPayment());
 
-        /*String phoneNo = t.getInstructorContact().getPhoneNo();
-        String kakaoTalk = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo1() && x.getType() == ContactType.K.getKey())).findFirst().orElse(null);
-        if(phoneNo != null || kakaoTalk != null) {
-            if(phoneNo != null && kakaoTalk != null) this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname1(), phoneNo.getContact(), kakaoTalk.getContact()));
-            else if(phoneNo != null) this.contactList.add(String.format("%s %s", t.getInstructorNickname1(), phoneNo.getContact()));
-            else if(kakaoTalk != null) this.contactList.add(String.format("%s (카톡 %s)", t.getInstructorNickname1(), kakaoTalk.getContact()));
+        if(t.getClassContact().getInstructorPhoneNo1() != null || t.getClassContact().getInstructorKakaoTalk1() != null){
+            if(t.getClassContact().getInstructorPhoneNo1() != null && t.getClassContact().getInstructorKakaoTalk1() != null)
+                this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname1(), t.getClassContact().getInstructorPhoneNo1(), t.getClassContact().getInstructorKakaoTalk1()));
+            else if(t.getClassContact().getInstructorPhoneNo1() != null)
+                this.contactList.add(String.format("%s %s", t.getInstructorNickname1(), t.getClassContact().getInstructorPhoneNo1()));
+            else if(t.getClassContact().getInstructorKakaoTalk1() != null)
+                this.contactList.add(String.format("%s (카톡 %s)", t.getInstructorNickname1(), t.getClassContact().getInstructorKakaoTalk1()));
         }
 
-        phoneNo = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo2() && x.getType() == ContactType.P.getKey())).findFirst().orElse(null);
-        kakaoTalk = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo2() && x.getType() == ContactType.K.getKey())).findFirst().orElse(null);
-        if(phoneNo != null || kakaoTalk != null) {
-            if(phoneNo != null && kakaoTalk != null) this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname2(), phoneNo.getContact(), kakaoTalk.getContact()));
-            else if(phoneNo != null) this.contactList.add(String.format("%s %s", t.getInstructorNickname2(), phoneNo.getContact()));
-            else if(kakaoTalk != null) this.contactList.add(String.format("%s (카톡 %s)", t.getInstructorNickname2(), kakaoTalk.getContact()));
+        if(t.getClassContact().getInstructorPhoneNo2() != null || t.getClassContact().getInstructorKakaoTalk2() != null){
+            if(t.getClassContact().getInstructorPhoneNo2() != null && t.getClassContact().getInstructorKakaoTalk2() != null)
+                this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname2(), t.getClassContact().getInstructorPhoneNo2(), t.getClassContact().getInstructorKakaoTalk2()));
+            else if(t.getClassContact().getInstructorPhoneNo2() != null)
+                this.contactList.add(String.format("%s %s", t.getInstructorNickname2(), t.getClassContact().getInstructorPhoneNo2()));
+            else if(t.getClassContact().getInstructorKakaoTalk2() != null)
+                this.contactList.add(String.format("%s (카톡 %s)", t.getInstructorNickname2(), t.getClassContact().getInstructorKakaoTalk2()));
         }
 
-        for(InstructorContactM instructorContactM : t.getContactList().stream().filter(x -> (x.getInstructorNo() == null && x.getType() == null)).collect(Collectors.toList())) {
-            this.contactList.add(instructorContactM.getContact());
-        }*/
+        if(t.getClassContact().getContactList() != null) {
+            for(String contact : t.getClassContact().getContactList()) {
+                this.contactList.add(contact);
+            }
+        }
     }
 }
