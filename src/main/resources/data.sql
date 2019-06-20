@@ -1,5 +1,5 @@
 insert into user (nickname, sex, instructor) values ('브라우니', 'M', false); -- 1
-insert into user (nickname, sex, instructor) values ('칼리', 'F', false ); -- 2
+insert into user (nickname, sex, instructor) values ('칼리', 'F', true ); -- 2
 
 insert into user (nickname, sex, instructor, account) values ('스칼렛', 'F', true , '우리은행 180-08-244668 전신영'); -- 3
 insert into instructor_contact (instructor_no, type, contact) values (3, 'P', '010-2335-8364');
@@ -69,6 +69,9 @@ insert into instructor_contact (instructor_no, type, contact) values (15, 'P', '
 -- 16
 insert into user (nickname, sex, instructor, account) values ('이소', 'F', true , '우리은행 110-251-1074916 이소정');
 insert into instructor_contact (instructor_no, type, contact) values (16, 'P', '010-9914-1985');
+
+-- 17
+insert into user (nickname, sex, instructor, account) values ('짬장', 'M', true , null);
 
 -- 1
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment, class_image)
@@ -311,7 +314,7 @@ insert into class_contact (class_no, instructor_no, type, contact) values (31, 1
 
 -- 32
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment, class_image)
-values ('B', 'HD', 'N', null, 12, 3, '[AHORA Bachata] 목요일 강남클래스 시즌 2 클래스 1', '2019-05-02', '2019-06-13', '총 7주, 매주 목요일', '19:00', '20:00', '웨스티스', 100000, 100000, '우리은행 180-08-244668 전신영', 'class_24.jpg');
+values ('B', 'HD', 'N', null, 12, 3, '[AHORA Bachata] 목요일 강남클래스 시즌2 클래스1', '2019-05-02', '2019-06-13', '총 7주, 매주 목요일', '19:00', '20:00', '웨스티스', 100000, 100000, '우리은행 180-08-244668 전신영', 'class_24.jpg');
 insert into class_price_option (class_no, opt) values (32, '클래스 1,2 동시 수강자 15만원');
 insert into class_price_option (class_no, opt) values (32, '단, 기수강자는 50% 할인');
 insert into class_contact (class_no, instructor_no, type, contact) values (32, 3, 'P', '010-2335-8364');
@@ -319,7 +322,7 @@ insert into class_contact (class_no, instructor_no, type, contact) values (32, 3
 
 -- 33
 insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment, class_image)
-values ('B', 'HD', 'N', null, 12, 3, '[AHORA Bachata] 목요일 강남클래스 시즌 2 클래스 2', '2019-05-02', '2019-06-13', '총 7주, 매주 목요일', '20:10', '21:10', '웨스티스', 100000, 100000, '우리은행 180-08-244668 전신영', 'class_24.jpg');
+values ('B', 'HD', 'N', null, 12, 3, '[AHORA Bachata] 목요일 강남클래스 시즌2 클래스2', '2019-05-02', '2019-06-13', '총 7주, 매주 목요일', '20:10', '21:10', '웨스티스', 100000, 100000, '우리은행 180-08-244668 전신영', 'class_24.jpg');
 insert into class_price_option (class_no, opt) values (33, '클래스 1,2 동시 수강자 15만원');
 insert into class_price_option (class_no, opt) values (33, '단, 기수강자는 50% 할인');
 insert into class_contact (class_no, instructor_no, type, contact) values (33, 3, 'P', '010-2335-8364');
@@ -330,3 +333,32 @@ insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, t
 values ('B', 'HD', 'N', null, 16, null, '[이소] 스타일링n무브먼트', '2019-06-06', '2019-06-27', '총 4주, 매주 목요일', '19:30', '20:30', '홍대클럽 텐션', 50000, 50000, '우리은행 100-25-11074916 이소정', 'class_25.jpg');
 insert into class_contact (class_no, instructor_no, type, contact) values (34, 16, 'P', '010-9914-1985');
 
+-- 35
+insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment, class_image)
+values ('S', 'GD', 'N', null, 17, 2, '[라틴댄스 동호회 아댄스] SALSA ON2 초급반', '2019-05-03', '2019-06-07', '총 6주, 매주 금요일', '20:00', '21:00', '스윙트리바', 60000, 60000, '카카오뱅크 3333-06-4353833 김희경', 'class_26.jpg');
+insert into class_price_option (class_no, opt) values (35, '강습 후 정모비 별도');
+insert into class_contact (class_no, instructor_no, type, contact) values (35, null, null, '010-8332-9580');
+
+-- 36
+insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment, class_image)
+values ('S', 'GD', 'N', null, 17, 2, '[라틴댄스 동호회 아댄스] SALSA ON2 초중급반', '2019-06-21', '2019-07-26', '총 6주, 매주 금요일', '20:00', '21:00', '스윙트리바', 70000, 70000, '카카오뱅크 3333-06-4353833 김희경', 'class_27.jpg');
+insert into class_price_option (class_no, opt) values (36, '개강 후 환불 불가');
+insert into class_contact (class_no, instructor_no, type, contact) values (36, null, null, '010-8332-9580');
+
+-- 37
+insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment, class_image)
+values ('B', 'GN', 'N', null, 12, 3, '[AHORA Bachata] 목요일 강남클래스 시즌3 클래스1', '2019-06-27', '2019-08-08', '총 6주, 매주 목요일', '19:30', '20:30', '웨스티스', 100000, 100000, '우리은행 180-08-244668 전신영', 'class_28.jpg');
+insert into class_date_option (class_no, opt) values (37, '7/18 휴강');
+insert into class_price_option (class_no, opt) values (37, '클래스 1,2 동시 수강자 16만원');
+insert into class_price_option (class_no, opt) values (37, '커플 신청 시 각 1만원 할인');
+insert into class_price_option (class_no, opt) values (37, '단, 기수강자는 50% 할인');
+insert into class_contact (class_no, instructor_no, type, contact) values (37, 3, 'P', '010-2335-8364');
+
+-- 38
+insert into class(genre, region, type, only, instructor_no_1, instructor_no_2, title, start_date, end_date, date_summary, start_time, end_time, location, male_price, female_price, payment, class_image)
+values ('B', 'GN', 'N', null, 12, 3, '[AHORA Bachata] 목요일 강남클래스 시즌3 클래스2', '2019-06-27', '2019-08-08', '총 6주, 매주 목요일', '20:30', '21:30', '웨스티스', 100000, 100000, '우리은행 180-08-244668 전신영', 'class_28.jpg');
+insert into class_date_option (class_no, opt) values (38, '7/18 휴강');
+insert into class_price_option (class_no, opt) values (38, '클래스 1,2 동시 수강자 16만원');
+insert into class_price_option (class_no, opt) values (38, '커플 신청 시 각 1만원 할인');
+insert into class_price_option (class_no, opt) values (38, '단, 기수강자는 50% 할인');
+insert into class_contact (class_no, instructor_no, type, contact) values (38, 3, 'P', '010-2335-8364');
