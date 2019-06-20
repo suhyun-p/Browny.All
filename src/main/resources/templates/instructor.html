@@ -47,7 +47,6 @@
 
     <br/>
 
-    <h1 th:if="${instructor == null}"><u><b th:text=${hashtag}></b></u></h1>
     <div class="row" th:if="${instructor != null}">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
@@ -55,8 +54,14 @@
             <br/>
             <h2 th:text="${instructor.nickname}" style="text-align: center"></h2>
             <div>
-                <p style="margin-bottom: 0px; text-align: center;">PhoneNo</p>
-                <p style="margin-bottom: 0px; text-align: center;">Kakao Talk</p>
+                <p style="margin-bottom: 0px; text-align: center;" th:if="${instructor.contact.phoneNo != null}" th:text="${instructor.contact.phoneNo}"></p>
+                <p style="margin-bottom: 0px; text-align: center;" th:if="${instructor.contact.kakaoTalk != null}" th:text="${instructor.contact.kakaoTalk}"></p>
+                <p style="margin-bottom: 0px; text-align: center;" th:if="${instructor.contact.facebook != null}" th:text="${instructor.contact.facebook}"></p>
+                <p style="margin-bottom: 0px; text-align: center;" th:if="${instructor.contact.instagram != null}" th:text="${instructor.contact.instagram}"></p>
+                <a class="text-dark" th:href="${instructor.contact.youtubeURL}" th:if="${instructor.contact.youtube != null}"><p style="margin-bottom: 0px; text-align: center;" th:text="${instructor.contact.youtube}"></p></a>
+                <a class="text-dark" th:href="${instructor.contact.daumCafeURL}" th:if="${instructor.contact.daumCafe != null}"><p style="margin-bottom: 0px; text-align: center;" th:text="${instructor.contact.daumCafe}"></p></a>
+                <a class="text-dark" th:href="${instructor.contact.naverCafeURL}" th:if="${instructor.contact.naverCafe != null}"><p style="margin-bottom: 0px; text-align: center;" th:text="${instructor.contact.naverCafe}"></p></a>
+                <a class="text-dark" th:href="${instructor.contact.naverBandURL}" th:if="${instructor.contact.naverBand != null}"><p style="margin-bottom: 0px; text-align: center;" th:text="${instructor.contact.naverBand}"></p></a>
             </div>
 
         </div>

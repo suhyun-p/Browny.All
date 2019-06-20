@@ -38,7 +38,7 @@ public class ClassDetailT {
     // private EarlybirdM earlybird;
     // private String paymentType;
     private String payment;
-    private List<InstructorContactM> contactList = new ArrayList<>();
+    private InstructorContactM instructorContact;
     private List<String> dateOptionList = new ArrayList<>();
     private List<String> priceOptionList = new ArrayList<>();
 
@@ -83,9 +83,6 @@ public class ClassDetailT {
                 this.getPriceOptionList().add(priceOption.getOpt());
             }
         }
-
-        for(ClassContactT t :classT.getClassContactTList()) {
-            this.getContactList().add(new InstructorContactM(t.getInstructorNo(), t.getType(), t.getContact()));
-        }
+        // this.setInstructorContact(new InstructorContactM(classT()));
     }
 }

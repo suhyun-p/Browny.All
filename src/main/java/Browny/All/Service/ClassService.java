@@ -41,8 +41,8 @@ public class ClassService {
     @Transactional
     public List<ClassSimpleT> getClassSimpleList() {
         List<ClassSimpleT> classSimpleList = new ArrayList<>();
-        List<ClassT> classTList = classRepository.findAllByOrderByStartDateDesc();
-        // List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
+        // List<ClassT> classTList = classRepository.findAllByOrderByStartDateDesc();
+        List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleT(classT));
 
@@ -52,8 +52,8 @@ public class ClassService {
     @Transactional
     public List<ClassSimpleT> getClassSimpleListByGenre(String genre) {
         List<ClassSimpleT> classSimpleList = new ArrayList<>();
-        List<ClassT> classTList = classRepository.findAllByGenreIsOrderByStartDateDesc(genre);
-        // List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
+        // List<ClassT> classTList = classRepository.findAllByGenreIsOrderByStartDateDesc(genre);
+        List<ClassT> classTList = classRepository.findAllByGenreIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(genre, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleT(classT));
 
@@ -63,8 +63,8 @@ public class ClassService {
     @Transactional
     public List<ClassSimpleT> getClassSimpleListByRegion(String region) {
         List<ClassSimpleT> classSimpleList = new ArrayList<>();
-        List<ClassT> classTList = classRepository.findAllByRegionIsOrderByStartDateDesc(region);
-        // List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
+        // List<ClassT> classTList = classRepository.findAllByRegionIsOrderByStartDateDesc(region);
+        List<ClassT> classTList = classRepository.findAllByRegionIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(region, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleT(classT));
 
@@ -74,8 +74,8 @@ public class ClassService {
     @Transactional
     public List<ClassSimpleT> getClassSimpleListByType(String type) {
         List<ClassSimpleT> classSimpleList = new ArrayList<>();
-        List<ClassT> classTList = classRepository.findAllByTypeIsOrderByStartDateDesc(type);
-        // List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
+        // List<ClassT> classTList = classRepository.findAllByTypeIsOrderByStartDateDesc(type);
+        List<ClassT> classTList = classRepository.findAllByTypeIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(type, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleT(classT));
 
@@ -85,8 +85,8 @@ public class ClassService {
     @Transactional
     public List<ClassSimpleT> getClassSimpleListByOnly(String only) {
         List<ClassSimpleT> classSimpleList = new ArrayList<>();
-        List<ClassT> classTList = classRepository.findAllByOnlyIsOrderByStartDateDesc(only);
-        // List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
+        // List<ClassT> classTList = classRepository.findAllByOnlyIsOrderByStartDateDesc(only);
+        List<ClassT> classTList = classRepository.findAllByOnlyIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(only, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleT(classT));
 
@@ -98,7 +98,7 @@ public class ClassService {
         List<ClassSimpleT> classSimpleList = new ArrayList<>();
         UserT instructor = userRepository.getOne(instrutorNo);
         List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
-        // List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
+        // List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2AndGreaterThanEqualOrderByStartDateDesc(instructor, instructor);
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleT(classT));
 
@@ -144,13 +144,13 @@ public class ClassService {
         class_.setPayment(classT.getPayment());
 
         if(classT.getInstructor1() != null && classT.getInstructor1().getInstructorContactTList() != null) {
-            for(InstructorContactT contactT : classT.getInstructor1().getInstructorContactTList())
-                class_.getContactList().add(new InstructorContactM(classT.getInstructor1().getUserNo(), contactT.getType(), contactT.getContact()));
+            // for(InstructorContactT contactT : classT.getInstructor1().getInstructorContactTList())
+                // class_.getContactList().add(new InstructorContactM(classT.getInstructor1().getUserNo(), contactT.getType(), contactT.getContact()));
         }
 
         if(classT.getInstructor2() != null && classT.getInstructor2().getInstructorContactTList() != null) {
-            for(InstructorContactT contactT : classT.getInstructor2().getInstructorContactTList())
-                class_.getContactList().add(new InstructorContactM(classT.getInstructor2().getUserNo(), contactT.getType(), contactT.getContact()));
+            // for(InstructorContactT contactT : classT.getInstructor2().getInstructorContactTList())
+                // class_.getContactList().add(new InstructorContactM(classT.getInstructor2().getUserNo(), contactT.getType(), contactT.getContact()));
         }
 
         if(classT.getClassDateOptionTList() != null) {

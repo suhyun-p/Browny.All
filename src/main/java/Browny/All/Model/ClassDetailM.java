@@ -119,8 +119,8 @@ public class ClassDetailM {
         this.setPriceOptionList(t.getPriceOptionList());
         this.setPayment(t.getPayment());
 
-        InstructorContactM phoneNo = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo1() && x.getType() == ContactType.P.getKey())).findFirst().orElse(null);
-        InstructorContactM kakaoTalk = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo1() && x.getType() == ContactType.K.getKey())).findFirst().orElse(null);
+        /*String phoneNo = t.getInstructorContact().getPhoneNo();
+        String kakaoTalk = t.getContactList().stream().filter(x -> (x.getInstructorNo() == t.getInstructorNo1() && x.getType() == ContactType.K.getKey())).findFirst().orElse(null);
         if(phoneNo != null || kakaoTalk != null) {
             if(phoneNo != null && kakaoTalk != null) this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname1(), phoneNo.getContact(), kakaoTalk.getContact()));
             else if(phoneNo != null) this.contactList.add(String.format("%s %s", t.getInstructorNickname1(), phoneNo.getContact()));
@@ -137,6 +137,6 @@ public class ClassDetailM {
 
         for(InstructorContactM instructorContactM : t.getContactList().stream().filter(x -> (x.getInstructorNo() == null && x.getType() == null)).collect(Collectors.toList())) {
             this.contactList.add(instructorContactM.getContact());
-        }
+        }*/
     }
 }

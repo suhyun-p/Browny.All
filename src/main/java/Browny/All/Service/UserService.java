@@ -111,8 +111,7 @@ public class UserService {
         if(userT.getInstructor()) {
             for(InstructorCareerT careerT : userT.getInstructorCareerTList())
                 user.getCareerList().add(careerT.getCareer());
-            for(InstructorContactT contactT : userT.getInstructorContactTList())
-                user.getContactList().add(new InstructorContactM(user.getUserNo(), contactT.getType(), contactT.getContact()));
+            user.setContact(new InstructorContactM(userT.getInstructorContactTList()));
         }
 
         return user;
@@ -127,6 +126,6 @@ public class UserService {
     }
 
     private InstructorContactT ConvertToInstructorContactT(Long userNo, InstructorContactRequest contact) {
-        return new InstructorContactT(userNo, contact.getType(), contact.getContact());
+        return new InstructorContactT(userNo, contact.getType(), contact.getName(), contact.getContact());
     }
 }

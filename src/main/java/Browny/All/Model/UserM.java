@@ -19,5 +19,5 @@ public class UserM {
     @NonNull private Boolean instructor;
     private String account;
     private List<String> careerList = new ArrayList<>();
-    private List<InstructorContactM> contactList = new ArrayList<>();
+    private InstructorContactM contact;
 }

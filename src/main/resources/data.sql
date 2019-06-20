@@ -24,6 +24,8 @@ insert into instructor_career (instructor_no, career) values (3, '2017 싱가포
 insert into user (nickname, sex, instructor, account) values ('퓨마', 'M', true , 'NH농협 010-7290-9770-19 유무형');
 insert into instructor_contact (instructor_no, type, contact) values (4, 'P', '010-7290-9770');
 insert into instructor_contact (instructor_no, type, contact) values (4, 'K', 'ruemoo1');
+insert into instructor_contact (instructor_no, type, name, contact) values (4, 'NB', '센슈얼 피플', 'band.us/@sensualpeople');
+insert into instructor_contact (instructor_no, type, name, contact) values (4, 'Y', '라틴댄스TV', 'https://www.youtube.com/channel/UCJHRtPe10RBU5V0wYX1CkPQ');
 
 -- 5
 insert into user (nickname, sex, instructor, account) values ('태수', 'M', true , '하나은행 549-910154-52007 박성찬');

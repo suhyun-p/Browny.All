@@ -22,6 +22,9 @@ public class InstructorContactT {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "contact")
     private String contact;
 
@@ -43,9 +46,10 @@ public class InstructorContactT {
         this.setCreateId("Admin");
     }
 
-    public InstructorContactT(Long instructorNo, String type, String contact) {
+    public InstructorContactT(Long instructorNo, String type, String name, String contact) {
         this.setInstructorNo(instructorNo);
         this.setType(type);
+        this.setName(name);
         this.setContact(contact);
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
