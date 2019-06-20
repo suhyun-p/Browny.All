@@ -4,6 +4,7 @@ insert into user (nickname, sex, instructor) values ('칼리', 'F', true ); -- 2
 insert into user (nickname, sex, instructor, account) values ('스칼렛', 'F', true , '우리은행 180-08-244668 전신영'); -- 3
 insert into instructor_contact (instructor_no, type, contact) values (3, 'P', '010-2335-8364');
 insert into instructor_contact (instructor_no, type, contact) values (3, 'K', 'ssg8364');
+insert into instructor_contact (instructor_no, type, name, contact) values (3, 'NB', '아오라(Ahora)살사&바차타', 'http://band.us/@ahora');
 insert into instructor_career (instructor_no, career) values (3, '2006~2017 Salsa Latin Club, Salsa Holic 서울 대표 강사');
 insert into instructor_career (instructor_no, career) values (3, '2014 국민대 평생교육원 소셜댄스학부 교양지도교수');
 insert into instructor_career (instructor_no, career) values (3, '2009 Korea Salsa Competition 출전');
@@ -24,7 +25,7 @@ insert into instructor_career (instructor_no, career) values (3, '2017 싱가포
 insert into user (nickname, sex, instructor, account) values ('퓨마', 'M', true , 'NH농협 010-7290-9770-19 유무형');
 insert into instructor_contact (instructor_no, type, contact) values (4, 'P', '010-7290-9770');
 insert into instructor_contact (instructor_no, type, contact) values (4, 'K', 'ruemoo1');
-insert into instructor_contact (instructor_no, type, name, contact) values (4, 'NB', '센슈얼 피플', 'band.us/@sensualpeople');
+insert into instructor_contact (instructor_no, type, name, contact) values (4, 'NB', '센슈얼 피플', 'http://band.us/@sensualpeople');
 insert into instructor_contact (instructor_no, type, name, contact) values (4, 'Y', '라틴댄스TV', 'https://www.youtube.com/channel/UCJHRtPe10RBU5V0wYX1CkPQ');
 
 -- 5
