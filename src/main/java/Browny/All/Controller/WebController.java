@@ -46,22 +46,27 @@ public class WebController {
     @RequestMapping(value = "/instructor")
     public String Instructor(Model model, @RequestParam("instructorNo") long instructorNo) {
         RestTemplate restTemplate = new RestTemplate();
-        List<ClassSimpleM> classSimpleList = new ArrayList<>();
+        List<ClassSimpleM> classListInProgress = new ArrayList<>();
+        List<ClassSimpleM> classListClosed = new ArrayList<>();
         UserM instructor = null;
 
         String classInProgressUrl = String.format("http://localhost:8080/api/class/getClassListByInstructor?instructorNo=%s", instructorNo);
-        String classClosedUrl = String.format("http://localhost:8080/api/class/getClassListByInstructor?instructorNo=%s", instructorNo);
+        String classClosedUrl = String.format("http://localhost:8080/api/class/getClosedClassListByInstructor?instructorNo=%s", instructorNo);
         String instructorUrl = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", instructorNo);
 
-        ResponseEntity<ClassSimpleT[]> classRet = restTemplate.getForEntity(classInProgressUrl, ClassSimpleT[].class);
-        for(ClassSimpleT classSimpleT : classRet.getBody()) classSimpleList.add(new ClassSimpleM(classSimpleT));
-
         ResponseEntity<UserM> instructorRet = restTemplate.getForEntity(instructorUrl, UserM.class);
+
+        ResponseEntity<ClassSimpleT[]> classInProgress = restTemplate.getForEntity(classInProgressUrl, ClassSimpleT[].class);
+        for(ClassSimpleT classSimpleT : classInProgress.getBody()) classListInProgress.add(new ClassSimpleM(classSimpleT));
+
+        ResponseEntity<ClassSimpleT[]> classClosed = restTemplate.getForEntity(classClosedUrl, ClassSimpleT[].class);
+        for(ClassSimpleT classSimpleT : classClosed.getBody()) classListClosed.add(new ClassSimpleM(classSimpleT));
+
         instructor = instructorRet.getBody();
 
-        model.addAttribute("classSimpleList", classSimpleList);
         model.addAttribute("instructor", instructor);
-        // model.addAttribute("phoneNo", instructor.getContactList().stream().filter(x -> x.getType().equals("P")).);
+        model.addAttribute("classListInProgress", classListInProgress);
+        model.addAttribute("classListClosed", classListClosed);
 
         return "/instructor";
     }

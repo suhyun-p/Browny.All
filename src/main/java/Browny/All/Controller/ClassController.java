@@ -55,14 +55,20 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/getClassListByOnly", method = RequestMethod.GET)
-    public ResponseEntity<ClassDetailT> getClassListByOnly(@RequestParam("only") String only) {
+    public ResponseEntity<ClassSimpleT> getClassListByOnly(@RequestParam("only") String only) {
         List<ClassSimpleT> classSimpleList = classService.getClassSimpleListByOnly(only);
         return new ResponseEntity(classSimpleList, OK);
     }
 
     @RequestMapping(value = "/getClassListByInstructor", method = RequestMethod.GET)
-    public ResponseEntity<ClassDetailT> getClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
+    public ResponseEntity<ClassSimpleT> getClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
         List<ClassSimpleT> classSimpleList = classService.getClassSimpleListByInstructor(instructorNo);
+        return new ResponseEntity(classSimpleList, OK);
+    }
+
+    @RequestMapping(value = "/getClosedClassListByInstructor", method = RequestMethod.GET)
+    public ResponseEntity<ClassSimpleT> getClosedClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
+        List<ClassSimpleT> classSimpleList = classService.getClosedClassSimpleListByInstructor(instructorNo);
         return new ResponseEntity(classSimpleList, OK);
     }
 }

@@ -21,4 +21,6 @@ public interface ClassRepository extends JpaRepository<ClassT, Long> {
     List<ClassT> findAllByRegionIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String region, LocalDate today);
     List<ClassT> findAllByTypeIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String type, LocalDate today);
     List<ClassT> findAllByOnlyIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String only, LocalDate today);
+    List<ClassT> findAllByInstructor1AndEndDateIsGreaterThanEqualOrInstructor2AndEndDateIsGreaterThanEqualOrderByStartDateDesc(UserT instructor1, LocalDate today1, UserT instructor2, LocalDate today2);
+    List<ClassT> findAllByInstructor1AndEndDateIsLessThanOrInstructor2AndEndDateIsLessThanOrderByStartDateDesc(UserT instructor1, LocalDate today1, UserT instructor2, LocalDate today2);
 }

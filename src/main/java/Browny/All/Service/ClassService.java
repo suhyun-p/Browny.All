@@ -94,11 +94,23 @@ public class ClassService {
     }
 
     @Transactional
-    public List<ClassSimpleT> getClassSimpleListByInstructor(Long instrutorNo) {
+    public List<ClassSimpleT> getClassSimpleListByInstructor(Long instructorNo) {
         List<ClassSimpleT> classSimpleList = new ArrayList<>();
-        UserT instructor = userRepository.getOne(instrutorNo);
-        List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
-        // List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2AndGreaterThanEqualOrderByStartDateDesc(instructor, instructor);
+        UserT instructor = userRepository.getOne(instructorNo);
+        // List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
+        List<ClassT> classTList = classRepository.findAllByInstructor1AndEndDateIsGreaterThanEqualOrInstructor2AndEndDateIsGreaterThanEqualOrderByStartDateDesc(instructor, LocalDate.now(), instructor, LocalDate.now());
+        for(ClassT classT : classTList)
+            classSimpleList.add(new ClassSimpleT(classT));
+
+        return classSimpleList;
+    }
+
+    @Transactional
+    public List<ClassSimpleT> getClosedClassSimpleListByInstructor(Long instructorNo) {
+        List<ClassSimpleT> classSimpleList = new ArrayList<>();
+        UserT instructor = userRepository.getOne(instructorNo);
+        // List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
+        List<ClassT> classTList = classRepository.findAllByInstructor1AndEndDateIsLessThanOrInstructor2AndEndDateIsLessThanOrderByStartDateDesc(instructor, LocalDate.now(), instructor, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleT(classT));
 
@@ -174,11 +186,8 @@ public class ClassService {
             }
         }
 
-
         return class_;
     }
-
-
 
     private String getPriceText(int malePrice, int femalePrice) {
         if(malePrice == 0) return String.format("%s", femalePrice);
