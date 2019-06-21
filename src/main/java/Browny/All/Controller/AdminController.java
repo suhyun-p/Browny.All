@@ -14,13 +14,13 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
-    @RequestMapping(value = "/user")
-    public String User(Model model) {
-        return "/admin/user";
+    @RequestMapping(value = "/regUser")
+    public String RegUser(Model model) {
+        return "/admin/regUser";
     }
 
-    @RequestMapping(value = "/class")
-    public String Class(Model model) {
-        return "/admin/class";
+    @RequestMapping(value = "/regClass")
+    public String RegClass(Model model) {
+        return "/admin/regClass";
     }
 }
