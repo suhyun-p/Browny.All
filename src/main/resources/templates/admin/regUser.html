@@ -129,34 +129,45 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" class="form-control" id="instagram" placeholder="">
                                     </div>
-                                    <label for="youtube" class="col-md-3">유튜브</label>
-                                    <div class="col-md-9 mb-3">
-                                        <input type="text" class="form-control" id="youtube" placeholder="">
+                                    <label for="youtubeUrl" class="col-md-3">유튜브</label>
+                                    <div class="col-md-4 mb-3">
+                                        <input type="text" class="form-control" id="youtubeName" placeholder="Youtube Name">
                                     </div>
-                                    <label for="daumCafe" class="col-md-3">다음 카페</label>
-                                    <div class="col-md-9 mb-3">
-                                        <input type="text" class="form-control" id="daumCafe" placeholder="">
+                                    <div class="col-md-5 mb-3">
+                                        <input type="text" class="form-control" id="youtubeUrl" placeholder="Youtube URL">
                                     </div>
-                                    <label for="naverCafe" class="col-md-3">네이버 카페</label>
-                                    <div class="col-md-9 mb-3">
-                                        <input type="text" class="form-control" id="naverCafe" placeholder="">
+                                    <label for="daumCafeUrl" class="col-md-3">다음 카페</label>
+                                    <div class="col-md-4 mb-3">
+                                        <input type="text" class="form-control" id="daumCafeName" placeholder="Daum Cafe Name">
                                     </div>
-                                    <label for="naverBand" class="col-md-3">네이버 밴드</label>
-                                    <div class="col-md-9 mb-3">
-                                        <input type="text" class="form-control" id="naverBand" placeholder="">
+                                    <div class="col-md-5 mb-3">
+                                        <input type="text" class="form-control" id="daumCafeUrl" placeholder="Daum Cafe URL">
+                                    </div>
+                                    <label for="naverCafeUrl" class="col-md-3">네이버 카페</label>
+                                    <div class="col-md-4 mb-3">
+                                        <input type="text" class="form-control" id="naverCafeName" placeholder="Naver Cafe Name">
+                                    </div>
+                                    <div class="col-md-5 mb-3">
+                                        <input type="text" class="form-control" id="naverCafeUrl" placeholder="Naver Cafe URL">
+                                    </div>
+                                    <label for="naverBandUrl" class="col-md-3">네이버 밴드</label>
+                                    <div class="col-md-4 mb-3">
+                                        <input type="text" class="form-control" id="naverBandNameUrl" placeholder="Naver Band Name">
+                                    </div>
+                                    <div class="col-md-5 mb-3">
+                                        <input type="text" class="form-control" id="naverBandUrl" placeholder="Naver Band URL">
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" id="divCareer">
                                     <div class="col-md-12 mb-3">
                                         <label for="career">이력</label>
                                         <div class="custom-control-inline" style="width: 100%">
                                             <input type="text" class="form-control" id="career" name="career" placeholder="">&nbsp;
-                                            <button type="button" class="btn btn-primary btn-sm" id="careerAdd">Add</button>&nbsp;
-                                            <button type="button" class="btn btn-primary btn-sm" id="careerDel">Del</button>
                                         </div>
                                     </div>
                                 </div>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="javascript:addCareer();">Add</button>&nbsp;
                                 <hr class="mb-4">
                             </div>
 
@@ -173,6 +184,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script type="text/javascript" src="/assets/js/admin/form-validation.js"></script>
-        <script type="text/javascript" src="/assets/js/admin/regUser.js?dummy=2019062600000000"></script>
+        <script type="text/javascript" src="/assets/js/admin/regUser.js?dummy=2019062600000006"></script>
     </body>
 </html>
