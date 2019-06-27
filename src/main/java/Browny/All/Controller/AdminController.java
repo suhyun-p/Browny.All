@@ -1,16 +1,17 @@
 package Browny.All.Controller;
 
+import Browny.All.Entity.ClassDetailT;
 import Browny.All.Entity.ClassSimpleT;
+import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.ClassSimpleM;
+import Browny.All.Model.UserM;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,11 +25,6 @@ public class AdminController {
         return "/admin/regUser";
     }
 
-    @RequestMapping(value = "/regClass")
-    public String RegClass(Model model) {
-        return "/admin/regClass";
-    }
-
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> SignUp(@RequestBody Map<String, Object> params) {
@@ -39,5 +35,34 @@ public class AdminController {
         ResponseEntity<String> ret = restTemplate.postForEntity("http://localhost:8080/api/user/signUp", params, String.class);
         resultMap.put("Message", ret);
         return resultMap;
+    }
+
+    @RequestMapping(value = "/editUser")
+    public String EditUser(Model model, @RequestParam("userNo") long userNo) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String url = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", userNo);
+        ResponseEntity<UserM> ret = restTemplate.getForEntity(url, UserM.class);
+        model.addAttribute("user", ret.getBody());
+
+        return "/admin/editUser";
+    }
+
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public UserM GetUserInfo(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String userNo = httpServletRequest.getParameter("userNo");
+        String url = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", userNo);
+        ResponseEntity<UserM> ret = restTemplate.getForEntity(url, UserM.class);
+
+        return ret.getBody();
+    }
+
+
+    @RequestMapping(value = "/regClass")
+    public String RegClass(Model model) {
+        return "/admin/regClass";
     }
 }

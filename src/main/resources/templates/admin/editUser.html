@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Starter Template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/starter-template/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.0/css/bootstrap.min.css">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/bootstrap/starter-template.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap/form-validation.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>회원정보 수정</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2 order-md-1" >
+                <h4 class="mb-3">기본 정보</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="nickname">닉네임</label>
+                            <input type="text" class="form-control" id="nickname" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid nickname is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-block my-3">
+                        <label>성별</label>
+                        <div class="custom-control custom-radio">
+                            <input id="male" name="sex" type="radio" value="M" class="custom-control-input" required>
+                            <label class="custom-control-label" for="male">남성</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="female" name="sex" type="radio" value="F" class="custom-control-input" required>
+                            <label class="custom-control-label" for="female">여성</label>
+                        </div>
+                    </div>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="instructor">
+                        <label class="custom-control-label" for="instructor">Instructor</label>
+                    </div>
+
+                    <hr class="mb-4">
+
+                    <div id="instructorInfo" style="display: none">
+                        <h4 class="mb-3">강사 정보</h4>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="account">계좌</label>
+                                <input type="text" class="form-control" id="account" placeholder="" value="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label for="phoneNo" class="col-md-3">전화번호</label>
+                            <div class="col-md-9 mb-3">
+                                <input type="text" class="form-control" id="phoneNo" placeholder="">
+                            </div>
+                            <label for="kakaoTalk" class="col-md-3">카카오톡</label>
+                            <div class="col-md-9 mb-3">
+                                <input type="text" class="form-control" id="kakaoTalk" placeholder="">
+                            </div>
+                            <label for="facebook" class="col-md-3">페이스북</label>
+                            <div class="col-md-9 mb-3">
+                                <input type="text" class="form-control" id="facebook" placeholder="">
+                            </div>
+                            <label for="instagram" class="col-md-3">인스타그램</label>
+                            <div class="col-md-9 mb-3">
+                                <input type="text" class="form-control" id="instagram" placeholder="">
+                            </div>
+                            <label for="youtubeUrl" class="col-md-3">유튜브</label>
+                            <div class="col-md-4 mb-3">
+                                <input type="text" class="form-control" id="youtubeName" placeholder="Name">
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <input type="text" class="form-control" id="youtubeUrl" placeholder="URL">
+                            </div>
+                            <label for="daumCafeUrl" class="col-md-3">다음 카페</label>
+                            <div class="col-md-4 mb-3">
+                                <input type="text" class="form-control" id="daumCafeName" placeholder="Name">
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <input type="text" class="form-control" id="daumCafeUrl" placeholder="URL">
+                            </div>
+                            <label for="naverCafeUrl" class="col-md-3">네이버 카페</label>
+                            <div class="col-md-4 mb-3">
+                                <input type="text" class="form-control" id="naverCafeName" placeholder="Name">
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <input type="text" class="form-control" id="naverCafeUrl" placeholder="URL">
+                            </div>
+                            <label for="naverBandUrl" class="col-md-3">네이버 밴드</label>
+                            <div class="col-md-4 mb-3">
+                                <input type="text" class="form-control" id="naverBandName" placeholder="Name">
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <input type="text" class="form-control" id="naverBandUrl" placeholder="URL">
+                            </div>
+                        </div>
+
+                        <div class="row" id="divCareer">
+                            <div class="col-md-12 mb-3">
+                                <label for="career">이력</label>
+                                <div class="custom-control-inline" style="width: 100%">
+                                    <input type="text" class="form-control" id="career" name="career" placeholder="">&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="javascript:addCareer();">Add</button>&nbsp;
+                        <hr class="mb-4">
+                    </div>
+
+                    <button class="btn btn-primary btn-lg btn-block" id="signUp">수정</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main><!-- /.container -->
+
+<footer class="my-5 pt-5 text-muted text-center text-small"></footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/admin/form-validation.js"></script>
+<script type="text/javascript" src="/assets/js/admin/editUSer.js?dummy=2019062700000077"></script>
+</body>
+</html>
