@@ -1,9 +1,11 @@
 $(document).ready(function () {
 
-    var userNo;
-    userNo = 3;
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        return results[1] || 0;
+    }
 
-    loadUserInfo(userNo);
+    loadUserInfo($.urlParam('userNo'));
 
     $("#instructor").click(function() {
         if($("#instructor").prop("checked")) {
@@ -124,6 +126,8 @@ function rendering(userM) {
         $("#kakaoTalk").val(userM.contact.kakaoTalk);
         $("#facebook").val(userM.contact.facebook);
         $("#instagram").val(userM.contact.instagram);
+        $("#youtubeName").val(userM.contact.youtube);
+        $("#youtubeUrl").val(userM.contact.youtubeURL);
         $("#daumCafeName").val(userM.contact.daumCafe);
         $("#daumCafeUrl").val(userM.contact.daumCafeURL);
         $("#naverCafeName").val(userM.contact.naverCafe);
