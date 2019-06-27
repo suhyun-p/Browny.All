@@ -7,6 +7,28 @@ $(document).ready(function () {
             $("#instructorInfo").hide();
         }
     });
+
+    $("#signUp").click(function () {
+        var data = {};
+        data["nickname"] = $("#nickname").val();
+        data["sex"] = $(':input[name=sex]:radio:checked').val();
+        data["instructor"] = $("#instructor").is(":checked");
+
+        $.ajax({
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            url: '/admin/signUp',
+            type: 'POST',
+            success: function (response) {
+                alert("성공");
+                location.reload(); // 새로고침
+            },
+            error: function (request, status, error) {
+                alert("실패");
+            }
+        })
+    });
 });
 
 function addCareer() {
