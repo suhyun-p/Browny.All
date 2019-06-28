@@ -101,6 +101,12 @@ function rendering(classDetail) {
         else addPriceOption(classDetail.priceOptionList[i]);
     }
     $("#classAccountText").val(classDetail.payment);
+
+    if(classDetail.classContact.instructorPhoneNo1 != null) $("#instructorPhoneNo1").attr("checked", "checked");
+    if(classDetail.classContact.instructorKakaoTalk1 != null) $("#instructorKakaoTalk1").attr("checked", "checked");
+    if(classDetail.classContact.instructorPhoneNo2 != null) $("#instructorPhoneNo2").attr("checked", "checked");
+    if(classDetail.classContact.instructorKakaoTalk2 != null) $("#instructorKakaoTalk2").attr("checked", "checked");
+
     $("#classImage").val(classDetail.classImage);
 }
 
