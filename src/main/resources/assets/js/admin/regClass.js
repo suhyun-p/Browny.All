@@ -30,6 +30,18 @@ $(document).ready(function () {
                     $("#instructorAccountText1").text(response.account);
                 }
                 else  $("#divInstructorAccount1").hide();
+
+                if(response.contact != null && (response.contact.phoneNo != null && response.contact.phoneNo != "")) {
+                    $("#divInstructorPhoneNo1").show();
+                    $("#instructorPhoneNoText1").text('(' + response.nickname + ' : PhoneNo) ' + response.contact.phoneNo);
+                }
+                else  $("#divInstructorPhoneNo1").hide();
+
+                if(response.contact != null && (response.contact.kakaoTalk != null && response.contact.kakaoTalk != "")) {
+                    $("#divInstructorKakaoTalk1").show();
+                    $("#instructorKakaoTalkText1").text('(' + response.nickname + ' : KakaoTalk) ' + response.contact.kakaoTalk);
+                }
+                else  $("#divInstructorKakaoTalk1").hide();
             },
             error: function (request, status, error) {
                 alert("실패");
@@ -52,6 +64,18 @@ $(document).ready(function () {
                     $("#instructorAccountText2").text(response.account);
                 }
                 else  $("#divInstructorAccount2").hide();
+
+                if(response.contact != null && (response.contact.phoneNo != null && response.contact.phoneNo != "")) {
+                    $("#divInstructorPhoneNo2").show();
+                    $("#instructorPhoneNoText2").text('(' + response.nickname + ' : PhoneNo) ' + response.contact.phoneNo);
+                }
+                else  $("#divInstructorPhoneNo2").hide();
+
+                if(response.contact != null && (response.contact.kakaoTalk != null && response.contact.kakaoTalk != "")) {
+                    $("#divInstructorKakaoTalk2").show();
+                    $("#instructorKakaoTalkText2").text('(' + response.nickname + ' : KakaoTalk) ' + response.contact.kakaoTalk);
+                }
+                else  $("#divInstructorKakaoTalk2").hide();
             },
             error: function (request, status, error) {
                 alert("실패");
