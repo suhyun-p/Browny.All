@@ -38,15 +38,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/editUser")
-    public String EditUser(Model model, @RequestParam("userNo") long userNo) {
-
-        RestTemplate restTemplate = new RestTemplate();
-        String url = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", userNo);
-        ResponseEntity<UserM> ret = restTemplate.getForEntity(url, UserM.class);
-        model.addAttribute("user", ret.getBody());
-
-        return "/admin/editUser";
-    }
+    public String EditUser(Model model, @RequestParam("userNo") long userNo) { return "/admin/editUser"; }
 
     @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
     @ResponseBody
@@ -71,6 +63,21 @@ public class AdminController {
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserM[]> ret = restTemplate.getForEntity("http://localhost:8080/api/user/getInstructorList", UserM[].class);
+
+        return ret.getBody();
+    }
+
+    @RequestMapping(value = "/editClass")
+    public String EditClass(Model model, @RequestParam("classNo") long classNo) { return "/admin/editClass"; }
+
+    @RequestMapping(value = "/getClassDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public ClassDetailT GetClassDetail(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String classNo = httpServletRequest.getParameter("classNo");
+        String url = String.format("http://localhost:8080/api/class/getClassDetail?classNo=%s", classNo);
+        ResponseEntity<ClassDetailT> ret = restTemplate.getForEntity(url, ClassDetailT.class);
 
         return ret.getBody();
     }

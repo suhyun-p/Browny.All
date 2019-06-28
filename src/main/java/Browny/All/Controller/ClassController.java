@@ -31,7 +31,7 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/getClassDetail", method = RequestMethod.GET)
-    public ResponseEntity<List<ClassSimpleT>> getClassDetail(@RequestParam("classNo") long classNo) {
+    public ResponseEntity<ClassDetailT> getClassDetail(@RequestParam("classNo") long classNo) {
         ClassDetailT classDetail = classService.getClassDetail(classNo);
         return new ResponseEntity(classDetail, OK);
     }

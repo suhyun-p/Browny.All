@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Starter Template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/starter-template/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="/webjars/bootstrap/4.3.0/css/bootstrap.min.css">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/bootstrap/starter-template.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap/form-validation.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="container">
+        <div class="py-5 text-center">
+            <h2>수업 등록</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2 order-md-1" >
+                <form>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <label for="genre">Genre</label>
+                            <select class="custom-select d-block w-100" id="genre">
+                                <option value="">Choose...</option>
+                                <option value="B">Bachata</option>
+                                <option value="S">Salsa</option>
+                                <option value="H">Hiphop</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="region">Region</label>
+                            <select class="custom-select d-block w-100" id="region">
+                                <option value="">Choose...</option>
+                                <option value="HD">홍대</option>
+                                <option value="GN">강남</option>
+                                <option value="BD">분당</option>
+                                <option value="GD">건대</option>
+                                <option value="AP">압구정</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="classType">Type</label>
+                            <select class="custom-select d-block w-100" id="classType">
+                                <option value="">Choose...</option>
+                                <option value="N">일반</option>
+                                <option value="P">공연반</option>
+                                <option value="C">클리닉</option>
+                                <option value="W">워크샵</option>
+                                <option value="T">트레이닝</option>
+                                <option value="O">오픈강습</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="only">Only</label>
+                            <select class="custom-select d-block w-100" id="only">
+                                <option value="">Choose...</option>
+                                <option value="M">Man Only</option>
+                                <option value="F">Lady Only</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="" value="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="instructor1">Instructor 1</label>
+                            <select class="custom-select d-block w-100" id="instructor1">
+                                <option value="">Choose...</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="instructor2">instructor 2</label>
+                            <select class="custom-select d-block w-100" id="instructor2">
+                                <option value="">Choose...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="startDate">Start Date</label>
+                            <input type="text" class="form-control" id="startDate" placeholder="yyyy-MM-dd" value="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="endDate">End Date</label>
+                            <input type="text" class="form-control" id="endDate" placeholder="yyyy-MM-dd" value="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="dateSummary">Date Summary</label>
+                            <input type="text" class="form-control" id="dateSummary" placeholder="" value="">
+                        </div>
+                    </div>
+
+                    <div class="row" id="divDateOption">
+                        <div class="col-md-12 mb-3">
+                            <label for="dateOption">Date Option</label>
+                            <div class="custom-control-inline" style="width: 100%">
+                                <input type="text" class="form-control" id="dateOption" name="dateOption" placeholder="">&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="javascript:addDateOption();">Add</button>&nbsp;
+                    <br/><br/>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="startTime">Start Time</label>
+                            <input type="text" class="form-control" id="startTime" placeholder="hh:mm" value="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="endTime">End Date</label>
+                            <input type="text" class="form-control" id="endTime" placeholder="hh:mm" value="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="location">Location</label>
+                            <input type="text" class="form-control" id="location" placeholder="" value="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3" id="divMalePrice">
+                            <label for="malePrice">Male Price</label>
+                            <input type="text" class="form-control" id="malePrice" placeholder="" value="">
+                        </div>
+                        <div class="col-md-6 mb-3" id="DivFemalePrice">
+                            <label for="femalePrice">Female Price</label>
+                            <input type="text" class="form-control" id="femalePrice" placeholder="" value="">
+                        </div>
+                    </div>
+
+                    <div class="row" id="divPriceOption">
+                        <div class="col-md-12 mb-3">
+                            <label for="priceOption">Price Option</label>
+                            <div class="custom-control-inline" style="width: 100%">
+                                <input type="text" class="form-control" id="priceOption" name="priceOption" placeholder="">&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="javascript:addPriceOption();">Add</button>&nbsp;
+                    <br/><br/>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="classAccountText">Payment</label>
+                            <div class="custom-control custom-radio" id="divInstructorAccount1" style="display: none">
+                                <input id="instructorAccount1" name="payment" type="radio" class="custom-control-input">
+                                <label class="custom-control-label" for="instructorAccount1" id="instructorAccountText1"></label>
+                            </div>
+                            <div class="custom-control custom-radio" id="divInstructorAccount2" style="display: none">
+                                <input id="instructorAccount2" name="payment" type="radio" class="custom-control-input">
+                                <label class="custom-control-label" for="instructorAccount2" id="instructorAccountText2"></label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="classAccount" name="payment" type="radio" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="classAccount" style="width: 100%;">
+                                    <input type="text" class="form-control" id="classAccountText" placeholder="" value="">
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="contact">Contact</label>
+                            <div class="custom-control custom-checkbox" id="divInstructorPhoneNo1" style="display: none">
+                                <input id="instructorPhoneNo1" name="contact" type="checkbox" class="custom-control-input">
+                                <label class="custom-control-label" for="instructorPhoneNo1" id="instructorPhoneNoText1"></label>
+                            </div>
+                            <div class="custom-control custom-checkbox" id="divInstructorKakaoTalk1" style="display: none">
+                                <input id="instructorKakaoTalk1" name="contact" type="checkbox" class="custom-control-input">
+                                <label class="custom-control-label" for="instructorKakaoTalk1" id="instructorKakaoTalkText1"></label>
+                            </div>
+                            <div class="custom-control custom-checkbox" id="divInstructorPhoneNo2" style="display: none">
+                                <input id="instructorPhoneNo2" name="contact" type="checkbox" class="custom-control-input">
+                                <label class="custom-control-label" for="instructorPhoneNo2" id="instructorPhoneNoText2"></label>
+                            </div>
+                            <div class="custom-control custom-checkbox" id="divInstructorKakaoTalk2" style="display: none">
+                                <input id="instructorKakaoTalk2" name="contact" type="checkbox" class="custom-control-input">
+                                <label class="custom-control-label" for="instructorKakaoTalk2" id="instructorKakaoTalkText2"></label>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input id="classContact" name="contact" type="checkbox" class="custom-control-input" checked>
+                                <label class="custom-control-label" for="classContact" style="width: 100%;">
+                                    <input type="text" class="form-control" id="contact" placeholder="" value="">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="classImage">Class Image</label>
+                            <input type="text" class="form-control" id="classImage" placeholder="" value="">
+                        </div>
+                    </div>
+
+                    <hr class="mb-4">
+
+                    <button class="btn btn-primary btn-lg btn-block" id="regClass">등록</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main><!-- /.container -->
+
+<footer class="my-5 pt-5 text-muted text-center text-small"></footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/admin/form-validation.js"></script>
+<script type="text/javascript" src="/assets/js/admin/editClass.js?dummy=2019062800000016"></script>
+</body>
+</html>
