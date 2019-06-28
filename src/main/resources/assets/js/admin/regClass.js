@@ -25,7 +25,11 @@ $(document).ready(function () {
             url: '/admin/getUserInfo?userNo=' + instructorNo,
             type: 'GET',
             success: function (response) {
-                alert(response);
+                if(response.account != null && response.account != "") {
+                    $("#divInstructorAccount1").show();
+                    $("#instructorAccountText1").text(response.account);
+                }
+                else  $("#divInstructorAccount1").hide();
             },
             error: function (request, status, error) {
                 alert("실패");
@@ -34,8 +38,25 @@ $(document).ready(function () {
 
     });
 
-    $("#instructor2").change(function() {
-
+    $("#instructor2").change(function(e) {
+        var instructorNo = $(e.target).val();
+        $.ajax({
+            contentType: 'application/json',
+            dataType: 'json',
+            // data: JSON.stringify(data),
+            url: '/admin/getUserInfo?userNo=' + instructorNo,
+            type: 'GET',
+            success: function (response) {
+                if(response.account != null && response.account != "") {
+                    $("#divInstructorAccount2").show();
+                    $("#instructorAccountText2").text(response.account);
+                }
+                else  $("#divInstructorAccount2").hide();
+            },
+            error: function (request, status, error) {
+                alert("실패");
+            }
+        });
     });
 });
 
