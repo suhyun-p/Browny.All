@@ -60,9 +60,18 @@ public class AdminController {
         return ret.getBody();
     }
 
-
     @RequestMapping(value = "/regClass")
     public String RegClass(Model model) {
         return "/admin/regClass";
+    }
+
+    @RequestMapping(value = "/getInstructorList", method = RequestMethod.GET)
+    @ResponseBody
+    public UserM[] GetInstructorList(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<UserM[]> ret = restTemplate.getForEntity("http://localhost:8080/api/user/getInstructorList", UserM[].class);
+
+        return ret.getBody();
     }
 }
