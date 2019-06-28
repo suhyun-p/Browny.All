@@ -14,7 +14,29 @@ $(document).ready(function () {
         error: function (request, status, error) {
             alert("실패");
         }
-    })
+    });
+
+    $("#instructor1").change(function(e) {
+        var instructorNo = $(e.target).val();
+        $.ajax({
+            contentType: 'application/json',
+            dataType: 'json',
+            // data: JSON.stringify(data),
+            url: '/admin/getUserInfo?userNo=' + instructorNo,
+            type: 'GET',
+            success: function (response) {
+                alert(response);
+            },
+            error: function (request, status, error) {
+                alert("실패");
+            }
+        });
+
+    });
+
+    $("#instructor2").change(function() {
+
+    });
 });
 
 function addDateOption() {
