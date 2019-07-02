@@ -21,17 +21,7 @@ import java.util.List;
 @RequestMapping(value = "/")
 public class WebController {
     @RequestMapping(value = "/")
-    public String Index(Model model) {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<ClassSimpleT[]> ret = restTemplate.getForEntity("http://localhost:8080/api/class/getClassSimpleList", ClassSimpleT[].class);
-
-        List<ClassSimpleM> classSimpleList = new ArrayList<>();
-        for(ClassSimpleT classSimpleT : ret.getBody())
-            // classSimpleList.add(new ClassSimpleM(classSimpleT));
-        model.addAttribute("classSimpleList", classSimpleList);
-
-        return "/index";
-    }
+    public String Index(Model model) { return "/index"; }
 
     @RequestMapping(value = "/class")
     public String Class(Model model, @RequestParam("classNo") long classNo) {
