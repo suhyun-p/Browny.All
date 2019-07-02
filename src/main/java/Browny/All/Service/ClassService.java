@@ -39,12 +39,12 @@ public class ClassService {
     private ClassEarlybirdRepository classEarlybirdRepository;
 
     @Transactional
-    public List<ClassSimpleT> getClassSimpleList() {
-        List<ClassSimpleT> classSimpleList = new ArrayList<>();
+    public List<ClassSimpleM> getClassSimpleList() {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByOrderByStartDateDesc();
         List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
         for(ClassT classT : classTList)
-            classSimpleList.add(new ClassSimpleT(classT));
+            classSimpleList.add(new ClassSimpleM(classT));
 
         return classSimpleList;
     }

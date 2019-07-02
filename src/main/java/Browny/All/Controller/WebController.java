@@ -27,7 +27,7 @@ public class WebController {
 
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         for(ClassSimpleT classSimpleT : ret.getBody())
-            classSimpleList.add(new ClassSimpleM(classSimpleT));
+            // classSimpleList.add(new ClassSimpleM(classSimpleT));
         model.addAttribute("classSimpleList", classSimpleList);
 
         return "/index";
@@ -57,10 +57,10 @@ public class WebController {
         ResponseEntity<UserM> instructorRet = restTemplate.getForEntity(instructorUrl, UserM.class);
 
         ResponseEntity<ClassSimpleT[]> classInProgress = restTemplate.getForEntity(classInProgressUrl, ClassSimpleT[].class);
-        for(ClassSimpleT classSimpleT : classInProgress.getBody()) classListInProgress.add(new ClassSimpleM(classSimpleT));
+        // for(ClassSimpleT classSimpleT : classInProgress.getBody()) classListInProgress.add(new ClassSimpleM(classSimpleT));
 
         ResponseEntity<ClassSimpleT[]> classClosed = restTemplate.getForEntity(classClosedUrl, ClassSimpleT[].class);
-        for(ClassSimpleT classSimpleT : classClosed.getBody()) classListClosed.add(new ClassSimpleM(classSimpleT));
+        // for(ClassSimpleT classSimpleT : classClosed.getBody()) classListClosed.add(new ClassSimpleM(classSimpleT));
 
         instructor = instructorRet.getBody();
 
@@ -99,7 +99,7 @@ public class WebController {
         }
 
         ResponseEntity<ClassSimpleT[]> classRet = restTemplate.getForEntity(classUrl, ClassSimpleT[].class);
-        for(ClassSimpleT classSimpleT : classRet.getBody()) classSimpleList.add(new ClassSimpleM(classSimpleT));
+        // for(ClassSimpleT classSimpleT : classRet.getBody()) classSimpleList.add(new ClassSimpleM(classSimpleT));
 
         model.addAttribute("classSimpleList", classSimpleList);
         model.addAttribute("hashtag", hashtag);

@@ -24,8 +24,8 @@ public class ClassController {
     ClassService classService;
 
     @RequestMapping(value = "/getClassSimpleList", method = RequestMethod.GET)
-    public ResponseEntity<List<ClassSimpleT>> getClassSimpleList() {
-        List<ClassSimpleT> classSimpleList = classService.getClassSimpleList();
+    public ResponseEntity<List<ClassSimpleM>> getClassSimpleList() {
+        List<ClassSimpleM> classSimpleList = classService.getClassSimpleList();
 
         return new ResponseEntity(classSimpleList, OK);
     }
