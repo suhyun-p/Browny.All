@@ -48,7 +48,7 @@
 
     <br/>
 
-    <h1><u><b th:text="${genreText}"></b></u></h1>
+    <h1><u><b th:text="${onlyText}"></b></u></h1>
 
     <br/>
 
@@ -67,7 +67,7 @@
         <div class="card mb-3 shadow-sm">
             <a href="/class?classNo=${classNo}"><img src="${classImage}" style="width:100%;height:280px;padding-left: 20px;padding-right: 20px;padding-top: 20px;" alt="Data"></a>
             <div class="card-body">
-                <p class="card-text " style="min-height: 48px; margin-bottom: 0px; "><a class="text-dark"  href="">${title}</a></p>
+                <p class="card-text " style="min-height: 48px; margin-bottom: 0px; "><a class="text-dark" href="/class?classNo=${classNo}">${title}</a></p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="row" style="min-height: 48px; padding-left: 15px;">
                         <a class="text-dark" href="/genre/${genreCode}"><span style="padding-right: 15px;">${genreText}</span></a>

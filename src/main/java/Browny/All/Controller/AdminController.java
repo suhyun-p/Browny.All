@@ -1,9 +1,6 @@
 package Browny.All.Controller;
 
 import Browny.All.Entity.ClassDetailT;
-import Browny.All.Entity.ClassSimpleT;
-import Browny.All.Model.ClassDetailM;
-import Browny.All.Model.ClassSimpleM;
 import Browny.All.Model.UserM;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller

@@ -94,25 +94,25 @@ public class ClassService {
     }
 
     @Transactional
-    public List<ClassSimpleT> getClassSimpleListByInstructor(Long instructorNo) {
-        List<ClassSimpleT> classSimpleList = new ArrayList<>();
+    public List<ClassSimpleM> getClassSimpleListByInstructor(Long instructorNo) {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
         UserT instructor = userRepository.getOne(instructorNo);
         // List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
         List<ClassT> classTList = classRepository.findAllByInstructor1AndEndDateIsGreaterThanEqualOrInstructor2AndEndDateIsGreaterThanEqualOrderByStartDateDesc(instructor, LocalDate.now(), instructor, LocalDate.now());
         for(ClassT classT : classTList)
-            classSimpleList.add(new ClassSimpleT(classT));
+            classSimpleList.add(new ClassSimpleM(classT));
 
         return classSimpleList;
     }
 
     @Transactional
-    public List<ClassSimpleT> getClosedClassSimpleListByInstructor(Long instructorNo) {
-        List<ClassSimpleT> classSimpleList = new ArrayList<>();
+    public List<ClassSimpleM> getClosedClassSimpleListByInstructor(Long instructorNo) {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
         UserT instructor = userRepository.getOne(instructorNo);
         // List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
         List<ClassT> classTList = classRepository.findAllByInstructor1AndEndDateIsLessThanOrInstructor2AndEndDateIsLessThanOrderByStartDateDesc(instructor, LocalDate.now(), instructor, LocalDate.now());
         for(ClassT classT : classTList)
-            classSimpleList.add(new ClassSimpleT(classT));
+            classSimpleList.add(new ClassSimpleM(classT));
 
         return classSimpleList;
     }

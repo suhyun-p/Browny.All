@@ -48,76 +48,23 @@
 
     <br/>
 
-    <div class="row" th:if="${instructor != null}">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140" style="display: block; margin: auto;"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-            <br/>
-            <h2 th:text="${instructor.nickname}" style="text-align: center"></h2>
-            <div>
-                <p style="margin-bottom: 0px; text-align: center;" th:if="${instructor.contact.phoneNo != null}" th:text="${instructor.contact.phoneNo}"></p>
-                <p style="margin-bottom: 0px; text-align: center;" th:if="${instructor.contact.kakaoTalk != null}" th:text="${instructor.contact.kakaoTalk}"></p>
-                <p style="margin-bottom: 0px; text-align: center;" th:if="${instructor.contact.facebook != null}" th:text="${instructor.contact.facebook}"></p>
-                <p style="margin-bottom: 0px; text-align: center;" th:if="${instructor.contact.instagram != null}" th:text="${instructor.contact.instagram}"></p>
-                <a class="text-dark" th:href="${instructor.contact.youtubeURL}" th:if="${instructor.contact.youtube != null}"><p style="margin-bottom: 0px; text-align: center;" th:text="${instructor.contact.youtube}"></p></a>
-                <a class="text-dark" th:href="${instructor.contact.daumCafeURL}" th:if="${instructor.contact.daumCafe != null}"><p style="margin-bottom: 0px; text-align: center;" th:text="${instructor.contact.daumCafe}"></p></a>
-                <a class="text-dark" th:href="${instructor.contact.naverCafeURL}" th:if="${instructor.contact.naverCafe != null}"><p style="margin-bottom: 0px; text-align: center;" th:text="${instructor.contact.naverCafe}"></p></a>
-                <a class="text-dark" th:href="${instructor.contact.naverBandURL}" th:if="${instructor.contact.naverBand != null}"><p style="margin-bottom: 0px; text-align: center;" th:text="${instructor.contact.naverBand}"></p></a>
-            </div>
-
-        </div>
-        <div class="col-lg-4"></div>
-    </div>
+    <div class="row" id="instructorInfo"></div>
 
     <br/>
 
-    <h2 th:if="${instructor != null}"><u><b>#In Progress</b></u></h2>
+    <h2><u><b>#In Progress</b></u></h2>
 
     <br/>
 
-    <div class="row">
-        <div class="col-md-3" th:each="class : ${classListInProgress}">
-            <div class="card mb-3 shadow-sm">
-                <a th:href="@{/class(classNo=${class.classNo})}"><img th:src="${class.classImage}" style="width:100%;height:280px;padding-left: 20px;padding-right: 20px;padding-top: 20px;" alt="Data"></a>
-                <div class="card-body">
-                    <p class="card-text " style="min-height: 48px; margin-bottom: 0px; "><a class="text-dark" th:text="${class.title}" th:href="@{/class(classNo=${class.classNo})}"></a></p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="row" style="min-height: 48px; padding-left: 15px;">
-                            <a class="text-dark" href="/genre/" th:attrappend="href=${class.genreCode}"><span style="padding-right: 15px;" th:text="${class.genreText}"></span></a>
-                            <a class="text-dark" href="/region/" th:attrappend="href=${class.regionCode}"><span style="padding-right: 15px;" th:text="${class.regionText}"></span></a>
-                            <a class="text-dark" href="/type/" th:attrappend="href=${class.typeCode}" th:if="${class.typeText != null}"><span style="padding-right: 15px;" th:text="${class.typeText}"></span></a>
-                            <a class="text-dark" href="/only/" th:attrappend="href=${class.onlyCode}" th:if="${class.onlyText != null}"><span style="padding-right: 15px;" th:text="${class.onlyText}"></span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="row" id="classSimpleListByInstructor"></div>
 
     <br/>
 
-    <h2 th:if="${instructor != null}"><u><b>#Closed</b></u></h2>
+    <h2><u><b>#Closed</b></u></h2>
 
     <br/>
 
-    <div class="row">
-        <div class="col-md-3" th:each="class : ${classListClosed}">
-            <div class="card mb-3 shadow-sm">
-                <a th:href="@{/class(classNo=${class.classNo})}"><img th:src="${class.classImage}" style="width:100%;height:280px;padding-left: 20px;padding-right: 20px;padding-top: 20px;" alt="Data"></a>
-                <div class="card-body">
-                    <p class="card-text " style="min-height: 48px; margin-bottom: 0px; "><a class="text-dark" th:text="${class.title}" th:href="@{/class(classNo=${class.classNo})}"></a></p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="row" style="min-height: 48px; padding-left: 15px;">
-                            <a class="text-dark" href="/genre/" th:attrappend="href=${class.genreCode}"><span style="padding-right: 15px;" th:text="${class.genreText}"></span></a>
-                            <a class="text-dark" href="/region/" th:attrappend="href=${class.regionCode}"><span style="padding-right: 15px;" th:text="${class.regionText}"></span></a>
-                            <a class="text-dark" href="/type/" th:attrappend="href=${class.typeCode}" th:if="${class.typeText != null}"><span style="padding-right: 15px;" th:text="${class.typeText}"></span></a>
-                            <a class="text-dark" href="/only/" th:attrappend="href=${class.onlyCode}" th:if="${class.onlyText != null}"><span style="padding-right: 15px;" th:text="${class.onlyText}"></span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="row" id="classClosedSimpleListByInstructor"></div>
 </div>
 
 <footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
@@ -125,5 +72,67 @@
         <span class="text-muted">문의 : (카톡) avrasax</span>
     </div>
 </footer>
+
+<script id="instructorTemplate" type="text/html">
+    <div class="col-lg-4 offset-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140" style="display: block; margin: auto;"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <br/>
+        <h2 style="text-align: center">${nickname}</h2>
+        <div>
+            {{if contact.phoneNo != null}}
+            <p style="margin-bottom: 0px; text-align: center;">${contact.phoneNo}</p>
+            {{/if}}
+            {{if contact.kakaoTalk != null}}
+            <p style="margin-bottom: 0px; text-align: center;">${contact.kakaoTalk}</p>
+            {{/if}}
+            {{if contact.facebook != null}}
+            <p style="margin-bottom: 0px; text-align: center;">${contact.facebook}</p>
+            {{/if}}
+            {{if contact.instagram != null}}
+            <p style="margin-bottom: 0px; text-align: center;">${contact.instagram}</p>
+            {{/if}}
+            {{if contact.youtube != null}}
+            <a class="text-dark" href="${contact.youtubeURL}"><p style="margin-bottom: 0px; text-align: center;">${contact.instagram}</p></a>
+            {{/if}}
+            {{if contact.daumCafe != null}}
+            <a class="text-dark" href="${contact.daumCafeURL}"><p style="margin-bottom: 0px; text-align: center;">${contact.daumCafe}</p></a>
+            {{/if}}
+            {{if contact.naverCafe != null}}
+            <a class="text-dark" href="${contact.naverCafeURL}"><p style="margin-bottom: 0px; text-align: center;">${contact.naverCafe}</p></a>
+            {{/if}}
+            {{if contact.naverBand != null}}
+            <a class="text-dark" href="${contact.naverBandURL}"><p style="margin-bottom: 0px; text-align: center;">${contact.naverBand}</p></a>
+            {{/if}}
+        </div>
+    </div>
+</script>
+
+<script id="classSimpleTemplate" type="text/html">
+    <div class="col-md-3 col-sm-6">
+        <div class="card mb-3 shadow-sm">
+            <a href="/class?classNo=${classNo}"><img src="${classImage}" style="width:100%;height:280px;padding-left: 20px;padding-right: 20px;padding-top: 20px;" alt="Data"></a>
+            <div class="card-body">
+                <p class="card-text " style="min-height: 48px; margin-bottom: 0px; "><a class="text-dark" href="/class?classNo=${classNo}">${title}</a></p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="row" style="min-height: 48px; padding-left: 15px;">
+                        <a class="text-dark" href="/genre/${genreCode}"><span style="padding-right: 15px;">${genreText}</span></a>
+                        <a class="text-dark" href="/region/${regionCode}"><span style="padding-right: 15px;">${regionText}</span></a>
+                        {{if typeCode != 'N'}}
+                        <a class="text-dark" href="/type/${typeCode}"><span style="padding-right: 15px;">${typeText}</span></a>
+                        {{/if}}
+                        {{if onlyCode != null}}
+                        <a class="text-dark" href="/only/${onlyCode}"><span style="padding-right: 15px;">${onlyText}</span></a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="/assets/js/instructor.js"></script>
+
 </body>
 </html>

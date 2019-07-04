@@ -1,6 +1,5 @@
 package Browny.All.Model;
 
-import Browny.All.Entity.ClassSimpleT;
 import Browny.All.Entity.ClassT;
 import Browny.All.Enum.ClassType;
 import Browny.All.Enum.Genre;
@@ -8,9 +7,6 @@ import Browny.All.Enum.Only;
 import Browny.All.Enum.Region;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @Data

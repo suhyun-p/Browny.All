@@ -1,9 +1,6 @@
 package Browny.All.Controller;
 
 import Browny.All.Entity.ClassDetailT;
-import Browny.All.Entity.ClassSimpleT;
-import Browny.All.Entity.ClassT;
-import Browny.All.Model.ClassM;
 import Browny.All.Model.ClassSimpleM;
 import Browny.All.Service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,14 +54,14 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/getClassListByInstructor", method = RequestMethod.GET)
-    public ResponseEntity<ClassSimpleT> getClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
-        List<ClassSimpleT> classSimpleList = classService.getClassSimpleListByInstructor(instructorNo);
+    public ResponseEntity<ClassSimpleM> getClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
+        List<ClassSimpleM> classSimpleList = classService.getClassSimpleListByInstructor(instructorNo);
         return new ResponseEntity(classSimpleList, OK);
     }
 
     @RequestMapping(value = "/getClosedClassListByInstructor", method = RequestMethod.GET)
-    public ResponseEntity<ClassSimpleT> getClosedClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
-        List<ClassSimpleT> classSimpleList = classService.getClosedClassSimpleListByInstructor(instructorNo);
+    public ResponseEntity<ClassSimpleM> getClosedClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
+        List<ClassSimpleM> classSimpleList = classService.getClosedClassSimpleListByInstructor(instructorNo);
         return new ResponseEntity(classSimpleList, OK);
     }
 }

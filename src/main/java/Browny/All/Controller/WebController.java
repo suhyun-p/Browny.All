@@ -1,7 +1,6 @@
 package Browny.All.Controller;
 
 import Browny.All.Entity.ClassDetailT;
-import Browny.All.Entity.ClassSimpleT;
 import Browny.All.Enum.*;
 import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.ClassSimpleM;
@@ -13,10 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/")
@@ -50,12 +45,36 @@ public class WebController {
 
     @RequestMapping(value = "/getClassSimpleList", method = RequestMethod.GET)
     @ResponseBody
-    public ClassSimpleM[] GetUserInfo(HttpServletRequest httpServletRequest, Model model) {
+    public ClassSimpleM[] GetClassSimpleList(HttpServletRequest httpServletRequest, Model model) {
 
         RestTemplate restTemplate = new RestTemplate();
         String type = httpServletRequest.getParameter("type");
         String value = httpServletRequest.getParameter("value");
         String url = String.format("http://localhost:8080/api/class/getClassSimpleList?type=%s&value=%s", type, value);
+        ResponseEntity<ClassSimpleM[]> ret = restTemplate.getForEntity(url, ClassSimpleM[].class);
+
+        return ret.getBody();
+    }
+
+    @RequestMapping(value = "/getClassListByInstructor", method = RequestMethod.GET)
+    @ResponseBody
+    public ClassSimpleM[] GetClassListByInstructor(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String instructorNo = httpServletRequest.getParameter("instructorNo");
+        String url = String.format("http://localhost:8080/api/class/getClassListByInstructor?instructorNo=%s", instructorNo);
+        ResponseEntity<ClassSimpleM[]> ret = restTemplate.getForEntity(url, ClassSimpleM[].class);
+
+        return ret.getBody();
+    }
+
+    @RequestMapping(value = "/getClosedClassListByInstructor", method = RequestMethod.GET)
+    @ResponseBody
+    public ClassSimpleM[] GetClosedClassListByInstructor(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String instructorNo = httpServletRequest.getParameter("instructorNo");
+        String url = String.format("http://localhost:8080/api/class/getClosedClassListByInstructor?instructorNo=%s", instructorNo);
         ResponseEntity<ClassSimpleM[]> ret = restTemplate.getForEntity(url, ClassSimpleM[].class);
 
         return ret.getBody();
@@ -71,33 +90,18 @@ public class WebController {
         return "/class";
     }
 
-
-
     @RequestMapping(value = "/instructor")
-    public String Instructor(Model model, @RequestParam("instructorNo") long instructorNo) {
+    public String Instructor(Model model, @RequestParam("instructorNo") long instructorNo) { return "/instructor"; }
+
+    @RequestMapping(value = "/getInstructorInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public UserM GetInstructorInfo(HttpServletRequest httpServletRequest, Model model) {
+
         RestTemplate restTemplate = new RestTemplate();
-        List<ClassSimpleM> classListInProgress = new ArrayList<>();
-        List<ClassSimpleM> classListClosed = new ArrayList<>();
-        UserM instructor = null;
+        String instructorNo = httpServletRequest.getParameter("instructorNo");
+        String url = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", instructorNo);
+        ResponseEntity<UserM> ret = restTemplate.getForEntity(url, UserM .class);
 
-        String classInProgressUrl = String.format("http://localhost:8080/api/class/getClassListByInstructor?instructorNo=%s", instructorNo);
-        String classClosedUrl = String.format("http://localhost:8080/api/class/getClosedClassListByInstructor?instructorNo=%s", instructorNo);
-        String instructorUrl = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", instructorNo);
-
-        ResponseEntity<UserM> instructorRet = restTemplate.getForEntity(instructorUrl, UserM.class);
-
-        ResponseEntity<ClassSimpleT[]> classInProgress = restTemplate.getForEntity(classInProgressUrl, ClassSimpleT[].class);
-        // for(ClassSimpleT classSimpleT : classInProgress.getBody()) classListInProgress.add(new ClassSimpleM(classSimpleT));
-
-        ResponseEntity<ClassSimpleT[]> classClosed = restTemplate.getForEntity(classClosedUrl, ClassSimpleT[].class);
-        // for(ClassSimpleT classSimpleT : classClosed.getBody()) classListClosed.add(new ClassSimpleM(classSimpleT));
-
-        instructor = instructorRet.getBody();
-
-        model.addAttribute("instructor", instructor);
-        model.addAttribute("classListInProgress", classListInProgress);
-        model.addAttribute("classListClosed", classListClosed);
-
-        return "/instructor";
+        return ret.getBody();
     }
 }
