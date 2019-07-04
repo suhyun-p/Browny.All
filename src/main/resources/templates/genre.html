@@ -48,15 +48,12 @@
 
     <br/>
 
-    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic">What is my next class? Pick it here!</h1>
-            <p class="lead my-3">Salsa 및 Bachata 강습을 모으고 있습니다.</p>
-            <p class="lead mb-0 text-white font-weight-bold">공사 진행 중.</p>
-        </div>
-    </div>
+    <h1><u><b th:text="${genreText}"></b></u></h1>
+
+    <br/>
 
     <div class="row" id="classSimpleList"></div>
+
 </div>
 
 <footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
@@ -76,10 +73,10 @@
                         <a class="text-dark" href="/genre/${genreCode}"><span style="padding-right: 15px;">${genreText}</span></a>
                         <a class="text-dark" href="/region/${regionCode}"><span style="padding-right: 15px;">${regionText}</span></a>
                         {{if typeCode != 'N'}}
-                            <a class="text-dark" href="/type/${typeCode}"><span style="padding-right: 15px;">${typeText}</span></a>
+                        <a class="text-dark" href="/type/${typeCode}"><span style="padding-right: 15px;">${typeText}</span></a>
                         {{/if}}
                         {{if onlyCode != null}}
-                            <a class="text-dark" href="/only/${onlyCode}"><span style="padding-right: 15px;">${onlyText}</span></a>
+                        <a class="text-dark" href="/only/${onlyCode}"><span style="padding-right: 15px;">${onlyText}</span></a>
                         {{/if}}
                     </div>
                 </div>
@@ -90,7 +87,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
-<script type="text/javascript" src="/assets/js/index.js"></script>
+<script type="text/javascript" src="/assets/js/genre.js"></script>
 
 </body>
 </html>

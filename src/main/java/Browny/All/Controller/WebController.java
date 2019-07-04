@@ -9,19 +9,57 @@ import Browny.All.Model.UserM;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/")
 public class WebController {
     @RequestMapping(value = "/")
     public String Index(Model model) { return "/index"; }
+
+    @RequestMapping(value = "/genre/{code}")
+    public String Genre(Model model, @PathVariable("code") String code) {
+        model.addAttribute("genreText",String.format("#%s",Genre.valueOf(code).getValue()));
+        return "/genre";
+    }
+
+    @RequestMapping(value = "/region/{code}")
+    public String Region(Model model, @PathVariable("code") String code) {
+        model.addAttribute("regionText",String.format("#%s",Region.valueOf(code).getValue()));
+        return "/region";
+    }
+
+    @RequestMapping(value = "/type/{code}")
+    public String Type(Model model, @PathVariable("code") String code) {
+        model.addAttribute("typeText",String.format("#%s",ClassType.valueOf(code).getValue()));
+        return "/type";
+    }
+
+    @RequestMapping(value = "/only/{code}")
+    public String Only(Model model, @PathVariable("code") String code) {
+        model.addAttribute("onlyText",String.format("#%s",Only.valueOf(code).getValue()));
+        return "/only";
+    }
+
+    @RequestMapping(value = "/getClassSimpleList", method = RequestMethod.GET)
+    @ResponseBody
+    public ClassSimpleM[] GetUserInfo(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String type = httpServletRequest.getParameter("type");
+        String value = httpServletRequest.getParameter("value");
+        String url = String.format("http://localhost:8080/api/class/getClassSimpleList?type=%s&value=%s", type, value);
+        ResponseEntity<ClassSimpleM[]> ret = restTemplate.getForEntity(url, ClassSimpleM[].class);
+
+        return ret.getBody();
+    }
 
     @RequestMapping(value = "/class")
     public String Class(Model model, @RequestParam("classNo") long classNo) {
@@ -32,6 +70,8 @@ public class WebController {
 
         return "/class";
     }
+
+
 
     @RequestMapping(value = "/instructor")
     public String Instructor(Model model, @RequestParam("instructorNo") long instructorNo) {
@@ -59,41 +99,5 @@ public class WebController {
         model.addAttribute("classListClosed", classListClosed);
 
         return "/instructor";
-    }
-
-    @RequestMapping(value = "/{type}/{value}")
-    public String Search(Model model, @PathVariable("type") String type, @PathVariable("value") String value) {
-        RestTemplate restTemplate = new RestTemplate();
-        List<ClassSimpleM> classSimpleList = new ArrayList<>();
-
-        String classUrl = "";
-        String hashtag = "";
-
-        switch (type) {
-            case "genre":
-                classUrl = String.format("http://localhost:8080/api/class/getClassListByGenre?genre=%s", value);
-                hashtag = String.format("#%s", Genre.valueOf(value).getValue());
-                break;
-            case "region":
-                classUrl = String.format("http://localhost:8080/api/class/getClassListByRegion?region=%s", value);
-                hashtag = String.format("#%s", Region.valueOf(value).getValue());
-                break;
-            case "type":
-                classUrl = String.format("http://localhost:8080/api/class/getClassListByType?type=%s", value);
-                hashtag = String.format("#%s", ClassType.valueOf(value).getValue());
-                break;
-            case "only":
-                classUrl = String.format("http://localhost:8080/api/class/getClassListByOnly?only=%s", value);
-                hashtag = String.format("#%s", Only.valueOf(value).getValue());
-                break;
-        }
-
-        ResponseEntity<ClassSimpleT[]> classRet = restTemplate.getForEntity(classUrl, ClassSimpleT[].class);
-        // for(ClassSimpleT classSimpleT : classRet.getBody()) classSimpleList.add(new ClassSimpleM(classSimpleT));
-
-        model.addAttribute("classSimpleList", classSimpleList);
-        model.addAttribute("hashtag", hashtag);
-
-        return "/search";
     }
 }

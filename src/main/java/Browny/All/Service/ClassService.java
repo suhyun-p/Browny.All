@@ -50,45 +50,45 @@ public class ClassService {
     }
 
     @Transactional
-    public List<ClassSimpleT> getClassSimpleListByGenre(String genre) {
-        List<ClassSimpleT> classSimpleList = new ArrayList<>();
+    public List<ClassSimpleM> getClassSimpleListByGenre(String genre) {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByGenreIsOrderByStartDateDesc(genre);
         List<ClassT> classTList = classRepository.findAllByGenreIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(genre, LocalDate.now());
         for(ClassT classT : classTList)
-            classSimpleList.add(new ClassSimpleT(classT));
+            classSimpleList.add(new ClassSimpleM(classT));
 
         return classSimpleList;
     }
 
     @Transactional
-    public List<ClassSimpleT> getClassSimpleListByRegion(String region) {
-        List<ClassSimpleT> classSimpleList = new ArrayList<>();
+    public List<ClassSimpleM> getClassSimpleListByRegion(String region) {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByRegionIsOrderByStartDateDesc(region);
         List<ClassT> classTList = classRepository.findAllByRegionIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(region, LocalDate.now());
         for(ClassT classT : classTList)
-            classSimpleList.add(new ClassSimpleT(classT));
+            classSimpleList.add(new ClassSimpleM(classT));
 
         return classSimpleList;
     }
 
     @Transactional
-    public List<ClassSimpleT> getClassSimpleListByType(String type) {
-        List<ClassSimpleT> classSimpleList = new ArrayList<>();
+    public List<ClassSimpleM> getClassSimpleListByType(String type) {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByTypeIsOrderByStartDateDesc(type);
         List<ClassT> classTList = classRepository.findAllByTypeIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(type, LocalDate.now());
         for(ClassT classT : classTList)
-            classSimpleList.add(new ClassSimpleT(classT));
+            classSimpleList.add(new ClassSimpleM(classT));
 
         return classSimpleList;
     }
 
     @Transactional
-    public List<ClassSimpleT> getClassSimpleListByOnly(String only) {
-        List<ClassSimpleT> classSimpleList = new ArrayList<>();
+    public List<ClassSimpleM> getClassSimpleListByOnly(String only) {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByOnlyIsOrderByStartDateDesc(only);
         List<ClassT> classTList = classRepository.findAllByOnlyIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(only, LocalDate.now());
         for(ClassT classT : classTList)
-            classSimpleList.add(new ClassSimpleT(classT));
+            classSimpleList.add(new ClassSimpleM(classT));
 
         return classSimpleList;
     }
