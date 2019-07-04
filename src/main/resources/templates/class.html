@@ -55,7 +55,7 @@
                     <dt class="col-sm-3">날짜</dt>
                     <dd class="col-sm-9">
                         <p th:text="${classDetail.date}" style="margin-bottom: 0;"></p>
-                        <p th:if="${classDetail.dateSummaryExpose}" th:text="${classDetail.dateSummary}" style="margin-bottom: 0;"></p>
+                        <p th:text="${classDetail.dateSummary}" style="margin-bottom: 0;"></p>
                         <div th:each="dateOption : ${classDetail.dateOptionList}">
                             <p th:text="${dateOption}" style="margin-bottom: 0; color: darkgrey"></p>
                         </div>
@@ -73,13 +73,13 @@
                     </dd>
                     <dt class="col-sm-3" th:if="${classDetail.payment != null}">계좌</dt>
                     <dd class="col-sm-9" th:if="${classDetail.payment != null}" th:text="${classDetail.payment}"></dd>
-                    <dt class="col-sm-3" th:if="${not #lists.isEmpty(classDetail.contactList)}">문의</dt>
-                    <dd class="col-sm-9" th:if="${not #lists.isEmpty(classDetail.contactList)}">
+                    <!--<dt class="col-sm-3" th:if="${not #lists.isEmpty(classDetail.contactList)}">문의</dt>-->
+                    <!--<dd class="col-sm-9" th:if="${not #lists.isEmpty(classDetail.contactList)}">
                         <div th:each="contact : ${classDetail.contactList}">
                             <p style="margin-bottom: 0;" th:text="${contact}"></p>
                         </div>
-                        <!--<p style="margin-bottom: 0;" th:text="${classDetail.contact}"></p>-->
-                    </dd>
+                        &lt;!&ndash;<p style="margin-bottom: 0;" th:text="${classDetail.contact}"></p>&ndash;&gt;
+                    </dd>-->
                 </dl>
             </div>
         </div>

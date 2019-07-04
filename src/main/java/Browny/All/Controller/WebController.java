@@ -84,8 +84,8 @@ public class WebController {
     public String Class(Model model, @RequestParam("classNo") long classNo) {
         RestTemplate restTemplate = new RestTemplate();
         String url = String.format("http://localhost:8080/api/class/getClassDetail?classNo=%s", classNo);
-        ResponseEntity<ClassDetailT> ret = restTemplate.getForEntity(url, ClassDetailT.class);
-        model.addAttribute("classDetail", new ClassDetailM(ret.getBody()));
+        ResponseEntity<ClassDetailM> ret = restTemplate.getForEntity(url, ClassDetailM.class);
+        model.addAttribute("classDetail", ret.getBody());
 
         return "/class";
     }

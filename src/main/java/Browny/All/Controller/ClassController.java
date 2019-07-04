@@ -1,6 +1,7 @@
 package Browny.All.Controller;
 
 import Browny.All.Entity.ClassDetailT;
+import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.ClassSimpleM;
 import Browny.All.Service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,8 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/getClassDetail", method = RequestMethod.GET)
-    public ResponseEntity<ClassDetailT> getClassDetail(@RequestParam("classNo") long classNo) {
-        ClassDetailT classDetail = classService.getClassDetail(classNo);
+    public ResponseEntity<ClassDetailM> getClassDetail(@RequestParam("classNo") long classNo) {
+        ClassDetailM classDetail = classService.getClassDetail(classNo);
         return new ResponseEntity(classDetail, OK);
     }
 

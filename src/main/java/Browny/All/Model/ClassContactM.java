@@ -10,10 +10,8 @@ import java.util.stream.Collectors;
 
 @Data
 public class ClassContactM {
-    public String instructorPhoneNo1;
-    public String instructorKakaoTalk1;
-    public String instructorPhoneNo2;
-    public String instructorKakaoTalk2;
+    public InstructorContactM instructorContact1 = new InstructorContactM();
+    public InstructorContactM instructorContact2 = new InstructorContactM();
     public List<String> contactList = new ArrayList<>();
 
     public ClassContactM() {
@@ -21,19 +19,15 @@ public class ClassContactM {
     }
 
     public ClassContactM(Long instructorNo1, Long instructorNo2, List<ClassContactT> contactTList) {
-        ClassContactT phoneNo = contactTList.stream().filter(x -> (x.getInstructorNo() == instructorNo1 && x.getType().equals("P"))).findFirst().orElse(null);
-        ClassContactT kakaoTalk = contactTList.stream().filter(x -> (x.getInstructorNo() == instructorNo1 && x.getType().equals("K"))).findFirst().orElse(null);
-        if(phoneNo != null || kakaoTalk != null){
-            if(phoneNo != null) this.setInstructorPhoneNo1(phoneNo.getContact());
-            if(kakaoTalk != null) this.setInstructorKakaoTalk1(kakaoTalk.getContact());
+        for(ClassContactT contact : contactTList.stream().filter(x -> x.getInstructorNo() == instructorNo1).collect(Collectors.toList())) {
+            if(contact.getType().equals(ContactType.P.getKey())) instructorContact1.setPhoneNo(contact.getContact());
+            else if(contact.getType().equals(ContactType.K.getKey())) instructorContact1.setKakaoTalk(contact.getContact());
         }
 
         if(instructorNo2 != null) {
-            phoneNo = contactTList.stream().filter(x -> (x.getInstructorNo() == instructorNo2 && x.getType().equals("P"))).findFirst().orElse(null);
-            kakaoTalk = contactTList.stream().filter(x -> (x.getInstructorNo() == instructorNo2 && x.getType().equals("K"))).findFirst().orElse(null);
-            if(phoneNo != null || kakaoTalk != null) {
-                if(phoneNo != null) this.setInstructorPhoneNo2(phoneNo.getContact());
-                if(kakaoTalk != null) this.setInstructorKakaoTalk2(kakaoTalk.getContact());
+            for(ClassContactT contact : contactTList.stream().filter(x -> x.getInstructorNo() == instructorNo2).collect(Collectors.toList())) {
+                if(contact.getType().equals(ContactType.P.getKey())) instructorContact2.setPhoneNo(contact.getContact());
+                else if(contact.getType().equals(ContactType.K.getKey())) instructorContact2.setKakaoTalk(contact.getContact());
             }
         }
 

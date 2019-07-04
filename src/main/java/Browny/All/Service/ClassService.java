@@ -2,10 +2,7 @@ package Browny.All.Service;
 
 import Browny.All.Entity.*;
 import Browny.All.Enum.*;
-import Browny.All.Model.ClassM;
-import Browny.All.Model.ClassSimpleM;
-import Browny.All.Model.EarlybirdM;
-import Browny.All.Model.InstructorContactM;
+import Browny.All.Model.*;
 import Browny.All.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,83 +115,8 @@ public class ClassService {
     }
 
     @Transactional
-    public ClassDetailT getClassDetail(long classNo) {
-        ClassM classDetail = new ClassM();
+    public ClassDetailM getClassDetail(long classNo) {
         ClassT classT = classRepository.findById(classNo).get();
-
-        return new ClassDetailT(classT);
-    }
-
-    private ClassM ConvertToClassM(ClassT classT) {
-        ClassM class_ = new ClassM();
-        class_.setClassNo(classT.getClassNo());
-        class_.setGenre(Genre.valueOf(classT.getGenre()));
-        class_.setRegion(Region.valueOf(classT.getRegion()));
-        class_.setType(ClassType.valueOf(classT.getType()));
-        class_.setOnly(classT.getOnly() == null ? null : Only.valueOf(classT.getOnly()));
-        class_.setClassImage(String.format("http://localhost:8080/assets/images/%s", classT.getClassImage()));
-        class_.setTitle(classT.getTitle());
-        class_.setInstructor1(classT.getInstructor1().getNickname());
-        class_.setInstructor2(classT.getInstructor2() == null ? null : classT.getInstructor2().getNickname());
-        class_.setStartDate(classT.getStartDate().toString());
-        class_.setEndDate(classT.getEndDate().toString());
-        class_.setStartTime(classT.getStartTime());
-        class_.setEndTime(classT.getEndTime());
-        class_.setDateSummary(classT.getDateSummary());
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.KOREA);
-            long diff = format.parse(classT.getEndTime()).getTime() - format.parse(classT.getStartTime()).getTime();
-            long minDiff = diff / (1000 * 60);
-            class_.setTimeSummary(String.format("%s분", minDiff));
-        }
-        catch (ParseException e) {
-        }
-
-        class_.setLocation(classT.getLocation());
-        class_.setMalePrice(classT.getMalePrice());
-        class_.setFemalePrice(classT.getFemalePrice());
-        class_.setPayment(classT.getPayment());
-
-        if(classT.getInstructor1() != null && classT.getInstructor1().getInstructorContactTList() != null) {
-            // for(InstructorContactT contactT : classT.getInstructor1().getInstructorContactTList())
-                // class_.getContactList().add(new InstructorContactM(classT.getInstructor1().getUserNo(), contactT.getType(), contactT.getContact()));
-        }
-
-        if(classT.getInstructor2() != null && classT.getInstructor2().getInstructorContactTList() != null) {
-            // for(InstructorContactT contactT : classT.getInstructor2().getInstructorContactTList())
-                // class_.getContactList().add(new InstructorContactM(classT.getInstructor2().getUserNo(), contactT.getType(), contactT.getContact()));
-        }
-
-        if(classT.getClassDateOptionTList() != null) {
-            for(ClassDateOptionT dateOption : classT.getClassDateOptionTList()) {
-                class_.getDateOptionList().add(dateOption.getOpt());
-            }
-        }
-
-        if(classT.getClassPriceOptionTList() != null) {
-            for(ClassPriceOptionT priceOption : classT.getClassPriceOptionTList()) {
-                class_.getPriceOptionList().add(priceOption.getOpt());
-            }
-        }
-
-        if(classT.getClassEarlybirdTList() != null) {
-            for(ClassEarlybirdT earlybird : classT.getClassEarlybirdTList()) {
-                if(LocalDate.now().isBefore(earlybird.getDeadline())) {
-                    class_.setEarlybird(new EarlybirdM(earlybird.getDeadline(), earlybird.getAmount()));
-                    break;
-                }
-            }
-        }
-
-        return class_;
-    }
-
-    private String getPriceText(int malePrice, int femalePrice) {
-        if(malePrice == 0) return String.format("%s", femalePrice);
-        else if (femalePrice == 0) return String.format("%s", malePrice);
-        else {
-            if(malePrice == femalePrice) return String.format("%s", malePrice);
-            else return String.format("%s / %s", malePrice, femalePrice);
-        }
+        return new ClassDetailM(classT);
     }
 }

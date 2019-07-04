@@ -35,17 +35,19 @@ public class ClassDetailM {
     private String instructorNickname2;
     private String date;
     private String dateSummary;
-    private boolean dateSummaryExpose;
     private String time;
     private String location;
     private String price;
-    // private EarlybirdM earlybird;
     private String payment;
-    private List<String> contactList = new ArrayList<>();
+    private ClassContactM classContact;
     private List<String> dateOptionList = new ArrayList<>();
     private List<String> priceOptionList = new ArrayList<>();
 
-    public ClassDetailM(ClassDetailT t) {
+    public ClassDetailM(){
+
+    }
+
+    public ClassDetailM(ClassT t) {
         this.setClassNo(t.getClassNo());
         this.setGenreText(String.format("#%s", Genre.valueOf(t.getGenre()).getValue()));
         this.setGenreCode(t.getGenre());
@@ -62,30 +64,28 @@ public class ClassDetailM {
             this.setOnlyCode(t.getOnly());
         }
 
-        this.setInstructorNo1(t.getInstructorNo1());
-        this.setInstructorNickname1(String.format("#%s", t.getInstructorNickname1()));
+        this.setInstructorNo1(t.getInstructor1().getUserNo());
+        this.setInstructorNickname1(String.format("#%s", t.getInstructor1().getNickname()));
 
-        if(t.getInstructorNo2() != null) {
-            this.setInstructorNo2(t.getInstructorNo2());
-            this.setInstructorNickname2(String.format("#%s", t.getInstructorNickname2()));
+        if(t.getInstructor2() != null) {
+            this.setInstructorNo2(t.getInstructor2().getUserNo());
+            this.setInstructorNickname2(String.format("#%s", t.getInstructor2().getNickname()));
         }
 
         this.setTitle(t.getTitle());
         this.setClassImage(String.format("http://localhost:8080/assets/images/%s", t.getClassImage()));
 
-        if(t.getInstructorNo2() != null) this.setInstructor(String.format("%s, %s", t.getInstructorNickname1(), t.getInstructorNickname2()));
-        else this.setInstructor(String.format("%s", t.getInstructorNickname1()));
+        if(t.getInstructor2() != null) this.setInstructor(String.format("%s, %s", t.getInstructor1().getNickname(), t.getInstructor2().getNickname()));
+        else this.setInstructor(String.format("%s", t.getInstructor1().getNickname()));
 
         if(t.getStartDate().equals(t.getEndDate())) this.setDate(String.format("%s", t.getStartDate()));
         else this.setDate(String.format("%s ~ %s", t.getStartDate(), t.getEndDate()));
 
-        if(t.getDateSummary() != null) {
-            this.setDateSummary(String.format("(%s)", t.getDateSummary()));
-            this.setDateSummaryExpose(true);
-        }
-        else this.setDateSummaryExpose(false);
+        this.setDateSummary(t.getDateSummary());
 
-        this.setDateOptionList(t.getDateOptionList());
+        for(ClassDateOptionT dateOption : t.getClassDateOptionTList()) {
+            this.getDateOptionList().add(dateOption.getOpt());
+        }
 
         long minDiff = 0;
         try {
@@ -116,9 +116,14 @@ public class ClassDetailM {
                 this.setPrice(Integer.toString(t.getMalePrice()).replaceAll("0000$", "만원"));
         }
 
-        this.setPriceOptionList(t.getPriceOptionList());
+        for(ClassPriceOptionT priceOption : t.getClassPriceOptionTList()) {
+            this.getPriceOptionList().add(priceOption.getOpt());
+        }
         this.setPayment(t.getPayment());
 
+        this.setClassContact(new ClassContactM(t.getInstructor1().getUserNo(), t.getInstructor2() == null ? null : t.getInstructor2().getUserNo(), t.getClassContactTList()));
+
+        /*
         if(t.getClassContact().getInstructorPhoneNo1() != null || t.getClassContact().getInstructorKakaoTalk1() != null){
             if(t.getClassContact().getInstructorPhoneNo1() != null && t.getClassContact().getInstructorKakaoTalk1() != null)
                 this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname1(), t.getClassContact().getInstructorPhoneNo1(), t.getClassContact().getInstructorKakaoTalk1()));
@@ -142,5 +147,6 @@ public class ClassDetailM {
                 this.contactList.add(contact);
             }
         }
+        */
     }
 }
