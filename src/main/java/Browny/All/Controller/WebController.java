@@ -81,13 +81,18 @@ public class WebController {
     }
 
     @RequestMapping(value = "/class")
-    public String Class(Model model, @RequestParam("classNo") long classNo) {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = String.format("http://localhost:8080/api/class/getClassDetail?classNo=%s", classNo);
-        ResponseEntity<ClassDetailM> ret = restTemplate.getForEntity(url, ClassDetailM.class);
-        model.addAttribute("classDetail", ret.getBody());
+    public String Class(Model model, @RequestParam("classNo") long classNo) { return "/class"; }
 
-        return "/class";
+    @RequestMapping(value = "/getClassDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public ClassDetailM GetClassDetail(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String classNo = httpServletRequest.getParameter("classNo");
+        String url = String.format("http://localhost:8080/api/class/getClassDetail?classNo=%s", classNo);
+        ResponseEntity<ClassDetailM> ret = restTemplate.getForEntity(url, ClassDetailM .class);
+
+        return ret.getBody();
     }
 
     @RequestMapping(value = "/instructor")

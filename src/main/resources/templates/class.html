@@ -29,61 +29,9 @@
         </div>
     </header>
     <br/>
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="mb-3">
-                <img th:src="${classDetail.classImage}" style="width:100%;height:100%;" alt="Data">
-            </div>
-        </div>
-        <div class="col-md-6 offset-md-3">
-            <div class="card mb-3 shadow-sm">
-                <div class="row" style="padding-top: 15px;padding-left: 15px;">
-                    <a class="text-dark" href="/genre/" th:attrappend="href=${classDetail.genreCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.genreText}"></b></span></a>
-                    <a class="text-dark" href="/region/" th:attrappend="href=${classDetail.regionCode}"><span style="padding-left: 15px;"><b th:text="${classDetail.regionText}"></b></span></a>
-                    <a class="text-dark" href="/type/" th:attrappend="href=${classDetail.typeCode}" th:if="${classDetail.typeText != null}"><span style="padding-left: 15px;"><b th:text="${classDetail.typeText}"></b></span></a>
-                    <a class="text-dark" href="/only/" th:attrappend="href=${classDetail.onlyCode}" th:if="${classDetail.onlyText != null}"><span style="padding-left: 15px;"><b th:text="${classDetail.onlyText}"></b></span></a>
-                    <a class="text-dark" th:href="@{/instructor(instructorNo=${classDetail.instructorNo1})}"><span style="padding-left: 15px;"><b th:text="${classDetail.instructorNickname1}"></b></span></a>
-                    <a class="text-dark" th:href="@{/instructor(instructorNo=${classDetail.instructorNo2})}" th:if="${classDetail.instructorNo2}"><span style="padding-left: 15px;"><b th:text="${classDetail.instructorNickname2}"></b></span></a>
-                </div>
-                <hr/>
-                <dl class="row" style="padding-left: 20px;padding-right: 20px;">
-                    <dt class="col-sm-3">타이틀</dt>
-                    <dd class="col-sm-9" th:text="${classDetail.title}"></dd>
-                    <dt class="col-sm-3">안무 및 지도</dt>
-                    <dd class="col-sm-9" th:text="${classDetail.instructor}">
-                    </dd>
-                    <dt class="col-sm-3">날짜</dt>
-                    <dd class="col-sm-9">
-                        <p th:text="${classDetail.date}" style="margin-bottom: 0;"></p>
-                        <p th:text="${classDetail.dateSummary}" style="margin-bottom: 0;"></p>
-                        <div th:each="dateOption : ${classDetail.dateOptionList}">
-                            <p th:text="${dateOption}" style="margin-bottom: 0; color: darkgrey"></p>
-                        </div>
-                    </dd>
-                    <dt class="col-sm-3">시간</dt>
-                    <dd class="col-sm-9" th:text="${classDetail.time}"></dd>
-                    <dt class="col-sm-3">장소</dt>
-                    <dd class="col-sm-9" th:text="${classDetail.location}"></dd>
-                    <dt class="col-sm-3">수강료</dt>
-                    <dd class="col-sm-9" >
-                        <p th:text="${classDetail.price}" style="margin-bottom: 0;"></p>
-                        <div th:each="priceOption : ${classDetail.priceOptionList}">
-                            <p th:text="${priceOption}" style="margin-bottom: 0; color: darkgrey"></p>
-                        </div>
-                    </dd>
-                    <dt class="col-sm-3" th:if="${classDetail.payment != null}">계좌</dt>
-                    <dd class="col-sm-9" th:if="${classDetail.payment != null}" th:text="${classDetail.payment}"></dd>
-                    <!--<dt class="col-sm-3" th:if="${not #lists.isEmpty(classDetail.contactList)}">문의</dt>-->
-                    <!--<dd class="col-sm-9" th:if="${not #lists.isEmpty(classDetail.contactList)}">
-                        <div th:each="contact : ${classDetail.contactList}">
-                            <p style="margin-bottom: 0;" th:text="${contact}"></p>
-                        </div>
-                        &lt;!&ndash;<p style="margin-bottom: 0;" th:text="${classDetail.contact}"></p>&ndash;&gt;
-                    </dd>-->
-                </dl>
-            </div>
-        </div>
-    </div>
+
+    <div class="row" id="classDetail"></div>
+
 </div>
 
 <footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
@@ -91,5 +39,92 @@
         <span class="text-muted">문의 : (카톡) avrasax</span>
     </div>
 </footer>
+
+<script id="classDetailTemplate" type="text/html">
+    <div class="col-md-6 offset-md-3">
+        <div class="mb-3">
+            <img src="${classImage}" style="width:100%;height:100%;" alt="Data">
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3">
+        <div class="card mb-3 shadow-sm">
+            <div class="row" style="padding-top: 15px;padding-left: 15px;">
+                <a class="text-dark" href="/genre/${genreCode}"><span style="padding-left: 15px;"><b>${genreText}</b></span></a>
+                <a class="text-dark" href="/region/${regionCode}"><span style="padding-left: 15px;"><b>${regionText}</b></span></a>
+                {{if typeCode != 'N'}}
+                <a class="text-dark" href="/type/${typeCode}"><span style="padding-left: 15px;"><b>${typeText}</b></span></a>
+                {{/if}}
+                {{if onlyCode != null}}
+                <a class="text-dark" href="/only/${onlyCode}"><span style="padding-left: 15px;"><b>${onlyText}</b></span></a>
+                {{/if}}
+                <a class="text-dark" href="/instructor?instructorNo=${instructorNo1}"><span style="padding-left: 15px;"><b>${instructorNickname1}</b></span></a>
+                {{if instructorNo2 != null}}
+                <a class="text-dark" href="/instructor?instructorNo=${instructorNo2}"><span style="padding-left: 15px;"><b>${instructorNickname2}</b></span></a>
+                {{/if}}
+            </div>
+            <hr/>
+            <dl class="row" style="padding-left: 20px;padding-right: 20px;">
+                <dt class="col-sm-3">타이틀</dt>
+                <dd class="col-sm-9">${title}</dd>
+                <dt class="col-sm-3">안무 및 지도</dt>
+                <dd class="col-sm-9">${instructor}</dd>
+                <dt class="col-sm-3">날짜</dt>
+                <dd class="col-sm-9">
+                    <p style="margin-bottom: 0;">${date}</p>
+                    <p style="margin-bottom: 0;">(${dateSummary})</p>
+                    {{each(index, option) dateOptionList}}
+                    <p style="margin-bottom: 0; color: darkgrey">${option}</p>
+                    {{/each}}
+                </dd>
+                <dt class="col-sm-3">시간</dt>
+                <dd class="col-sm-9">${time}</dd>
+                <dt class="col-sm-3">장소</dt>
+                <dd class="col-sm-9">${location}</dd>
+                <dt class="col-sm-3">수강료</dt>
+                <dd class="col-sm-9">
+                    <p style="margin-bottom: 0;">${price}</p>
+                    {{each(index, option) priceOptionList}}
+                    <p style="margin-bottom: 0; color: darkgrey">${option}</p>
+                    {{/each}}
+                </dd>
+                {{if payment != null}}
+                <dt class="col-sm-3">계좌</dt>
+                <dd class="col-sm-9">${payment}</dd>
+                {{/if}}
+                {{if classContact != null}}
+                <dt class="col-sm-3">문의</dt>
+                <dd class="col-sm-9">
+                    {{if classContact.instructorContact1.phoneNo != null || classContact.instructorContact1.kakaoTalk != null}}
+                        {{if classContact.instructorContact1.phoneNo != null && classContact.instructorContact1.kakaoTalk != null}}
+                            <p style="margin-bottom: 0;">${instructorNickname1} ${classContact.instructorContact1.phoneNo} (카톡)${classContact.instructorContact1.kakaoTalk}</p>
+                        {{else [classContact.instructorContact1.phoneNo != null]}}
+                            <p style="margin-bottom: 0;">${instructorNickname1} ${classContact.instructorContact1.phoneNo}</p>
+                        {{else [classContact.instructorContact1.kakaoTalk != null]}}
+                            <p style="margin-bottom: 0;">${instructorNickname1} (카톡)${classContact.instructorContact1.kakaoTalk}</p>
+                        {{/if}}
+                    {{/if}}
+                    {{if classContact.instructorContact2.phoneNo != null || classContact.instructorContact2.kakaoTalk != null}}
+                        {{if classContact.instructorContact2.phoneNo != null && classContact.instructorContact2.kakaoTalk != null}}
+                            <p style="margin-bottom: 0;">${instructorNickname2} ${classContact.instructorContact2.phoneNo} (카톡)${classContact.instructorContact2.kakaoTalk}</p>
+                        {{else [classContact.instructorContact2.phoneNo != null]}}
+                            <p style="margin-bottom: 0;">${instructorNickname2} ${classContact.instructorContact2.phoneNo}</p>
+                        {{else [classContact.instructorContact2.kakaoTalk != null]}}
+                            <p style="margin-bottom: 0;">${instructorNickname2} (카톡)${classContact.instructorContact2.kakaoTalk}</p>
+                        {{/if}}
+                    {{/if}}
+                    {{each(index, contact) classContact.contactList}}
+                        <p style="margin-bottom: 0;">${contact}</p>
+                    {{/each}}
+                </dd>
+                {{/if}}
+            </dl>
+        </div>
+    </div>
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="/assets/js/class.js"></script>
+
 </body>
 </html>
