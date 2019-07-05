@@ -56,6 +56,21 @@ public class WebController {
         return ret.getBody();
     }
 
+    @RequestMapping(value = "/instructor")
+    public String Instructor(Model model, @RequestParam("instructorNo") long instructorNo) { return "/instructor"; }
+
+    @RequestMapping(value = "/getInstructorInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public UserM GetInstructorInfo(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String instructorNo = httpServletRequest.getParameter("instructorNo");
+        String url = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", instructorNo);
+        ResponseEntity<UserM> ret = restTemplate.getForEntity(url, UserM .class);
+
+        return ret.getBody();
+    }
+
     @RequestMapping(value = "/getClassListByInstructor", method = RequestMethod.GET)
     @ResponseBody
     public ClassSimpleM[] GetClassListByInstructor(HttpServletRequest httpServletRequest, Model model) {
@@ -91,21 +106,6 @@ public class WebController {
         String classNo = httpServletRequest.getParameter("classNo");
         String url = String.format("http://localhost:8080/api/class/getClassDetail?classNo=%s", classNo);
         ResponseEntity<ClassDetailM> ret = restTemplate.getForEntity(url, ClassDetailM .class);
-
-        return ret.getBody();
-    }
-
-    @RequestMapping(value = "/instructor")
-    public String Instructor(Model model, @RequestParam("instructorNo") long instructorNo) { return "/instructor"; }
-
-    @RequestMapping(value = "/getInstructorInfo", method = RequestMethod.GET)
-    @ResponseBody
-    public UserM GetInstructorInfo(HttpServletRequest httpServletRequest, Model model) {
-
-        RestTemplate restTemplate = new RestTemplate();
-        String instructorNo = httpServletRequest.getParameter("instructorNo");
-        String url = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", instructorNo);
-        ResponseEntity<UserM> ret = restTemplate.getForEntity(url, UserM .class);
 
         return ret.getBody();
     }
