@@ -66,11 +66,11 @@ public class UserService {
         if(req.getInstructor()) {
             if(req.getCareerList() != null) {
                 for (String career : req.getCareerList())
-                    instructorCareerRepository.save(ConvertToInstructorCareerT(user.getUserNo(), career));
+                    instructorCareerRepository.save(new InstructorCareerT(user.getUserNo(), career));
             }
             if(req.getContactList() != null) {
                 for (InstructorContactRequest contact : req.getContactList())
-                    instructorContactRepository.save(ConvertToInstructorContactT(user.getUserNo(), contact));
+                    instructorContactRepository.save(new InstructorContactT(user.getUserNo(), contact));
             }
         }
 
@@ -91,13 +91,13 @@ public class UserService {
         instructorCareerRepository.deleteAllByInstructorNo(req.getUserNo());
         if(req.getInstructor() && req.getCareerList() != null) {
             for (String career : req.getCareerList())
-                instructorCareerRepository.save(ConvertToInstructorCareerT(user.getUserNo(), career));
+                instructorCareerRepository.save(new InstructorCareerT(user.getUserNo(), career));
         }
 
         instructorContactRepository.deleteAllByInstructorNo(req.getUserNo());
         if(req.getInstructor() && req.getContactList() != null) {
             for (InstructorContactRequest contact : req.getContactList())
-                instructorContactRepository.save(ConvertToInstructorContactT(user.getUserNo(), contact));
+                instructorContactRepository.save(new InstructorContactT(user.getUserNo(), contact));
         }
 
         return GetUser(user.getUserNo());
@@ -119,13 +119,5 @@ public class UserService {
 
     private UserT ConvertToUserT(SignUpRequest req) {
         return new UserT(req.getNickname(), req.getSex(), req.getInstructor(), req.getAccount());
-    }
-
-    private InstructorCareerT ConvertToInstructorCareerT(Long userNo, String career) {
-        return new InstructorCareerT(userNo, career);
-    }
-
-    private InstructorContactT ConvertToInstructorContactT(Long userNo, InstructorContactRequest contact) {
-        return new InstructorContactT(userNo, contact.getType(), contact.getName(), contact.getContact());
     }
 }

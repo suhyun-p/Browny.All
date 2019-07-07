@@ -3,6 +3,9 @@ package Browny.All.Service;
 import Browny.All.Entity.*;
 import Browny.All.Enum.*;
 import Browny.All.Model.*;
+import Browny.All.Model.Request.ClassContactRequest;
+import Browny.All.Model.Request.EditClassRequest;
+import Browny.All.Model.Request.RegClassRequest;
 import Browny.All.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,5 +121,42 @@ public class ClassService {
     public ClassDetailM getClassDetail(long classNo) {
         ClassT classT = classRepository.findById(classNo).get();
         return new ClassDetailM(classT);
+    }
+
+    @Transactional
+    public ClassDetailM regClass(RegClassRequest req) {
+        UserT instructor1= userRepository.getOne(req.getInstructorNo1());
+        UserT instructor2 = userRepository.findById(req.getInstructorNo2()).get();
+        ClassT classT = classRepository.save(new ClassT(req, instructor1, instructor2));
+
+        for (String option : req.getDateOptionList())
+            classDateOptionRepository.save(new ClassDateOptionT(classT.getClassNo(), option));
+
+        for (String option : req.getPriceOptionList())
+            classPriceOptionRepository.save(new ClassPriceOptionT(classT.getClassNo(), option));
+
+        for (ClassContactRequest contact : req.getContactList())
+            classContactRepository.save(new ClassContactT(classT.getClassNo(), contact));
+
+        return getClassDetail(classT.getClassNo());
+    }
+
+    @Transactional
+    public ClassDetailM editClass(EditClassRequest req) {
+        ClassT classT = classRepository.findById(req.getClassNo()).get();
+        UserT instructor1= userRepository.getOne(req.getInstructorNo1());
+        UserT instructor2 = userRepository.findById(req.getInstructorNo2()).get();
+        classT.set(req, instructor1, instructor2 == null ? null : instructor2);
+
+        for (String option : req.getDateOptionList())
+            classDateOptionRepository.save(new ClassDateOptionT(classT.getClassNo(), option));
+
+        for (String option : req.getPriceOptionList())
+            classPriceOptionRepository.save(new ClassPriceOptionT(classT.getClassNo(), option));
+
+        for (ClassContactRequest contact : req.getContactList())
+            classContactRepository.save(new ClassContactT(classT.getClassNo(), contact));
+
+        return getClassDetail(classT.getClassNo());
     }
 }

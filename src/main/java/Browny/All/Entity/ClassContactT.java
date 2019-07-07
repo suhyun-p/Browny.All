@@ -1,5 +1,6 @@
 package Browny.All.Entity;
 
+import Browny.All.Model.Request.ClassContactRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,8 +40,11 @@ public class ClassContactT {
         this.setCreateId("Admin");
     }
 
-    public ClassContactT(long classNo) {
+    public ClassContactT(long classNo, ClassContactRequest req) {
         this.setClassNo(classNo);
+        this.setInstructorNo(req.getInstructorNo());
+        this.setType(req.getType());
+        this.setContact(req.getContact());
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
     }

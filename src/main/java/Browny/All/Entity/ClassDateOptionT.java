@@ -1,5 +1,6 @@
 package Browny.All.Entity;
 
+import Browny.All.Model.Request.RegClassRequest;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,8 +35,9 @@ public class ClassDateOptionT {
         this.setCreateId("Admin");
     }
 
-    public ClassDateOptionT(long classNo) {
+    public ClassDateOptionT(long classNo, String option) {
         this.setClassNo(classNo);
+        this.setOpt(option);
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
     }

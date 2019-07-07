@@ -1,5 +1,7 @@
 package Browny.All.Entity;
 
+import Browny.All.Model.Request.EditClassRequest;
+import Browny.All.Model.Request.RegClassRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -68,18 +70,6 @@ public class ClassT {
     @Column(name = "payment")
     private String payment;
 
-    @Column(name = "level")
-    private Integer level;
-
-    @Column(name = "recruitment_type")
-    private String recruitmentType;
-
-    @Column(name = "recruitment_number")
-    private Integer recruitmentNumber;
-
-    @Column(name = "contents")
-    private String contents;
-
     @Column(name = "class_image")
     private String classImage;
 
@@ -114,5 +104,49 @@ public class ClassT {
     public ClassT() {
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
+    }
+
+    public ClassT(RegClassRequest req, UserT instructor1, UserT instructor2) {
+        this.setGenre(req.getGenre());
+        this.setRegion(req.getRegion());
+        this.setType(req.getType());
+        this.setOnly(req.getOnly());
+        this.setInstructor1(instructor1);
+        if(instructor2 != null) this.setInstructor2(instructor2);
+        this.setTitle(req.getTitle());
+        this.setStartDate(req.getStartDate());
+        this.setEndDate(req.getEndDate());
+        this.setDateSummary(req.getDateSummary());
+        this.setStartTime(req.getStartTime());
+        this.setEndTime(req.getEndTime());
+        this.setLocation(req.getLocation());
+        this.setMalePrice(req.getMalePrice());
+        this.setFemalePrice(req.getFemalePrice());
+        this.setPayment(req.getPayment());
+        this.setClassImage(req.getClassImage());
+        this.setCreateId("Admin");
+        this.setCreateDate(LocalDateTime.now());
+    }
+
+    public void setClassT(EditClassRequest req, UserT instructor1, UserT instructor2){
+        this.setGenre(req.getGenre());
+        this.setRegion(req.getRegion());
+        this.setType(req.getType());
+        this.setOnly(req.getOnly());
+        this.setInstructor1(instructor1);
+        if(instructor2 != null) this.setInstructor2(instructor2);
+        this.setTitle(req.getTitle());
+        this.setStartDate(req.getStartDate());
+        this.setEndDate(req.getEndDate());
+        this.setDateSummary(req.getDateSummary());
+        this.setStartTime(req.getStartTime());
+        this.setEndTime(req.getEndTime());
+        this.setLocation(req.getLocation());
+        this.setMalePrice(req.getMalePrice());
+        this.setFemalePrice(req.getFemalePrice());
+        this.setPayment(req.getPayment());
+        this.setClassImage(req.getClassImage());
+        this.setUpdateId("Admin");
+        this.setUpdateDate(LocalDateTime.now());
     }
 }

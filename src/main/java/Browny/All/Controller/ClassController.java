@@ -3,13 +3,12 @@ package Browny.All.Controller;
 import Browny.All.Entity.ClassDetailT;
 import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.ClassSimpleM;
+import Browny.All.Model.Request.EditClassRequest;
+import Browny.All.Model.Request.RegClassRequest;
 import Browny.All.Service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,5 +63,17 @@ public class ClassController {
     public ResponseEntity<ClassSimpleM> getClosedClassListByInstructor(@RequestParam("instructorNo") Long instructorNo) {
         List<ClassSimpleM> classSimpleList = classService.getClosedClassSimpleListByInstructor(instructorNo);
         return new ResponseEntity(classSimpleList, OK);
+    }
+
+    @RequestMapping(value = "/regClass", method = RequestMethod.POST)
+    public ResponseEntity<ClassDetailM> RegClass(@RequestBody RegClassRequest req) {
+        ClassDetailM classDetail = classService.regClass(req);
+        return new ResponseEntity(classDetail, OK);
+    }
+
+    @RequestMapping(value = "/editClass", method = RequestMethod.POST)
+    public ResponseEntity<ClassDetailM> EditClass(@RequestBody EditClassRequest req) {
+        ClassDetailM classDetail = classService.editClass(req);
+        return new ResponseEntity(classDetail, OK);
     }
 }

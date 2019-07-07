@@ -33,8 +33,9 @@ public class ClassPriceOptionT {
         this.setCreateId("Admin");
     }
 
-    public ClassPriceOptionT(long classNo) {
+    public ClassPriceOptionT(long classNo, String option) {
         this.setClassNo(classNo);
+        this.setOpt(option);
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
     }
