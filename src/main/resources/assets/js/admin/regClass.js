@@ -82,6 +82,31 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#regClass").click(function() {
+        var data = {};
+        data["genre"] = $("#genre").val();
+        data["region"] = $("#region").val();
+        data["type"] = $("#classType").val();
+        data["only"] = $("#only").val() == "" ? null : $("#only").val();
+
+        data["title"] = $("#title").val();
+        data["instructorNo1"] = $("#instructor1").val();
+        data["instructorNo2"] = $("#instructor2").val();
+        data["startDate"] = $("#startDate").val();
+        data["endDate"] = $("#endDate").val();
+        data["dateSummary"] = $("#dateSummary").val();
+
+        data["startTime"] = $("#startTime").val();
+        data["endTime"] = $("#endTime").val();
+        data["location"] = $("#location").val();
+        data["malePrice"] = $("#malePrice").val();
+        data["femalePrice"] = $("#femalePrice").val();
+
+        data["classImage"] = $("#classImage").val();
+        console.log(data);
+
+    });
 });
 
 function addDateOption() {

@@ -129,32 +129,5 @@ public class ClassDetailM {
         if(t.getClassContactTList() != null) {
             this.setClassContact(new ClassContactM(t.getInstructor1().getUserNo(), t.getInstructor2() == null ? null : t.getInstructor2().getUserNo(), t.getClassContactTList()));
         }
-
-
-        /*
-        if(t.getClassContact().getInstructorPhoneNo1() != null || t.getClassContact().getInstructorKakaoTalk1() != null){
-            if(t.getClassContact().getInstructorPhoneNo1() != null && t.getClassContact().getInstructorKakaoTalk1() != null)
-                this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname1(), t.getClassContact().getInstructorPhoneNo1(), t.getClassContact().getInstructorKakaoTalk1()));
-            else if(t.getClassContact().getInstructorPhoneNo1() != null)
-                this.contactList.add(String.format("%s %s", t.getInstructorNickname1(), t.getClassContact().getInstructorPhoneNo1()));
-            else if(t.getClassContact().getInstructorKakaoTalk1() != null)
-                this.contactList.add(String.format("%s (카톡 %s)", t.getInstructorNickname1(), t.getClassContact().getInstructorKakaoTalk1()));
-        }
-
-        if(t.getClassContact().getInstructorPhoneNo2() != null || t.getClassContact().getInstructorKakaoTalk2() != null){
-            if(t.getClassContact().getInstructorPhoneNo2() != null && t.getClassContact().getInstructorKakaoTalk2() != null)
-                this.contactList.add(String.format("%s %s (카톡 %s)", t.getInstructorNickname2(), t.getClassContact().getInstructorPhoneNo2(), t.getClassContact().getInstructorKakaoTalk2()));
-            else if(t.getClassContact().getInstructorPhoneNo2() != null)
-                this.contactList.add(String.format("%s %s", t.getInstructorNickname2(), t.getClassContact().getInstructorPhoneNo2()));
-            else if(t.getClassContact().getInstructorKakaoTalk2() != null)
-                this.contactList.add(String.format("%s (카톡 %s)", t.getInstructorNickname2(), t.getClassContact().getInstructorKakaoTalk2()));
-        }
-
-        if(t.getClassContact().getContactList() != null) {
-            for(String contact : t.getClassContact().getContactList()) {
-                this.contactList.add(contact);
-            }
-        }
-        */
     }
 }
