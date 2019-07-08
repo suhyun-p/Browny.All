@@ -83,8 +83,10 @@ public class ClassDetailM {
 
         this.setDateSummary(t.getDateSummary());
 
-        for(ClassDateOptionT dateOption : t.getClassDateOptionTList()) {
-            this.getDateOptionList().add(dateOption.getOpt());
+        if(t.getClassDateOptionTList() != null) {
+            for(ClassDateOptionT dateOption : t.getClassDateOptionTList()) {
+                this.getDateOptionList().add(dateOption.getOpt());
+            }
         }
 
         long minDiff = 0;
@@ -116,12 +118,18 @@ public class ClassDetailM {
                 this.setPrice(Integer.toString(t.getMalePrice()).replaceAll("0000$", "만원"));
         }
 
-        for(ClassPriceOptionT priceOption : t.getClassPriceOptionTList()) {
-            this.getPriceOptionList().add(priceOption.getOpt());
+        if(t.getClassPriceOptionTList() != null) {
+            for(ClassPriceOptionT priceOption : t.getClassPriceOptionTList()) {
+                this.getPriceOptionList().add(priceOption.getOpt());
+            }
         }
+
         this.setPayment(t.getPayment());
 
-        this.setClassContact(new ClassContactM(t.getInstructor1().getUserNo(), t.getInstructor2() == null ? null : t.getInstructor2().getUserNo(), t.getClassContactTList()));
+        if(t.getClassContactTList() != null) {
+            this.setClassContact(new ClassContactM(t.getInstructor1().getUserNo(), t.getInstructor2() == null ? null : t.getInstructor2().getUserNo(), t.getClassContactTList()));
+        }
+
 
         /*
         if(t.getClassContact().getInstructorPhoneNo1() != null || t.getClassContact().getInstructorKakaoTalk1() != null){

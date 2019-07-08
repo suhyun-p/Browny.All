@@ -120,7 +120,7 @@ public class ClassService {
 
     @Transactional
     public ClassDetailM getClassDetail(long classNo) {
-        ClassT classT = classRepository.getOne(classNo);
+        ClassT classT = classRepository.findById(classNo).get();
         return new ClassDetailM(classT);
     }
 
