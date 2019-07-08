@@ -127,26 +127,4 @@ public class ClassT {
         this.setCreateId("Admin");
         this.setCreateDate(LocalDateTime.now());
     }
-
-    public void setClassT(EditClassRequest req, UserT instructor1, UserT instructor2){
-        this.setGenre(req.getGenre());
-        this.setRegion(req.getRegion());
-        this.setType(req.getType());
-        this.setOnly(req.getOnly());
-        this.setInstructor1(instructor1);
-        if(instructor2 != null) this.setInstructor2(instructor2);
-        this.setTitle(req.getTitle());
-        this.setStartDate(req.getStartDate());
-        this.setEndDate(req.getEndDate());
-        this.setDateSummary(req.getDateSummary());
-        this.setStartTime(req.getStartTime());
-        this.setEndTime(req.getEndTime());
-        this.setLocation(req.getLocation());
-        this.setMalePrice(req.getMalePrice());
-        this.setFemalePrice(req.getFemalePrice());
-        this.setPayment(req.getPayment());
-        this.setClassImage(req.getClassImage());
-        this.setUpdateId("Admin");
-        this.setUpdateDate(LocalDateTime.now());
-    }
 }
