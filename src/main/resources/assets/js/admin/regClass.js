@@ -97,15 +97,26 @@ $(document).ready(function () {
         data["endDate"] = $("#endDate").val();
         data["dateSummary"] = $("#dateSummary").val();
 
+        var dateOption = [];
+        $.each($('input[name="dateOption"]'), function(index, option){
+            if(option.value != undefined && option.value != "") dateOption.push(option.value);
+        });
+        data["dateOption"] = dateOption;
+
         data["startTime"] = $("#startTime").val();
         data["endTime"] = $("#endTime").val();
         data["location"] = $("#location").val();
         data["malePrice"] = $("#malePrice").val();
         data["femalePrice"] = $("#femalePrice").val();
 
+        var priceOption = [];
+        $.each($('input[name="priceOption"]'), function(index, option){
+            if(option.value != undefined && option.value != "") priceOption.push(option.value);
+        });
+        data["priceOption"] = priceOption;
+
         data["classImage"] = $("#classImage").val();
         console.log(data);
-
     });
 });
 
