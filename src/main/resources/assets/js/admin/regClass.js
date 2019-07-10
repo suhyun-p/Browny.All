@@ -34,12 +34,16 @@ $(document).ready(function () {
                 if(response.contact != null && (response.contact.phoneNo != null && response.contact.phoneNo != "")) {
                     $("#divInstructorPhoneNo1").show();
                     $("#instructorPhoneNoText1").text('(' + response.nickname + ' : PhoneNo) ' + response.contact.phoneNo);
+                    $("#instructorPhoneNo1").data("contact", response.contact.phoneNo);
+                    $("#instructorPhoneNo1").data("instructor-no", response.userNo);
                 }
                 else  $("#divInstructorPhoneNo1").hide();
 
                 if(response.contact != null && (response.contact.kakaoTalk != null && response.contact.kakaoTalk != "")) {
                     $("#divInstructorKakaoTalk1").show();
                     $("#instructorKakaoTalkText1").text('(' + response.nickname + ' : KakaoTalk) ' + response.contact.kakaoTalk);
+                    $("#instructorKakaoTalk1").data("contact", response.contact.kakaoTalk);
+                    $("#instructorKakaoTalk1").data("instructor-no", response.userNo);
                 }
                 else  $("#divInstructorKakaoTalk1").hide();
             },
@@ -68,12 +72,16 @@ $(document).ready(function () {
                 if(response.contact != null && (response.contact.phoneNo != null && response.contact.phoneNo != "")) {
                     $("#divInstructorPhoneNo2").show();
                     $("#instructorPhoneNoText2").text('(' + response.nickname + ' : PhoneNo) ' + response.contact.phoneNo);
+                    $("#instructorPhoneNo2").data("contact", response.contact.phoneNo);
+                    $("#instructorPhoneNo2").data("instructor-no", response.userNo);
                 }
                 else  $("#divInstructorPhoneNo2").hide();
 
                 if(response.contact != null && (response.contact.kakaoTalk != null && response.contact.kakaoTalk != "")) {
                     $("#divInstructorKakaoTalk2").show();
                     $("#instructorKakaoTalkText2").text('(' + response.nickname + ' : KakaoTalk) ' + response.contact.kakaoTalk);
+                    $("#instructorKakaoTalk2").data("contact", response.contact.kakaoTalk);
+                    $("#instructorKakaoTalk2").data("instructor-no", response.userNo);
                 }
                 else  $("#divInstructorKakaoTalk2").hide();
             },
@@ -114,6 +122,18 @@ $(document).ready(function () {
             if(option.value != undefined && option.value != "") priceOption.push(option.value);
         });
         data["priceOption"] = priceOption;
+
+        if($("#instructorAccount1").is(":checked")) data["payment"] = $("#instructorAccountText1").text();
+        else if($("#instructorAccount2").is(":checked")) data["payment"] = $("#instructorAccountText1").text();
+        else if($("#classAccount").is(":checked")) data["payment"] =$("#classAccountText").val();
+
+        var contactList = []
+        if($("#instructorPhoneNo1").is(":checked")) contactList.push({"contact" : $("#instructorPhoneNo1").data("contact"), "instructorNo" : $("#instructorPhoneNo1").data("instructor-no"), "type" : $("#instructorPhoneNo1").data("contact-type")});
+        if($("#instructorKakaoTalk1").is(":checked")) contactList.push({"contact" : $("#instructorKakaoTalk1").data("contact"), "instructorNo" : $("#instructorKakaoTalk1").data("instructor-no"), "type" : $("#instructorKakaoTalk1").data("contact-type")});
+        if($("#instructorPhoneNo2").is(":checked")) contactList.push({"contact" : $("#instructorPhoneNo2").data("contact"), "instructorNo" : $("#instructorPhoneNo2").data("instructor-no"), "type" : $("#instructorPhoneNo2").data("contact-type")});
+        if($("#instructorKakaoTalk2").is(":checked")) contactList.push({"contact" : $("#instructorKakaoTalk2").data("contact"), "instructorNo" : $("#instructorKakaoTalk2").data("instructor-no"), "type" : $("#instructorKakaoTalk2").data("contact-type")});
+        if($("#classContact").is(":checked")) contactList.push({"contact" : null, "instructorNo" : null, "type" : $("#contact").val()});
+        data["contactList"] = contactList;
 
         data["classImage"] = $("#classImage").val();
         console.log(data);
