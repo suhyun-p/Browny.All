@@ -17,6 +17,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Data
+@NoArgsConstructor
 public class ClassDetailM {
     private Long classNo;
     private String genre;
@@ -26,7 +27,9 @@ public class ClassDetailM {
     private String title;
     private String classImage;
     private Long instructorNo1;
+    private String instructorNickname1;
     private Long instructorNo2;
+    private String instructorNickname2;
     private String startDate;
     private String endDate;
     private String dateSummary;
@@ -49,7 +52,11 @@ public class ClassDetailM {
         this.setTitle(t.getTitle());
         this.setClassImage(String.format("http://localhost:8080/assets/images/%s", t.getClassImage()));
         this.setInstructorNo1(t.getInstructor1().getUserNo());
-        if(t.getInstructor2() != null) this.setInstructorNo2(t.getInstructor2().getUserNo());
+        this.setInstructorNickname1(t.getInstructor1().getNickname());
+        if(t.getInstructor2() != null) {
+            this.setInstructorNo2(t.getInstructor2().getUserNo());
+            this.setInstructorNickname2(t.getInstructor2().getNickname());
+        }
         this.setStartDate(t.getStartDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         this.setEndDate(t.getEndDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         this.setDateSummary(t.getDateSummary());
@@ -69,9 +76,9 @@ public class ClassDetailM {
             }
         }
         this.setPayment(t.getPayment());
-        if(t.getClassContactTList() != null && t.getClassContactTList().isEmpty()) {
+        if(t.getClassContactTList() != null && !t.getClassContactTList().isEmpty()) {
             for(ClassContactT contact : t.getClassContactTList()) {
-                this.getClassContactList().add(new ClassContactM(contact.getInstructorNo(), contact.getType(), contact.getContact()));
+                this.getClassContactList().add(new ClassContactM(contact.getInstructorNo() == null ? -1 : contact.getInstructorNo(), contact.getType() == null ? "" : contact.getType(), contact.getContact()));
             }
         }
     }

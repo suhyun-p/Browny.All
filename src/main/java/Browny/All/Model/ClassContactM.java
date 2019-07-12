@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class ClassContactM {
     private Long instructorNo;
     private String type;

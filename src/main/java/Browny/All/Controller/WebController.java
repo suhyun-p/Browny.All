@@ -3,6 +3,7 @@ package Browny.All.Controller;
 import Browny.All.Entity.ClassDetailT;
 import Browny.All.Enum.*;
 import Browny.All.Model.ClassDetailM;
+import Browny.All.Model.ClassDetailModel;
 import Browny.All.Model.ClassSimpleM;
 import Browny.All.Model.UserM;
 import org.springframework.http.ResponseEntity;
@@ -100,13 +101,13 @@ public class WebController {
 
     @RequestMapping(value = "/getClassDetail", method = RequestMethod.GET)
     @ResponseBody
-    public ClassDetailM GetClassDetail(HttpServletRequest httpServletRequest, Model model) {
+    public ClassDetailModel GetClassDetail(HttpServletRequest httpServletRequest, Model model) {
 
         RestTemplate restTemplate = new RestTemplate();
         String classNo = httpServletRequest.getParameter("classNo");
         String url = String.format("http://localhost:8080/api/class/getClassDetail?classNo=%s", classNo);
-        ResponseEntity<ClassDetailM> ret = restTemplate.getForEntity(url, ClassDetailM .class);
+        ResponseEntity<ClassDetailM> ret = restTemplate.getForEntity(url, ClassDetailM.class);
 
-        return ret.getBody();
+        return new ClassDetailModel(ret.getBody());
     }
 }

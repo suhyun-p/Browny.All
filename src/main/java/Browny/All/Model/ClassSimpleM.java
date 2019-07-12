@@ -8,8 +8,8 @@ import Browny.All.Enum.Region;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 public class ClassSimpleM {
     private Long classNo;
     private String genreText;
