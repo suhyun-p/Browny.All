@@ -85,6 +85,6 @@ public class ClassDetailT {
             }
         }
 
-        this.setClassContact(new ClassContactM(this.getInstructorNo1(), this.getInstructorNo2(), classT.getClassContactTList()));
+        // this.setClassContact(new ClassContactM(this.getInstructorNo1(), this.getInstructorNo2(), classT.getClassContactTList()));
     }
 }
