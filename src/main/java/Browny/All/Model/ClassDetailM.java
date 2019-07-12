@@ -65,11 +65,11 @@ public class ClassDetailM {
         }
 
         this.setInstructorNo1(t.getInstructor1().getUserNo());
-        this.setInstructorNickname1(String.format("#%s", t.getInstructor1().getNickname()));
+        this.setInstructorNickname1(String.format("%s", t.getInstructor1().getNickname()));
 
         if(t.getInstructor2() != null) {
             this.setInstructorNo2(t.getInstructor2().getUserNo());
-            this.setInstructorNickname2(String.format("#%s", t.getInstructor2().getNickname()));
+            this.setInstructorNickname2(String.format("%s", t.getInstructor2().getNickname()));
         }
 
         this.setTitle(t.getTitle());

@@ -105,11 +105,11 @@ $(document).ready(function () {
         data["endDate"] = $("#endDate").val();
         data["dateSummary"] = $("#dateSummary").val();
 
-        var dateOption = [];
+        var dateOptionList = [];
         $.each($('input[name="dateOption"]'), function(index, option){
-            if(option.value != undefined && option.value != "") dateOption.push(option.value);
+            if(option.value != undefined && option.value != "") dateOptionList.push(option.value);
         });
-        data["dateOption"] = dateOption;
+        data["dateOptionList"] = dateOptionList;
 
         data["startTime"] = $("#startTime").val();
         data["endTime"] = $("#endTime").val();
@@ -117,11 +117,11 @@ $(document).ready(function () {
         data["malePrice"] = $("#malePrice").val();
         data["femalePrice"] = $("#femalePrice").val();
 
-        var priceOption = [];
+        var priceOptionList = [];
         $.each($('input[name="priceOption"]'), function(index, option){
-            if(option.value != undefined && option.value != "") priceOption.push(option.value);
+            if(option.value != undefined && option.value != "") priceOptionList.push(option.value);
         });
-        data["priceOption"] = priceOption;
+        data["priceOptionList"] = priceOptionList;
 
         if($("#instructorAccount1").is(":checked")) data["payment"] = $("#instructorAccountText1").text();
         else if($("#instructorAccount2").is(":checked")) data["payment"] = $("#instructorAccountText1").text();
@@ -132,11 +132,26 @@ $(document).ready(function () {
         if($("#instructorKakaoTalk1").is(":checked")) contactList.push({"contact" : $("#instructorKakaoTalk1").data("contact"), "instructorNo" : $("#instructorKakaoTalk1").data("instructor-no"), "type" : $("#instructorKakaoTalk1").data("contact-type")});
         if($("#instructorPhoneNo2").is(":checked")) contactList.push({"contact" : $("#instructorPhoneNo2").data("contact"), "instructorNo" : $("#instructorPhoneNo2").data("instructor-no"), "type" : $("#instructorPhoneNo2").data("contact-type")});
         if($("#instructorKakaoTalk2").is(":checked")) contactList.push({"contact" : $("#instructorKakaoTalk2").data("contact"), "instructorNo" : $("#instructorKakaoTalk2").data("instructor-no"), "type" : $("#instructorKakaoTalk2").data("contact-type")});
-        if($("#classContact").is(":checked")) contactList.push({"contact" : null, "instructorNo" : null, "type" : $("#contact").val()});
+        if($("#classContact").is(":checked")) contactList.push({"contact" : $("#contact").val(), "instructorNo" : null, "type" : null});
         data["contactList"] = contactList;
 
         data["classImage"] = $("#classImage").val();
         console.log(data);
+
+        $.ajax({
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify(data),
+            url: '/admin/regClass',
+            type: 'POST',
+            success: function (response) {
+                alert("성공");
+                // location.reload(); // 새로고침
+            },
+            error: function (request, status, error) {
+                alert("실패");
+            }
+        })
     });
 });
 

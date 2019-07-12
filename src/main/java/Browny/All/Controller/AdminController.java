@@ -62,6 +62,18 @@ public class AdminController {
         return ret.getBody();
     }
 
+    @RequestMapping(value = "/regClass", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> RegClass(@RequestBody Map<String, Object> params) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+
+        RestTemplate restTemplate = new RestTemplate();
+        // ResponseEntity<String> ret = restTemplate.postForEntity("http://ec2-13-124-12-201.ap-northeast-2.compute.amazonaws.com:8080/api/user/signUp", params, String.class);
+        ResponseEntity<String> ret = restTemplate.postForEntity("http://localhost:8080/api/class/regClass", params, String.class);
+        resultMap.put("Message", ret);
+        return resultMap;
+    }
+
     @RequestMapping(value = "/editClass")
     public String EditClass(Model model, @RequestParam("classNo") long classNo) { return "/admin/editClass"; }
 
