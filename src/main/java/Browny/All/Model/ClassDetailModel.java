@@ -55,7 +55,7 @@ public class ClassDetailModel {
         }
 
         this.setTitle(m.getTitle());
-        this.setClassImage(m.getClassImage());
+        this.setClassImage(String.format("http://localhost:8080/assets/images/%s", m.getClassImage()));
 
         this.setInstructorNo1(m.getInstructorNo1());
         this.setInstructorNickname1(m.getInstructorNickname1());
@@ -144,7 +144,7 @@ public class ClassDetailModel {
                 else if(!kakaoTalk.isEmpty()) this.getClassContactList().add(String.format("%s (카톡) %s", m.getInstructorNickname2(), kakaoTalk));
             }
 
-            for(ClassContactM classContactT : m.getClassContactList().stream().filter(x -> (x.getInstructorNo() == -1 )).collect(Collectors.toList())) {
+            for(ClassContactM classContactT : m.getClassContactList().stream().filter(x -> (x.getInstructorNo() == null && x.getType() == null )).collect(Collectors.toList())) {
                 this.getClassContactList().add(classContactT.getContact());
             }
         }

@@ -15,9 +15,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 @Service
 public class ClassService {
@@ -125,10 +127,10 @@ public class ClassService {
     }
 
     @Transactional
-    public ClassDetailM regClass(RegClassRequest req) {
-        UserT instructor1= userRepository.getOne(req.getInstructorNo1());
-        UserT instructor2 = userRepository.getOne(req.getInstructorNo2());
-        ClassT classT = classRepository.save(new ClassT(req, instructor1, instructor2));
+    public ClassDetailM regClass(ClassDetailM req) {
+        UserT instructor1= userRepository.findById(req.getInstructorNo1()).get();
+        Optional<UserT> instructor2 = userRepository.findById(req.getInstructorNo2());
+        ClassT classT = classRepository.save(new ClassT(req, instructor1, instructor2.isPresent() ? instructor2.get() : null));
 
         for (String option : req.getDateOptionList())
             classDateOptionRepository.save(new ClassDateOptionT(classT.getClassNo(), option));
@@ -136,24 +138,27 @@ public class ClassService {
         for (String option : req.getPriceOptionList())
             classPriceOptionRepository.save(new ClassPriceOptionT(classT.getClassNo(), option));
 
-        for (ClassContactRequest contact : req.getContactList())
+        for (ClassContactM contact : req.getClassContactList())
             classContactRepository.save(new ClassContactT(classT.getClassNo(), contact));
 
         return getClassDetail(classT.getClassNo());
     }
 
     @Transactional
-    public ClassDetailM editClass(EditClassRequest req) {
-        ClassT classT = classRepository.getOne(req.getClassNo());
+    public ClassDetailM editClass(ClassDetailM req) {
+        UserT instructor1= userRepository.findById(req.getInstructorNo1()).get();
+        Optional<UserT> instructor2 = userRepository.findById(req.getInstructorNo2());
+
+        ClassT classT = classRepository.findById(req.getClassNo()).get();
         classT.setGenre(req.getGenre());
         classT.setRegion(req.getRegion());
         classT.setType(req.getType());
         classT.setOnly(req.getOnly());
-        classT.setInstructor1(userRepository.getOne(req.getInstructorNo1()));
-        classT.setInstructor2(userRepository.getOne(req.getInstructorNo2()));
+        classT.setInstructor1(instructor1);
+        if(instructor2 != null) classT.setInstructor2(instructor2.isPresent() ? instructor2.get() : null);
         classT.setTitle(req.getTitle());
-        classT.setStartDate(req.getStartDate());
-        classT.setEndDate(req.getEndDate());
+        classT.setStartDate(LocalDate.parse(req.getStartDate()));
+        classT.setEndDate(LocalDate.parse(req.getEndDate()));
         classT.setDateSummary(req.getDateSummary());
         classT.setStartTime(req.getStartTime());
         classT.setEndTime(req.getEndTime());
@@ -165,16 +170,22 @@ public class ClassService {
         classT.setUpdateId("Admin");
         classT.setUpdateDate(LocalDateTime.now());
 
+        // classT.getClassDateOptionTList().clear();
+        // for(ClassDateOptionT option : classT.getClassDateOptionTList()) classDateOptionRepository.delete(option);
         classDateOptionRepository.deleteAllByClassNo(req.getClassNo());
         for (String option : req.getDateOptionList())
             classDateOptionRepository.save(new ClassDateOptionT(classT.getClassNo(), option));
 
+        // classT.getClassPriceOptionTList().clear();
+        // for(ClassPriceOptionT option : classT.getClassPriceOptionTList()) classPriceOptionRepository.delete(option);
         classPriceOptionRepository.deleteAllByClassNo(req.getClassNo());
         for (String option : req.getPriceOptionList())
             classPriceOptionRepository.save(new ClassPriceOptionT(classT.getClassNo(), option));
 
+        // classT.getClassContactTList().clear();
+        // for(ClassContactT contact : classT.getClassContactTList()) classContactRepository.delete(contact);
         classContactRepository.deleteAllByClassNo(req.getClassNo());
-        for (ClassContactRequest contact : req.getContactList())
+        for (ClassContactM contact : req.getClassContactList())
             classContactRepository.save(new ClassContactT(classT.getClassNo(), contact));
 
         return getClassDetail(classT.getClassNo());

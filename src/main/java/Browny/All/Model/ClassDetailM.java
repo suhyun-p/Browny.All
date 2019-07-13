@@ -51,6 +51,7 @@ public class ClassDetailM {
         this.setOnly(t.getOnly());
         this.setTitle(t.getTitle());
         this.setClassImage(String.format("http://localhost:8080/assets/images/%s", t.getClassImage()));
+        this.setClassImage(t.getClassImage());
         this.setInstructorNo1(t.getInstructor1().getUserNo());
         this.setInstructorNickname1(t.getInstructor1().getNickname());
         if(t.getInstructor2() != null) {
@@ -78,7 +79,7 @@ public class ClassDetailM {
         this.setPayment(t.getPayment());
         if(t.getClassContactTList() != null && !t.getClassContactTList().isEmpty()) {
             for(ClassContactT contact : t.getClassContactTList()) {
-                this.getClassContactList().add(new ClassContactM(contact.getInstructorNo() == null ? -1 : contact.getInstructorNo(), contact.getType() == null ? "" : contact.getType(), contact.getContact()));
+                this.getClassContactList().add(new ClassContactM(contact.getInstructorNo(), contact.getType(), contact.getContact()));
             }
         }
     }

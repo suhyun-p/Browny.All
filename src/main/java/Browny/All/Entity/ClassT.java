@@ -1,13 +1,16 @@
 package Browny.All.Entity;
 
+import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.Request.EditClassRequest;
 import Browny.All.Model.Request.RegClassRequest;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -85,19 +88,19 @@ public class ClassT {
     @Column(name = "update_id")
     private String updateId;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name="class_no")
     private List<ClassDateOptionT> classDateOptionTList;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name="class_no")
     private List<ClassPriceOptionT> classPriceOptionTList;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name="class_no")
     private List<ClassContactT> classContactTList;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
     @JoinColumn(name="class_no")
     private List<ClassEarlybirdT> classEarlybirdTList;
 
@@ -106,7 +109,7 @@ public class ClassT {
         this.setCreateId("Admin");
     }
 
-    public ClassT(RegClassRequest req, UserT instructor1, UserT instructor2) {
+    public ClassT(ClassDetailM req, UserT instructor1, UserT instructor2) {
         this.setGenre(req.getGenre());
         this.setRegion(req.getRegion());
         this.setType(req.getType());
@@ -114,8 +117,8 @@ public class ClassT {
         this.setInstructor1(instructor1);
         if(instructor2 != null) this.setInstructor2(instructor2);
         this.setTitle(req.getTitle());
-        this.setStartDate(req.getStartDate());
-        this.setEndDate(req.getEndDate());
+        this.setStartDate(LocalDate.parse(req.getStartDate()));
+        this.setEndDate(LocalDate.parse(req.getEndDate()));
         this.setDateSummary(req.getDateSummary());
         this.setStartTime(req.getStartTime());
         this.setEndTime(req.getEndTime());

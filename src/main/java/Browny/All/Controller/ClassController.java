@@ -66,13 +66,13 @@ public class ClassController {
     }
 
     @RequestMapping(value = "/regClass", method = RequestMethod.POST)
-    public ResponseEntity<ClassDetailM> RegClass(@RequestBody RegClassRequest req) {
+    public ResponseEntity<ClassDetailM> RegClass(@RequestBody ClassDetailM req) {
         ClassDetailM classDetail = classService.regClass(req);
         return new ResponseEntity(classDetail, OK);
     }
 
     @RequestMapping(value = "/editClass", method = RequestMethod.POST)
-    public ResponseEntity<ClassDetailM> EditClass(@RequestBody EditClassRequest req) {
+    public ResponseEntity<ClassDetailM> EditClass(@RequestBody ClassDetailM req) {
         ClassDetailM classDetail = classService.editClass(req);
         return new ResponseEntity(classDetail, OK);
     }
