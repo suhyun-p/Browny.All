@@ -37,6 +37,8 @@ public class ClassDetailModel {
     private List<String> priceOptionList = new ArrayList<>();
     private String payment;
     private List<String> classContactList = new ArrayList<>();
+    private Long clubNo;
+    private String clubName;
 
     public ClassDetailModel(ClassDetailM m) {
         this.setClassNo(m.getClassNo());
@@ -147,6 +149,11 @@ public class ClassDetailModel {
             for(ClassContactM classContactT : m.getClassContactList().stream().filter(x -> (x.getInstructorNo() == null && x.getType() == null )).collect(Collectors.toList())) {
                 this.getClassContactList().add(classContactT.getContact());
             }
+        }
+
+        if(m.getClubNo() != null) {
+            this.setClubNo(m.getClubNo());
+            this.setClubName(m.getClubName());
         }
     }
 }
