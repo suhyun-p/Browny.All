@@ -41,6 +41,9 @@ public class ClassService {
     @Autowired
     private ClassEarlybirdRepository classEarlybirdRepository;
 
+    @Autowired
+    private ClubRepository clubRepository;
+
     @Transactional
     public List<ClassSimpleM> getClassSimpleList() {
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
@@ -130,7 +133,8 @@ public class ClassService {
     public ClassDetailM regClass(ClassDetailM req) {
         UserT instructor1= userRepository.findById(req.getInstructorNo1()).get();
         Optional<UserT> instructor2 = userRepository.findById(req.getInstructorNo2());
-        ClassT classT = classRepository.save(new ClassT(req, instructor1, instructor2.isPresent() ? instructor2.get() : null));
+        Optional<ClubT> club = clubRepository.findById(req.getClubNo());
+        ClassT classT = classRepository.save(new ClassT(req, instructor1, instructor2.isPresent() ? instructor2.get() : null, club.isPresent() ? club.get() : null));
 
         for (String option : req.getDateOptionList())
             classDateOptionRepository.save(new ClassDateOptionT(classT.getClassNo(), option));
@@ -148,6 +152,7 @@ public class ClassService {
     public ClassDetailM editClass(ClassDetailM req) {
         UserT instructor1= userRepository.findById(req.getInstructorNo1()).get();
         Optional<UserT> instructor2 = userRepository.findById(req.getInstructorNo2());
+        Optional<ClubT> club = clubRepository.findById(req.getClubNo());
 
         ClassT classT = classRepository.findById(req.getClassNo()).get();
         classT.setGenre(req.getGenre());
@@ -155,7 +160,7 @@ public class ClassService {
         classT.setType(req.getType());
         classT.setOnly(req.getOnly());
         classT.setInstructor1(instructor1);
-        if(instructor2 != null) classT.setInstructor2(instructor2.isPresent() ? instructor2.get() : null);
+        if(instructor2 != null) classT.setInstructor2(instructor2.get());
         classT.setTitle(req.getTitle());
         classT.setStartDate(LocalDate.parse(req.getStartDate()));
         classT.setEndDate(LocalDate.parse(req.getEndDate()));
@@ -167,6 +172,7 @@ public class ClassService {
         classT.setFemalePrice(req.getFemalePrice());
         classT.setPayment(req.getPayment());
         classT.setClassImage(req.getClassImage());
+        if(club != null) classT.setClub(club.get());
         classT.setUpdateId("Admin");
         classT.setUpdateDate(LocalDateTime.now());
 

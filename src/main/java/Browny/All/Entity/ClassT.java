@@ -104,12 +104,16 @@ public class ClassT {
     @JoinColumn(name="class_no")
     private List<ClassEarlybirdT> classEarlybirdTList;
 
+    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="club_no")
+    private ClubT club;
+
     public ClassT() {
         this.setCreateDate(LocalDateTime.now());
         this.setCreateId("Admin");
     }
 
-    public ClassT(ClassDetailM req, UserT instructor1, UserT instructor2) {
+    public ClassT(ClassDetailM req, UserT instructor1, UserT instructor2, ClubT club) {
         this.setGenre(req.getGenre());
         this.setRegion(req.getRegion());
         this.setType(req.getType());
@@ -127,6 +131,7 @@ public class ClassT {
         this.setFemalePrice(req.getFemalePrice());
         this.setPayment(req.getPayment());
         this.setClassImage(req.getClassImage());
+        if(club != null) this.setClub(club);
         this.setCreateId("Admin");
         this.setCreateDate(LocalDateTime.now());
     }

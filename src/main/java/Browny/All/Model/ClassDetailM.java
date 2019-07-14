@@ -42,6 +42,8 @@ public class ClassDetailM {
     private List<String> priceOptionList = new ArrayList<>();
     private String payment;
     private List<ClassContactM> classContactList = new ArrayList<>();
+    private Long clubNo;
+    private String clubName;
 
     public ClassDetailM(ClassT t) {
         this.setClassNo(t.getClassNo());
@@ -81,6 +83,11 @@ public class ClassDetailM {
             for(ClassContactT contact : t.getClassContactTList()) {
                 this.getClassContactList().add(new ClassContactM(contact.getInstructorNo(), contact.getType(), contact.getContact()));
             }
+        }
+
+        if(t.getClub() != null) {
+            this.setClubNo(t.getClub().getClubNo());
+            this.setClubName(t.getClub().getName());
         }
     }
 }

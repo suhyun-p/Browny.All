@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS class (
     recruitment_number int,
     contents varchar(255),
     class_image varchar(255),
+    club_no BIGINT,
     create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
     update_date DATETIME NULL,
@@ -102,4 +103,9 @@ CREATE TABLE IF NOT EXISTS class_contact (
     create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
     primary key (seq)
+);
+
+CREATE TABLE IF NOT EXISTS club (
+    club_no BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255)
 );
