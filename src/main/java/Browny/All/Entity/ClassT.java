@@ -88,19 +88,19 @@ public class ClassT {
     @Column(name = "update_id")
     private String updateId;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name="class_no")
     private List<ClassDateOptionT> classDateOptionTList;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name="class_no")
     private List<ClassPriceOptionT> classPriceOptionTList;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name="class_no")
     private List<ClassContactT> classContactTList;
 
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name="class_no")
     private List<ClassEarlybirdT> classEarlybirdTList;
 

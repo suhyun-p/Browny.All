@@ -173,18 +173,21 @@ public class ClassService {
         // classT.getClassDateOptionTList().clear();
         // for(ClassDateOptionT option : classT.getClassDateOptionTList()) classDateOptionRepository.delete(option);
         classDateOptionRepository.deleteAllByClassNo(req.getClassNo());
+        // classT.getClassDateOptionTList().removeAll(classT.getClassDateOptionTList());
         for (String option : req.getDateOptionList())
             classDateOptionRepository.save(new ClassDateOptionT(classT.getClassNo(), option));
 
         // classT.getClassPriceOptionTList().clear();
         // for(ClassPriceOptionT option : classT.getClassPriceOptionTList()) classPriceOptionRepository.delete(option);
         classPriceOptionRepository.deleteAllByClassNo(req.getClassNo());
+        // classT.getClassPriceOptionTList().removeAll(classT.getClassPriceOptionTList());
         for (String option : req.getPriceOptionList())
             classPriceOptionRepository.save(new ClassPriceOptionT(classT.getClassNo(), option));
 
         // classT.getClassContactTList().clear();
         // for(ClassContactT contact : classT.getClassContactTList()) classContactRepository.delete(contact);
         classContactRepository.deleteAllByClassNo(req.getClassNo());
+        // classT.getClassContactTList().removeAll(classT.getClassContactTList());
         for (ClassContactM contact : req.getClassContactList())
             classContactRepository.save(new ClassContactT(classT.getClassNo(), contact));
 
