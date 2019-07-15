@@ -36,11 +36,13 @@ public class ClassService {
     @Autowired
     private ClubRepository clubRepository;
 
+    private String ExposeYn = "Y";
+
     @Transactional
     public List<ClassSimpleM> getClassSimpleList() {
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByOrderByStartDateDesc();
-        List<ClassT> classTList = classRepository.findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate.now());
+        List<ClassT> classTList = classRepository.findAllByExposeYnIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(ExposeYn, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleM(classT));
 
@@ -51,7 +53,7 @@ public class ClassService {
     public List<ClassSimpleM> getClassSimpleListByGenre(String genre) {
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByGenreIsOrderByStartDateDesc(genre);
-        List<ClassT> classTList = classRepository.findAllByGenreIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(genre, LocalDate.now());
+        List<ClassT> classTList = classRepository.findAllByExposeYnIsAndGenreIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(ExposeYn, genre, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleM(classT));
 
@@ -62,7 +64,7 @@ public class ClassService {
     public List<ClassSimpleM> getClassSimpleListByRegion(String region) {
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByRegionIsOrderByStartDateDesc(region);
-        List<ClassT> classTList = classRepository.findAllByRegionIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(region, LocalDate.now());
+        List<ClassT> classTList = classRepository.findAllByExposeYnIsAndRegionIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(ExposeYn, region, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleM(classT));
 
@@ -73,7 +75,7 @@ public class ClassService {
     public List<ClassSimpleM> getClassSimpleListByType(String type) {
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByTypeIsOrderByStartDateDesc(type);
-        List<ClassT> classTList = classRepository.findAllByTypeIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(type, LocalDate.now());
+        List<ClassT> classTList = classRepository.findAllByExposeYnIsAndTypeIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(ExposeYn, type, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleM(classT));
 
@@ -84,7 +86,7 @@ public class ClassService {
     public List<ClassSimpleM> getClassSimpleListByOnly(String only) {
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         // List<ClassT> classTList = classRepository.findAllByOnlyIsOrderByStartDateDesc(only);
-        List<ClassT> classTList = classRepository.findAllByOnlyIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(only, LocalDate.now());
+        List<ClassT> classTList = classRepository.findAllByExposeYnIsAndOnlyIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(ExposeYn, only, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleM(classT));
 
@@ -96,7 +98,7 @@ public class ClassService {
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         UserT instructor = userRepository.getOne(instructorNo);
         // List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
-        List<ClassT> classTList = classRepository.findAllByInstructor1AndEndDateIsGreaterThanEqualOrInstructor2AndEndDateIsGreaterThanEqualOrderByStartDateDesc(instructor, LocalDate.now(), instructor, LocalDate.now());
+        List<ClassT> classTList = classRepository.findAllByExposeYnIsAndInstructor1AndEndDateIsGreaterThanEqualOrExposeYnIsAndInstructor2AndEndDateIsGreaterThanEqualOrderByStartDateDesc(ExposeYn, instructor, LocalDate.now(), ExposeYn, instructor, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleM(classT));
 
@@ -108,7 +110,7 @@ public class ClassService {
         List<ClassSimpleM> classSimpleList = new ArrayList<>();
         UserT instructor = userRepository.getOne(instructorNo);
         // List<ClassT> classTList = classRepository.findAllByInstructor1OrInstructor2OrderByStartDateDesc(instructor, instructor);
-        List<ClassT> classTList = classRepository.findAllByInstructor1AndEndDateIsLessThanOrInstructor2AndEndDateIsLessThanOrderByStartDateDesc(instructor, LocalDate.now(), instructor, LocalDate.now());
+        List<ClassT> classTList = classRepository.findAllByExposeYnIsAndInstructor1AndEndDateIsLessThanOrExposeYnIsAndInstructor2AndEndDateIsLessThanOrderByStartDateDesc(ExposeYn, instructor, LocalDate.now(), ExposeYn, instructor, LocalDate.now());
         for(ClassT classT : classTList)
             classSimpleList.add(new ClassSimpleM(classT));
 
@@ -165,6 +167,7 @@ public class ClassService {
         classT.setPayment(req.getPayment());
         classT.setClassImage(req.getClassImage());
         if(club != null) classT.setClub(club.get());
+        classT.setExposeYn(req.getExposeYn());
         classT.setUpdateId("Admin");
         classT.setUpdateDate(LocalDateTime.now());
 
@@ -199,7 +202,7 @@ public class ClassService {
 
         if(club.isPresent()) {
             // List<ClassT> classTList = classRepository.findAllByClubOrderByStartDateDesc(instructor, instructor);
-            List<ClassT> classTList = classRepository.findAllByClubAndEndDateIsGreaterThanEqualOrderByStartDateDesc(club.get(), LocalDate.now());
+            List<ClassT> classTList = classRepository.findAllByExposeYnIsAndClubAndEndDateIsGreaterThanEqualOrderByStartDateDesc(ExposeYn, club.get(), LocalDate.now());
             for(ClassT classT : classTList)
                 classSimpleList.add(new ClassSimpleM(classT));
         }

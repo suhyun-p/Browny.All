@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS class (
     contents varchar(255),
     class_image varchar(255),
     club_no BIGINT,
+    expose_yn char(1) not null default 'Y',
     create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
     update_date DATETIME NULL,

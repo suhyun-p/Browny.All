@@ -44,6 +44,7 @@ public class ClassDetailM {
     private List<ClassContactM> classContactList = new ArrayList<>();
     private Long clubNo;
     private String clubName;
+    private String exposeYn;
 
     public ClassDetailM(ClassT t) {
         this.setClassNo(t.getClassNo());
@@ -89,5 +90,7 @@ public class ClassDetailM {
             this.setClubNo(t.getClub().getClubNo());
             this.setClubName(t.getClub().getName());
         }
+
+        this.setExposeYn(t.getExposeYn());
     }
 }

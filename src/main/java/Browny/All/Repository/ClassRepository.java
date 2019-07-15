@@ -18,12 +18,12 @@ public interface ClassRepository extends JpaRepository<ClassT, Long> {
     List<ClassT> findAllByInstructor1OrInstructor2OrderByStartDateDesc(UserT instructor1, UserT instructor2);
     List<ClassT> findAllByClubOrderByStartDateDesc(ClubT club);
 
-    List<ClassT> findAllByEndDateIsGreaterThanEqualOrderByStartDateDesc(LocalDate today);
-    List<ClassT> findAllByGenreIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String genre, LocalDate today);
-    List<ClassT> findAllByRegionIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String region, LocalDate today);
-    List<ClassT> findAllByTypeIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String type, LocalDate today);
-    List<ClassT> findAllByOnlyIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String only, LocalDate today);
-    List<ClassT> findAllByInstructor1AndEndDateIsGreaterThanEqualOrInstructor2AndEndDateIsGreaterThanEqualOrderByStartDateDesc(UserT instructor1, LocalDate today1, UserT instructor2, LocalDate today2);
-    List<ClassT> findAllByInstructor1AndEndDateIsLessThanOrInstructor2AndEndDateIsLessThanOrderByStartDateDesc(UserT instructor1, LocalDate today1, UserT instructor2, LocalDate today2);
-    List<ClassT> findAllByClubAndEndDateIsGreaterThanEqualOrderByStartDateDesc(ClubT club, LocalDate today);
+    List<ClassT> findAllByExposeYnIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String ExposeYn, LocalDate today);
+    List<ClassT> findAllByExposeYnIsAndGenreIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String ExposeYn, String genre, LocalDate today);
+    List<ClassT> findAllByExposeYnIsAndRegionIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String ExposeYn, String region, LocalDate today);
+    List<ClassT> findAllByExposeYnIsAndTypeIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String ExposeYn, String type, LocalDate today);
+    List<ClassT> findAllByExposeYnIsAndOnlyIsAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String ExposeYn, String only, LocalDate today);
+    List<ClassT> findAllByExposeYnIsAndInstructor1AndEndDateIsGreaterThanEqualOrExposeYnIsAndInstructor2AndEndDateIsGreaterThanEqualOrderByStartDateDesc(String ExposeYn1, UserT instructor1, LocalDate today1, String ExposeYn2, UserT instructor2, LocalDate today2);
+    List<ClassT> findAllByExposeYnIsAndInstructor1AndEndDateIsLessThanOrExposeYnIsAndInstructor2AndEndDateIsLessThanOrderByStartDateDesc(String ExposeYn1, UserT instructor1, LocalDate today1, String ExposeYn2, UserT instructor2, LocalDate today2);
+    List<ClassT> findAllByExposeYnIsAndClubAndEndDateIsGreaterThanEqualOrderByStartDateDesc(String ExposeYn, ClubT club, LocalDate today);
 }

@@ -72,6 +72,9 @@ public class ClassT {
     @Column(name = "class_image")
     private String classImage;
 
+    @Column(name = "expose_yn")
+    private String exposeYn;
+
     @Column(name = "create_date", nullable = false)
     private LocalDateTime createDate;
 
@@ -128,6 +131,7 @@ public class ClassT {
         this.setPayment(req.getPayment());
         this.setClassImage(req.getClassImage());
         if(club != null) this.setClub(club);
+        this.setExposeYn(req.getExposeYn());
         this.setCreateId("Admin");
         this.setCreateDate(LocalDateTime.now());
     }
