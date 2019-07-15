@@ -1,5 +1,6 @@
 package Browny.All.Entity;
 
+import Browny.All.Model.ClubM;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +18,12 @@ public class ClubT {
 
     @Column(name = "name")
     private String name;
+
+    public ClubT() {
+
+    }
+
+    public ClubT(ClubM req) {
+        this.setName(req.getClubName());
+    }
 }
