@@ -1,5 +1,6 @@
 package Browny.All.Entity;
 
+import Browny.All.Model.UserM;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -56,12 +57,12 @@ public class UserT {
         this.setCreateId("Admin");
     }
 
-    public UserT(String nickname, String sex, boolean instructor, String account) {
-        this.setNickname(nickname);
-        this.setSex(sex);
-        this.setInstructor(instructor);
-        this.setAccount(account);
-        this.setCreateDate(LocalDateTime.now());
+    public UserT(UserM req) {
+        this.setNickname(req.getNickname());
+        this.setSex(req.getSex());
+        this.setInstructor(req.getInstructor());
+        if(req.getInstructor()) this.setAccount(req.getAccount());
         this.setCreateId("Admin");
+        this.setCreateDate(LocalDateTime.now());
     }
 }

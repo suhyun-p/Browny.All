@@ -3,12 +3,7 @@ package Browny.All.Service;
 import Browny.All.Entity.InstructorCareerT;
 import Browny.All.Entity.InstructorContactT;
 import Browny.All.Entity.UserT;
-import Browny.All.Enum.ContactType;
-import Browny.All.Enum.Sex;
 import Browny.All.Model.InstructorContactM;
-import Browny.All.Model.Request.EditUserRequest;
-import Browny.All.Model.Request.InstructorContactRequest;
-import Browny.All.Model.Request.SignUpRequest;
 import Browny.All.Model.UserM;
 import Browny.All.Repository.InstructorCareerRepository;
 import Browny.All.Repository.InstructorContactRepository;
@@ -37,7 +32,7 @@ public class UserService {
         List<UserM> userList = new ArrayList<>();
         List<UserT> userTList = userRepository.findAll();
         for(UserT userT : userTList)
-            userList.add(ConvertToUserM(userT));
+            userList.add(new UserM(userT));
 
         return userList;
     }
@@ -45,7 +40,7 @@ public class UserService {
     @Transactional
     public UserM GetUser(long userNo) {
         UserT userT = userRepository.findById(userNo).get();
-        return ConvertToUserM(userT);
+        return new UserM(userT);
     }
 
     @Transactional
@@ -53,23 +48,23 @@ public class UserService {
         List<UserM> instructorList = new ArrayList<>();
         List<UserT> userTList = userRepository.findAllByInstructorIsTrue();
         for(UserT userT : userTList)
-            instructorList.add(ConvertToUserM(userT));
+            instructorList.add(new UserM(userT));
 
         return instructorList;
     }
 
     @Transactional
-    public UserM SignUp(SignUpRequest req) {
-        UserT user = userRepository.save(ConvertToUserT(req));
+    public UserM SignUp(UserM req) {
+        UserT user = userRepository.save(new UserT(req));
 
         // Instructor인 경우에만 Career 및 Contact 정보 저장
         if(req.getInstructor()) {
-            if(req.getCareerList() != null) {
+            if(req.getCareerList() != null && !req.getCareerList().isEmpty()) {
                 for (String career : req.getCareerList())
                     instructorCareerRepository.save(new InstructorCareerT(user.getUserNo(), career));
             }
-            if(req.getContactList() != null) {
-                for (InstructorContactRequest contact : req.getContactList())
+            if(req.getContactList() != null && !req.getContactList().isEmpty()) {
+                for (InstructorContactM contact : req.getContactList())
                     instructorContactRepository.save(new InstructorContactT(user.getUserNo(), contact));
             }
         }
@@ -78,7 +73,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserM EditUser(EditUserRequest req) {
+    public UserM EditUser(UserM req) {
         UserT user = userRepository.findById(req.getUserNo()).get();
         user.setNickname(req.getNickname());
         user.setSex(req.getSex());
@@ -88,36 +83,20 @@ public class UserService {
         user.setUpdateId("Admin");
         userRepository.save(user);
 
-        instructorCareerRepository.deleteAllByInstructorNo(req.getUserNo());
-        if(req.getInstructor() && req.getCareerList() != null) {
-            for (String career : req.getCareerList())
-                instructorCareerRepository.save(new InstructorCareerT(user.getUserNo(), career));
-        }
+        if(req.getInstructor()) {
+            instructorCareerRepository.deleteAllByInstructorNo(req.getUserNo());
+            if(req.getCareerList() != null) {
+                for (String career : req.getCareerList())
+                    instructorCareerRepository.save(new InstructorCareerT(user.getUserNo(), career));
+            }
 
-        instructorContactRepository.deleteAllByInstructorNo(req.getUserNo());
-        if(req.getInstructor() && req.getContactList() != null) {
-            for (InstructorContactRequest contact : req.getContactList())
-                instructorContactRepository.save(new InstructorContactT(user.getUserNo(), contact));
+            instructorContactRepository.deleteAllByInstructorNo(req.getUserNo());
+            if(req.getContactList() != null) {
+                for (InstructorContactM contact : req.getContactList())
+                    instructorContactRepository.save(new InstructorContactT(user.getUserNo(), contact));
+            }
         }
 
         return GetUser(user.getUserNo());
-    }
-
-    private UserM ConvertToUserM(UserT userT) {
-        UserM user = new UserM(userT.getUserNo(), userT.getNickname(), Sex.valueOf(userT.getSex()), userT.getInstructor());
-        user.setAccount(userT.getAccount());
-
-        // Instructor인 경우에만 Career, Contact 정보 Return
-        if(userT.getInstructor()) {
-            for(InstructorCareerT careerT : userT.getInstructorCareerTList())
-                user.getCareerList().add(careerT.getCareer());
-            user.setContact(new InstructorContactM(userT.getInstructorContactTList()));
-        }
-
-        return user;
-    }
-
-    private UserT ConvertToUserT(SignUpRequest req) {
-        return new UserT(req.getNickname(), req.getSex(), req.getInstructor(), req.getAccount());
     }
 }

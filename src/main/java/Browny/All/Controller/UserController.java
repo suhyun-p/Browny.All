@@ -1,8 +1,5 @@
 package Browny.All.Controller;
 
-import Browny.All.Entity.UserT;
-import Browny.All.Model.Request.EditUserRequest;
-import Browny.All.Model.Request.SignUpRequest;
 import Browny.All.Model.UserM;
 import Browny.All.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +35,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public ResponseEntity<UserM> signUp(@RequestBody SignUpRequest req) {
+    public ResponseEntity<UserM> signUp(@RequestBody UserM req) {
         UserM user = userService.SignUp(req);
         return new ResponseEntity(user, OK);
     }
 
     @RequestMapping(value = "/editUser", method = RequestMethod.POST)
-    public ResponseEntity<UserM> editUser(@RequestBody EditUserRequest req) {
+    public ResponseEntity<UserM> editUser(@RequestBody UserM req) {
         UserM user = userService.EditUser(req);
         return new ResponseEntity(user, OK);
     }
