@@ -1,7 +1,6 @@
 package Browny.All.Entity;
 
 import Browny.All.Model.ClassContactM;
-import Browny.All.Model.Request.ClassContactRequest;
 import lombok.Getter;
 import lombok.Setter;
 

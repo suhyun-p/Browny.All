@@ -1,7 +1,5 @@
 package Browny.All.Entity;
 
-import Browny.All.Model.Request.RegClassRequest;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

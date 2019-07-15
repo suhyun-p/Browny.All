@@ -1,10 +1,7 @@
 package Browny.All.Controller;
 
-import Browny.All.Entity.ClassDetailT;
 import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.ClassSimpleM;
-import Browny.All.Model.Request.EditClassRequest;
-import Browny.All.Model.Request.RegClassRequest;
 import Browny.All.Service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -75,5 +72,11 @@ public class ClassController {
     public ResponseEntity<ClassDetailM> EditClass(@RequestBody ClassDetailM req) {
         ClassDetailM classDetail = classService.editClass(req);
         return new ResponseEntity(classDetail, OK);
+    }
+
+    @RequestMapping(value = "/getClassListByClub", method = RequestMethod.GET)
+    public ResponseEntity<ClassSimpleM> getClassListByClub(@RequestParam("clubNo") Long clubNo) {
+        List<ClassSimpleM> classSimpleList = classService.getClassSimpleListByClub(clubNo);
+        return new ResponseEntity(classSimpleList, OK);
     }
 }

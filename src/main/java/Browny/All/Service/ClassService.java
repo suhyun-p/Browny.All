@@ -1,24 +1,16 @@
 package Browny.All.Service;
 
 import Browny.All.Entity.*;
-import Browny.All.Enum.*;
 import Browny.All.Model.*;
-import Browny.All.Model.Request.ClassContactRequest;
-import Browny.All.Model.Request.EditClassRequest;
-import Browny.All.Model.Request.RegClassRequest;
 import Browny.All.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -198,5 +190,20 @@ public class ClassService {
             classContactRepository.save(new ClassContactT(classT.getClassNo(), contact));
 
         return getClassDetail(classT.getClassNo());
+    }
+
+    @Transactional
+    public List<ClassSimpleM> getClassSimpleListByClub(Long clubNo) {
+        List<ClassSimpleM> classSimpleList = new ArrayList<>();
+        Optional<ClubT> club = clubRepository.findById(clubNo);
+
+        if(club.isPresent()) {
+            // List<ClassT> classTList = classRepository.findAllByClubOrderByStartDateDesc(instructor, instructor);
+            List<ClassT> classTList = classRepository.findAllByClubAndEndDateIsGreaterThanEqualOrderByStartDateDesc(club.get(), LocalDate.now());
+            for(ClassT classT : classTList)
+                classSimpleList.add(new ClassSimpleM(classT));
+        }
+
+        return classSimpleList;
     }
 }

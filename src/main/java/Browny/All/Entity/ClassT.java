@@ -1,16 +1,12 @@
 package Browny.All.Entity;
 
 import Browny.All.Model.ClassDetailM;
-import Browny.All.Model.Request.EditClassRequest;
-import Browny.All.Model.Request.RegClassRequest;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
