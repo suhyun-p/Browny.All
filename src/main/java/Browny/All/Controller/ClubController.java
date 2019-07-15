@@ -18,6 +18,11 @@ public class ClubController {
     @Autowired
     ClubService clubService;
 
+    @RequestMapping(value = "/getClubList", method = RequestMethod.GET)
+    public ResponseEntity<List<ClubM>> getClubList() {
+        return new ResponseEntity(clubService.GetClubList(), OK);
+    }
+
     @RequestMapping(value = "/getClubByClubNo", method = RequestMethod.GET)
     public ResponseEntity<ClubM> getClubByClubNo(@RequestParam("clubNo") Long clubNo) {
         ClubM club = clubService.GetClub(clubNo);
