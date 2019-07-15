@@ -2,10 +2,7 @@ package Browny.All.Controller;
 
 import Browny.All.Entity.ClassDetailT;
 import Browny.All.Enum.*;
-import Browny.All.Model.ClassDetailM;
-import Browny.All.Model.ClassDetailModel;
-import Browny.All.Model.ClassSimpleM;
-import Browny.All.Model.UserM;
+import Browny.All.Model.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,13 +82,13 @@ public class WebController {
     }
 
     @RequestMapping(value = "/getClosedClassListByInstructor", method = RequestMethod.GET)
-    @ResponseBody
-    public ClassSimpleM[] GetClosedClassListByInstructor(HttpServletRequest httpServletRequest, Model model) {
+        @ResponseBody
+        public ClassSimpleM[] GetClosedClassListByInstructor(HttpServletRequest httpServletRequest, Model model) {
 
-        RestTemplate restTemplate = new RestTemplate();
-        String instructorNo = httpServletRequest.getParameter("instructorNo");
-        String url = String.format("http://localhost:8080/api/class/getClosedClassListByInstructor?instructorNo=%s", instructorNo);
-        ResponseEntity<ClassSimpleM[]> ret = restTemplate.getForEntity(url, ClassSimpleM[].class);
+            RestTemplate restTemplate = new RestTemplate();
+            String instructorNo = httpServletRequest.getParameter("instructorNo");
+            String url = String.format("http://localhost:8080/api/class/getClosedClassListByInstructor?instructorNo=%s", instructorNo);
+            ResponseEntity<ClassSimpleM[]> ret = restTemplate.getForEntity(url, ClassSimpleM[].class);
 
         return ret.getBody();
     }
@@ -109,5 +106,32 @@ public class WebController {
         ResponseEntity<ClassDetailM> ret = restTemplate.getForEntity(url, ClassDetailM.class);
 
         return new ClassDetailModel(ret.getBody());
+    }
+
+    @RequestMapping(value = "/club")
+    public String Club(Model model, @RequestParam("clubNo") long clubNo) { return "/club"; }
+
+    @RequestMapping(value = "/getClubInfo", method = RequestMethod.GET)
+    @ResponseBody
+    public ClubM GetClubInfo(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String clubNo = httpServletRequest.getParameter("clubNo");
+        String url = String.format("http://localhost:8080/api/club/getClubByClubNo?clubNo=%s", clubNo);
+        ResponseEntity<ClubM> ret = restTemplate.getForEntity(url, ClubM .class);
+
+        return ret.getBody();
+    }
+
+    @RequestMapping(value = "/getClassListByClub", method = RequestMethod.GET)
+    @ResponseBody
+    public ClassSimpleM[] GetClassListByClub(HttpServletRequest httpServletRequest, Model model) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String clubNo = httpServletRequest.getParameter("clubNo");
+        String url = String.format("http://localhost:8080/api/class/getClassListByClub?clubNo=%s", clubNo);
+        ResponseEntity<ClassSimpleM[]> ret = restTemplate.getForEntity(url, ClassSimpleM[].class);
+
+        return ret.getBody();
     }
 }

@@ -3,6 +3,7 @@ package Browny.All.Controller;
 import Browny.All.Model.ClassDetailM;
 import Browny.All.Model.ClassSimpleM;
 import Browny.All.Service.ClassService;
+import Browny.All.Service.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

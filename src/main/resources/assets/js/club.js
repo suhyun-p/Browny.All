@@ -9,30 +9,34 @@ $(document).ready(function () {
         contentType: 'application/json',
         dataType: 'json',
         // data: JSON.stringify(data),
-        url: '/getInstructorInfo?instructorNo=' +  $.urlParam('instructorNo'),
+        url: '/getClubInfo?clubNo=' +  $.urlParam('clubNo'),
         type: 'GET',
         success: function (response) {
-            $("#instructorTemplate").tmpl(response).appendTo("#instructorInfo");
+            // $("#instructorTemplate").tmpl(response).appendTo("#instructorInfo");
+            $("#clubName").text("#" + response.clubName);
         },
         error: function (request, status, error) {
             alert("실패");
         }
     });
 
-    // In Progress
     $.ajax({
         contentType: 'application/json',
         dataType: 'json',
         // data: JSON.stringify(data),
-        url: '/getClassListByInstructor?instructorNo=' +  $.urlParam('instructorNo'),
+        url: '/getClassListByClub?clubNo=' +  $.urlParam('clubNo'),
         type: 'GET',
         success: function (response) {
-            $("#classSimpleTemplate").tmpl(response).appendTo("#classSimpleListByInstructor");
+            $("#classSimpleTemplate").tmpl(response).appendTo("#classSimpleList");
         },
         error: function (request, status, error) {
             alert("실패");
         }
     });
+
+    /*
+    // In Progress
+
 
     // In Closed
     $.ajax({
@@ -47,5 +51,5 @@ $(document).ready(function () {
         error: function (request, status, error) {
             alert("실패");
         }
-    });
+    });*/
 });
