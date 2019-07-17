@@ -14,6 +14,10 @@ public class InstructorContactM {
     private String name;
     private String contact;
 
+    public InstructorContactM() {
+
+    }
+
     public InstructorContactM(String type, String name, String contact) {
         this.setType(type);
         this.setName(name);

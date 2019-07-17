@@ -59,14 +59,14 @@ public class WebController {
 
     @RequestMapping(value = "/getInstructorInfo", method = RequestMethod.GET)
     @ResponseBody
-    public UserM GetInstructorInfo(HttpServletRequest httpServletRequest, Model model) {
+    public UserModel GetInstructorInfo(HttpServletRequest httpServletRequest, Model model) {
 
         RestTemplate restTemplate = new RestTemplate();
         String instructorNo = httpServletRequest.getParameter("instructorNo");
         String url = String.format("http://localhost:8080/api/user/getUserByUserNo?userNo=%s", instructorNo);
         ResponseEntity<UserM> ret = restTemplate.getForEntity(url, UserM .class);
 
-        return ret.getBody();
+        return new UserModel(ret.getBody());
     }
 
     @RequestMapping(value = "/getClassListByInstructor", method = RequestMethod.GET)
