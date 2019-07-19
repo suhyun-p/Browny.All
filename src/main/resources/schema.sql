@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS user (
   sex CHAR(1) NOT NULL,
   instructor TINYINT NOT NULL DEFAULT 0,
   account VARCHAR(45) NULL,
+  user_image VARCHAR(255) NULL,
   create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
   update_date DATETIME NULL,
@@ -19,8 +20,6 @@ CREATE TABLE IF NOT EXISTS instructor_contact (
   contact VARCHAR(255) NULL,
   create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   create_id VARCHAR(25) NOT NULL DEFAULT 'ADMIN',
-  update_date DATETIME NULL,
-  update_id VARCHAR(255) NULL,
   PRIMARY KEY (seq)
 );
 
@@ -30,8 +29,6 @@ CREATE TABLE IF NOT EXISTS instructor_career (
   career VARCHAR(255) NULL,
   create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
-  update_date DATETIME NULL,
-  update_id VARCHAR(255) NULL,
   PRIMARY KEY (seq)
 );
 
@@ -53,10 +50,6 @@ CREATE TABLE IF NOT EXISTS class (
     male_price int not null,
     female_price int not null,
     payment varchar(255),
-    level int,
-    recruitment_type char(1),
-    recruitment_number int,
-    contents varchar(255),
     class_image varchar(255),
     club_no BIGINT,
     expose_yn char(1) not null default 'Y',
