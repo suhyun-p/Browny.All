@@ -78,16 +78,6 @@ CREATE TABLE IF NOT EXISTS class_date_option (
     primary key (seq)
 );
 
-CREATE TABLE IF NOT EXISTS class_earlybird (
-    seq BIGINT NOT NULL AUTO_INCREMENT,
-    class_no BIGINT NOT NULL,
-    deadline DATETIME NOT NULL,
-    amount int NOT NULL,
-    create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    create_id VARCHAR(255) NOT NULL DEFAULT 'ADMIN',
-    primary key (seq)
-);
-
 CREATE TABLE IF NOT EXISTS class_contact (
     seq BIGINT NOT NULL AUTO_INCREMENT,
     class_no BIGINT NOT NULL,

@@ -35,12 +35,6 @@ public class InstructorContactT {
     @Column(name = "create_id", nullable = false)
     private String createId;
 
-    @Column(name = "update_date", nullable = false)
-    private LocalDateTime updateDate;
-
-    @Column(name = "update_id", nullable = false)
-    private String updateId;
-
 
     public InstructorContactT() {
         this.setCreateDate(LocalDateTime.now());
